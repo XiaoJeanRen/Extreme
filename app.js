@@ -1,7 +1,8 @@
 const Discord = require("discord.js");
 const config = require("./config.json");
+const all_data = require("./serverAndplayers_datas.json");
 const bot = new Discord.Client();
-//const fs = require("fs");
+const fs = require("fs");
 const { CommandHandler } = require("djs-commands")
 const CH = new CommandHandler({
   folder: __dirname + '/commands/',
@@ -33,7 +34,7 @@ bot.on("message", (message) => {
   }catch(e){
     console.log(e)
   }
-
+  
 
 });
 

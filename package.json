@@ -1,0 +1,24 @@
+{
+  "name": "newowobot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "dependencies": {
+    "discord.js": "^11.4.2",
+    "djs-commands": "^1.2.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/XiaoJeanRen/New_owofBot.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/XiaoJeanRen/New_owofBot/issues"
+  },
+  "homepage": "https://github.com/XiaoJeanRen/New_owofBot#readme"
+}
