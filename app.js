@@ -1,6 +1,5 @@
 const Discord = require("discord.js");
 const config = require("./config.json");
-const all_data = require("./serverAndplayers_datas.json");
 const bot = new Discord.Client();
 const fs = require("fs");
 const { CommandHandler } = require("djs-commands")
@@ -16,8 +15,8 @@ bot.on("ready", () =>{
 });
 
 bot.on("message", (message) => {
-
-
+  
+  
   //一些資料和通常檢查
   if(message.channel.type === 'dm') return;
   if(message.author.type === 'bot') return;
@@ -30,10 +29,10 @@ bot.on("message", (message) => {
     cmd.run(bot,message,args)
 
 
-
   }catch(e){
     console.log(e)
   }
+  
   
 
 });

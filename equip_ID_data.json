@@ -1,0 +1,19 @@
+{
+    "001": {
+        "item_Id": "001",
+        "item_Type": "裝備",
+        "equip_Name": "新手木劍",
+        "equip_Type": "劍",
+        "add_max_Hp": 0,
+        "add_max_Mp": 0,
+        "add_max_Ap": 0,
+        "add_max_Weight": 0,
+        "add_atk": 0,
+        "add_def": 0,
+        "needLevel": 1,
+        "needClass": "無",
+        "needWeight": 0,
+        "special": "無",
+        "itemInfo": "無"
+    }
+}
