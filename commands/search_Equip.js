@@ -35,7 +35,9 @@ module.exports = class search_Equip{
     "**需求職業(needClass)： **"        + info.needClass + "\n" +
     "**需求負重(needWeight)： **"       + info.needWeight + "\n" +
     "**特殊能力(special)： **"          + info.special + "\n" +
-    "**物品介紹(itemInfo)： **"         + info.itemInfo + "\n" 
+    "**物品介紹(itemInfo)： **"         + info.itemInfo + "\n" +
+    "**物品價值(itemValue)： **"        + info.itemValue + "\n" +
+    "**物品特殊id(itemSpecialId)： **"  + info.itemSpecialId
     );
 
     message.reply(playerInfoEmbed).then(msg => {msg.delete(15000)});

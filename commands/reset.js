@@ -1,8 +1,9 @@
 const Discord = require("discord.js");
 const config = require("../config.json");
 const fs = require("fs");
-const userData = require("../users_data.json");
+const userData = require("../players_data.json");
 const equip = require("../character_equip.json");
+const default_inv = require("../default_inventory.json");
 module.exports = class reset {
     constructor() {
         this.name = 'reset',
@@ -15,11 +16,21 @@ module.exports = class reset {
         if (message.author.id != config.gm) return message.reply("權限不足").then(msg => {msg.delete(1000)});
         let playerID = message.author.id;
         console.log(`使用者(ID: ${playerID})使用「重置」`)
+        for(let i = 1; i <=10 ; i++){
+            default_inv["inv_" + i] = {
+                itemID: "000",
+                itemInfo: "無"
+            }
+        }
 
-        fs.writeFile("./users_data.json", JSON.stringify({}), (err) => {
+        fs.writeFile("./players_data.json", JSON.stringify({}), (err) => {
             
         });
         fs.writeFile("./character_equip.json", JSON.stringify({}), (err) => {
+            
+        });
+        
+        fs.writeFile("./default_inventory.json", JSON.stringify(default_inv), (err) => {
             
         });
 

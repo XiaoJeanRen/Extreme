@@ -54,7 +54,8 @@ module.exports = class create_Equip {
                 needClass: "無",
                 needWeight: 0,
                 special: "無",
-                itemInfo: "無"
+                itemInfo: "無",
+                itemValue: 0
             };
             fs.writeFile("./equip_ID_data.json", JSON.stringify(equipData), (err) => {
 

@@ -1,8 +1,10 @@
 const Discord = require("discord.js");
 const config = require("../config.json");
 const fs = require("fs");
-const userData = require("../users_data.json");
+const userData = require("../players_data.json");
 const equip = require("../character_equip.json");
+const inv = require("../players_inventory.json");
+const default_inv = require("../default_inventory.json");
 /** 建立全新角色的基礎素質
  * userName         使用者名稱
  * userId           使用者Id
@@ -66,22 +68,29 @@ module.exports = class create_Character{
           userName: message.author.username,
           userId: message.author.id,
           characterName: characterName,
-          weapon1: "無",
-          weapon2: "無",
-          head: "無",
-          body: "無",
-          gloves: "無",
-          leg: "無",
-          boots: "無",
-          ring: "無",
-          amulet: "無"
-        }
+          weapon1: "000",
+          weapon2: "000",
+          head: "000",
+          body: "000",
+          gloves: "000",
+          leg: "000",
+          boots: "000",
+          ring: "000",
+          amulet: "000"
+        };
 
-        fs.writeFile("./users_data.json", JSON.stringify(userData), (err) =>{
-          //console.log(err)
+        for(let i =1 ; i <= 10 ;i++){
+          inv[message.author.id] = {
+            default_inv
+          }
+        }
+        
+
+        fs.writeFile("./players_data.json", JSON.stringify(userData), (err) =>{
         });
         fs.writeFile("./character_equip.json", JSON.stringify(equip), (err) =>{
-          //console.log(err)
+        });
+        fs.writeFile("./players_inventory.json", JSON.stringify(inv), (err) =>{
         });
         console.log(`使用者(ID: ${playerID})使用「角色創建」完成.`)
         message.reply(`角色${characterName}創建完成`).then(msg => {msg.delete(1000)});

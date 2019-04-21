@@ -1,7 +1,7 @@
 const Discord = require("discord.js");
 const config = require("../config.json");
 const fs = require("fs");
-const userData = require("../users_data.json");
+const userData = require("../players_data.json");
 module.exports = class myinfo{
   constructor(){
     this.name = 'myinfo',
