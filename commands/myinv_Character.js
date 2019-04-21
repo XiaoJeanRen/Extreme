@@ -2,12 +2,12 @@ const Discord = require("discord.js");
 const config = require("../config.json");
 const fs = require("fs");
 const userData = require("../players_data.json");
-const equip = require("../equip_ID_data");
+const equip = require("../all_item_id_data.json");
 const inv = require("../players_inventory.json");
 module.exports = class myinv{
   constructor(){
     this.name = 'myinv',
-    this.alias = ['角色背包'],
+    this.alias = ['角色背包','inv'],
     this.usage = '!myinv'
   }
 
@@ -18,7 +18,9 @@ module.exports = class myinv{
     let myinv_info = inv[playerID];
     if(!userData[playerID]) return message.reply("角色不存在，請輸入「!角色創建」.").then(msg => {msg.delete(1000)});
     console.log(`使用者(ID: ${playerID})使用「角色背包」`)
-    let playerInvInfoEmbed = new Discord.RichEmbed()
+    
+
+    let playerInvEmbed = new Discord.RichEmbed()
     .setAuthor(info.characterName)
     .setColor(info.color)
     .addField("**角色背包**",
@@ -35,6 +37,6 @@ module.exports = class myinv{
     )
     .setFooter(`負重 ${info.weight}  /  ${info.max_Weight}`,message.author.displayAvatarURL);
 
-    message.reply(playerInvInfoEmbed).then(msg => {msg.delete(10000)});
+    message.reply(playerInvEmbed).then(msg => {msg.delete(10000)});
   }
 }

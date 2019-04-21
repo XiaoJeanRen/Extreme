@@ -2,16 +2,15 @@ const Discord = require("discord.js");
 const config = require("../config.json");
 const fs = require("fs");
 const inv = require("../players_inventory.json");
-const equip = require("../equip_ID_data");
 const player_equip = require("../character_equip.json");
 const userData = require("../players_data.json");
-const all_item = require("../all_item_id_data.json");
+const equip = require("../all_item_id_data.json");
 
-module.exports = class use_equip {
+module.exports = class wear_equip {
     constructor() {
-        this.name = 'use_equip',
+        this.name = 'wear',
             this.alias = ['穿戴'],
-            this.usage = '!use_equip'
+            this.usage = '!wear'
     }
 
     async run(bot, message, args) {
@@ -52,7 +51,7 @@ module.exports = class use_equip {
                     msg.delete(5000)
                 });
             }else{
-                if(equip[itemID].equip_Type == "武器"){
+                if(equip[itemID].equip_Type == "武器" || equip[itemID].equip_Type == "盾牌"){
                     if(my_equip.weapon1 == "000"){
                         if(itemID == myinv_info.default_inv.inv_1.itemID){
                             my_equip.weapon1 = itemID;
@@ -86,10 +85,10 @@ module.exports = class use_equip {
                             myinv_info.default_inv.inv_10.itemID = "000";
                         }
                         wear(itemID);
-                        message.reply("武器裝備完成").then(msg => {
+                        message.reply("武器或盾牌裝備完成").then(msg => {
                             msg.delete(1000)
                         });
-                    }else if(my_equip.weapon2 == "無"){
+                    }else if(my_equip.weapon2 == "000"){
                         if(itemID == myinv_info.default_inv.inv_1.itemID){
                             my_equip.weapon2 = itemID;
                             myinv_info.default_inv.inv_1.itemID = "000";
@@ -122,11 +121,11 @@ module.exports = class use_equip {
                             myinv_info.default_inv.inv_10.itemID = "000";
                         }
                         wear(itemID);
-                        message.reply("武器裝備完成").then(msg => {
+                        message.reply("武器或盾牌裝備完成").then(msg => {
                             msg.delete(1000)
                         });
                     }else{
-                        return message.reply("你的武器欄已滿，請脫下武器");
+                        return message.reply("你的武器欄已滿，請脫下武器或盾牌");
                     }
                 }
             }
@@ -135,7 +134,7 @@ module.exports = class use_equip {
         });
         fs.writeFile("./players_inventory.json", JSON.stringify(inv), (err) =>{
         });
-        fs.writeFile("./character_equip.json", JSON.stringify(my_equip), (err) =>{
+        fs.writeFile("./character_equip.json", JSON.stringify(player_equip), (err) =>{
         });
         console.log(`使用者(ID: ${playerID})使用「穿戴」成功.`)
     }

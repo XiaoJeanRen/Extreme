@@ -93,9 +93,9 @@ module.exports = class create_Character{
         fs.writeFile("./players_inventory.json", JSON.stringify(inv), (err) =>{
         });
         console.log(`使用者(ID: ${playerID})使用「角色創建」完成.`)
-        message.reply(`角色${characterName}創建完成`).then(msg => {msg.delete(1000)});
+        message.reply(`角色「${characterName}」創建完成`).then(msg => {msg.delete(10000)});
       }else{
-        return message.reply("你的角色已存在").then(msg => {msg.delete(1000)});
+        return message.reply("你的角色已存在").then(msg => {msg.delete(5000)});
       }
 
     }).catch(err =>{

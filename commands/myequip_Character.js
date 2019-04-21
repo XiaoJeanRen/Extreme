@@ -3,12 +3,12 @@ const config = require("../config.json");
 const fs = require("fs");
 const userData = require("../players_data.json");
 const character_equip_info = require("../character_equip.json");
-const equip = require("../equip_ID_data.json");
+const equip = require("../all_item_id_data.json");
 module.exports = class gameReset{
   constructor(){
-    this.name = 'myequip',
+    this.name = 'myeq',
     this.alias = ['角色裝備'],
-    this.usage = '!myequip'
+    this.usage = '!myeq'
   }
 
   async run(bot, message, args){

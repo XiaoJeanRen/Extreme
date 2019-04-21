@@ -18,8 +18,7 @@ module.exports = class reset {
         console.log(`使用者(ID: ${playerID})使用「重置」`)
         for(let i = 1; i <=10 ; i++){
             default_inv["inv_" + i] = {
-                itemID: "000",
-                itemInfo: "無"
+                itemID: "000"
             }
         }
 

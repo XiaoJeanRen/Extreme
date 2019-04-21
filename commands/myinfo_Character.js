@@ -28,12 +28,13 @@ module.exports = class myinfo{
     "**負量： **" + info.weight + " / " + info.max_Weight + "\n" +
     "**攻擊力： **" + info.atk + "\n" +
     "**防禦力： **" + info.def + "\n" +
+    "**職業： **" + info.class + "\n" +
     "**金錢： **" + info.money
     )
     .addField("等級","**目前等級：**" + info.level + "** 目前經驗：**" + info.exp)
     .setFooter(`離下一個等級還有 ${difference} 經驗值`,message.author.displayAvatarURL);
 
-    message.reply(playerInfoEmbed).then(msg => {msg.delete(5000)});
+    message.reply(playerInfoEmbed).then(msg => {msg.delete(10000)});
   }
 
 }

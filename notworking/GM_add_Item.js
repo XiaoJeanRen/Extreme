@@ -65,19 +65,18 @@ module.exports = class add_Item {
         }else if(add_inv.default_inv.inv_10.itemID == "000"){
             add_inv.default_inv.inv_10 ={
                 itemID: itemID
-            }
-            message.reply("給予裝備完成.").then(msg => {
-                msg.delete(1000)
-            });
+            } 
         }else{
             return message.reply("此玩家背包已滿.").then(msg => {
                 msg.delete(1000)
             });
         }
-
+        message.reply("給予裝備完成.").then(msg => {
+            msg.delete(1000)
+        });   
         
 
-        //fs.writeFile("./all_item_id_data.json", JSON.stringify(all_item), (err) => {});
+        
         fs.writeFile("./players_inventory.json", JSON.stringify(inv), (err) => {});
 
     }
