@@ -1,7 +1,7 @@
 const Discord = require("discord.js");
 const userData = require("../players_data.json");
 
-
+//查看副本地圖指令
 module.exports = class adventure_maps {
     constructor() {
         this.name = 'adventures',

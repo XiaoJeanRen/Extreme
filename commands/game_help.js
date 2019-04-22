@@ -1,4 +1,5 @@
 const Discord = require("discord.js");
+//查看遊戲指令的指令
 module.exports = class myinfo{
   constructor(){
     this.name = 'help',
@@ -27,6 +28,10 @@ module.exports = class myinfo{
     "**!adv <副本代號>：**``派遣角色冒險``\n" + 
     "**!advtime：**``查看目前角色冒險時間``\n" + 
     "**!reward：**``領取獎賞``\n" 
+    )
+    .addField("**__交易相關指令__**",
+    "**!tradeitem @使用者 <物品代碼>：**``交易裝備給另一位使用者``\n"+
+    "**!pay @使用者 <金錢數量>：**``交易金錢給另一位使用者``\n"
     )
     
     ;

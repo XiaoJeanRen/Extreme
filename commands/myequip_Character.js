@@ -4,6 +4,7 @@ const fs = require("fs");
 const userData = require("../players_data.json");
 const character_equip_info = require("../character_equip.json");
 const equip = require("../all_item_id_data.json");
+//查看角色裝備指令
 module.exports = class gameReset{
   constructor(){
     this.name = 'myeq',

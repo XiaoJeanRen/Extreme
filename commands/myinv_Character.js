@@ -4,6 +4,7 @@ const fs = require("fs");
 const userData = require("../players_data.json");
 const equip = require("../all_item_id_data.json");
 const inv = require("../players_inventory.json");
+//查看背包指令
 module.exports = class myinv{
   constructor(){
     this.name = 'myinv',

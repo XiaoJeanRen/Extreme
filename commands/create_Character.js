@@ -6,6 +6,7 @@ const equip = require("../character_equip.json");
 const inv = require("../players_inventory.json");
 const adv_time = require("../players_adventure_time.json");
 const default_inv = require("../default_inventory.json");
+//創建角色指令
 /** 建立全新角色的基礎素質                    建立全新角色的裝備狀況
  * userName         使用者名稱              weapon1          武器欄位1
  * userId           使用者Id                weapon2          武器欄位2
@@ -49,7 +50,8 @@ module.exports = class create_Character{
       time: 20000
     }).then(collection =>{
       let characterName = collection.first().content;
-      if(characterName === "cancel") return message.reply("取消").then(msg => {msg.delete(5000)});
+      if (!collection.first().content) return message.reply("取消").then(msg => {msg.delete(5000)});
+      if(characterName == "cancel") return message.reply("取消").then(msg => {msg.delete(5000)});
       if(!userData[message.author.id]){
         userData[message.author.id] = {
           userName: message.author.username,
@@ -127,7 +129,7 @@ module.exports = class create_Character{
       }
 
     }).catch(err =>{
-      console.log(err)
+      //console.log(err)
       return message.reply("取消").then(msg => {
         msg.delete(1000)
       });

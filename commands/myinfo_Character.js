@@ -2,6 +2,7 @@ const Discord = require("discord.js");
 const config = require("../config.json");
 const fs = require("fs");
 const userData = require("../players_data.json");
+//查看角色狀態指令
 module.exports = class myinfo{
   constructor(){
     this.name = 'myinfo',

@@ -5,7 +5,7 @@ const inv = require("../players_inventory.json");
 const player_equip = require("../character_equip.json");
 const userData = require("../players_data.json");
 const equip = require("../all_item_id_data.json");
-
+//脫下裝備指令
 module.exports = class wear_equip {
     constructor() {
         this.name = 'unwear',

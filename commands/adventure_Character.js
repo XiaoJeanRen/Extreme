@@ -6,7 +6,7 @@ const userData = require("../players_data.json");
 const all_item = require("../all_item_id_data.json");
 const adv_time = require("../players_adventure_time.json");
 
-
+//玩家冒險指令
 let chooseMaps = function(choose_number, playerID, adventure_time){
     adventure_time = adventure_time;
     switch (choose_number) {

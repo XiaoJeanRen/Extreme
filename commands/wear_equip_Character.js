@@ -5,6 +5,19 @@ const inv = require("../players_inventory.json");
 const player_equip = require("../character_equip.json");
 const userData = require("../players_data.json");
 const equip = require("../all_item_id_data.json");
+// 穿戴裝備指令
+
+
+let wear = function (itemID){
+    userData[playerID].max_Hp += equip[itemID].add_max_Hp;
+    userData[playerID].max_Mp += equip[itemID].add_max_Mp;
+    userData[playerID].max_Ap += equip[itemID].add_max_Ap;
+    userData[playerID].max_Weight += equip[itemID].add_max_Weight;
+    userData[playerID].atk += equip[itemID].add_atk;
+    userData[playerID].def += equip[itemID].add_def;
+    userData[playerID].atk += equip[itemID].strengthen;
+    userData[playerID].weight += equip[itemID].needWeight;
+}
 
 module.exports = class wear_equip {
     constructor() {
@@ -16,16 +29,8 @@ module.exports = class wear_equip {
     async run(bot, message, args) {
         await message.delete();
         let playerID = message.author.id;
-        let wear = function (itemID){
-            userData[playerID].max_Hp += equip[itemID].add_max_Hp;
-            userData[playerID].max_Mp += equip[itemID].add_max_Mp;
-            userData[playerID].max_Ap += equip[itemID].add_max_Ap;
-            userData[playerID].max_Weight += equip[itemID].add_max_Weight;
-            userData[playerID].atk += equip[itemID].add_atk;
-            userData[playerID].def += equip[itemID].add_def;
-            userData[playerID].atk += equip[itemID].strengthen;
-            userData[playerID].weight += equip[itemID].needWeight;
-        }
+        if(!userData[playerID]) return message.reply("角色不存在，請輸入「!角色創建」.").then(msg => {msg.delete(1000)});
+        
         let myinv_info = inv[playerID];
         let my_equip = player_equip[playerID];
         let itemID = args[1];

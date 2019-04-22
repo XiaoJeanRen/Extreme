@@ -5,7 +5,7 @@ const inv = require("../players_inventory.json");
 const userData = require("../players_data.json");
 const all_item = require("../all_item_id_data.json");
 const adv_time = require("../players_adventure_time.json");
-
+//玩家查看冒險時間指令
 var formatSecond = function (number) {
     let secondTime = number; //秒
     let minuteTime = 0; //分

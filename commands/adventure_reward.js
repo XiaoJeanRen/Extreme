@@ -8,7 +8,7 @@ const adv_time = require("../players_adventure_time.json");
 const loots_money = require("../loots/loot_Money.js");
 const loots_exp = require("../loots/loot_Exp.js");
 const loots_item = require("../loots/loot_Item.js");
-
+//玩家取得冒險獎勵指令
 let formatSecond = function (number) {
     let secondTime = number; //秒
     let minuteTime = 0; //分
