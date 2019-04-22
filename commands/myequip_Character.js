@@ -30,7 +30,7 @@ module.exports = class gameReset{
     "**護腿： **`物品id: "      + info.leg     + "` 名稱: `" + equip[info.leg].equip_Name       + "`\n" +
     "**鞋子： **`物品id: "      + info.boots   + "` 名稱: `" + equip[info.boots].equip_Name     + "`\n" +
     "**戒指： **`物品id: "      + info.ring    + "` 名稱: `" + equip[info.ring].equip_Name      + "`\n" +
-    "**項鍊： **`物品id: "      + info.amulet  + "` 名稱: `" + equip[info.amulet].equip_Name    + "`"
+    "**護身符： **`物品id: "      + info.amulet  + "` 名稱: `" + equip[info.amulet].equip_Name    + "`"
     )
     .setFooter(`負重 ${user.weight}  /  ${user.max_Weight}`,message.author.displayAvatarURL);
 

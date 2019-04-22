@@ -21,20 +21,28 @@ module.exports = class myinfo{
     let playerInfoEmbed = new Discord.RichEmbed()
     .setAuthor(info.characterName)
     .setColor(info.color)
+    .addField("**角色稱號**", info.title)
     .addField("**角色資料**",
-    "**生命： **" + info.hp + "\n" +
-    "**魔力： **" + info.mp + "\n" +
-    "**行動點數： **" + info.ap + "\n" +
+    "**生命： **" + info.hp + " / " + info.max_Hp + "\n" +
+    "**魔力： **" + info.mp + " / " + info.max_Mp + "\n" +
+    "**行動點數： **" + info.ap + " / " + info.max_Ap + "\n" +
     "**負量： **" + info.weight + " / " + info.max_Weight + "\n" +
     "**攻擊力： **" + info.atk + "\n" +
     "**防禦力： **" + info.def + "\n" +
+    "**名聲： **" + info.reputation + "\n" +
     "**職業： **" + info.class + "\n" +
+    "**副職業： **" + info.secondclass + "\n" +
+    "**目前狀況： **" + info.status + "\n" +
+    "**冒險狀況： **" + info.adventure + "\n" +
+    "**社會地位： **" + info.socialstatus + "\n" +
+    "**所屬公會： **" + info.guild + "\n" +
+    "**所屬家族： **" + info.family + "\n" +
     "**金錢： **" + info.money
     )
     .addField("等級","**目前等級：**" + info.level + "** 目前經驗：**" + info.exp)
     .setFooter(`離下一個等級還有 ${difference} 經驗值`,message.author.displayAvatarURL);
 
-    message.reply(playerInfoEmbed).then(msg => {msg.delete(10000)});
+    message.reply(playerInfoEmbed).then(msg => {msg.delete(15000)});
   }
 
 }

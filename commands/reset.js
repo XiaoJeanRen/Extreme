@@ -3,6 +3,7 @@ const config = require("../config.json");
 const fs = require("fs");
 const userData = require("../players_data.json");
 const equip = require("../character_equip.json");
+const adv_time = require("../players_adventure_time.json");
 const default_inv = require("../default_inventory.json");
 module.exports = class reset {
     constructor() {
@@ -23,14 +24,12 @@ module.exports = class reset {
         }
 
         fs.writeFile("./players_data.json", JSON.stringify({}), (err) => {
-            
         });
-        fs.writeFile("./character_equip.json", JSON.stringify({}), (err) => {
-            
+        fs.writeFile("./players_adventure_time.json", JSON.stringify({}), (err) => { 
         });
-        
+        fs.writeFile("./character_equip.json", JSON.stringify({}), (err) => { 
+        });
         fs.writeFile("./default_inventory.json", JSON.stringify(default_inv), (err) => {
-            
         });
 
         message.reply("GM重置資料庫完成").then(msg => {

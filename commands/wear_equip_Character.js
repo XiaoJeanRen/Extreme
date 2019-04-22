@@ -17,9 +17,9 @@ module.exports = class wear_equip {
         await message.delete();
         let playerID = message.author.id;
         let wear = function (itemID){
-            userData[playerID].max_HP += equip[itemID].add_max_Hp;
-            userData[playerID].max_MP += equip[itemID].add_max_Mp;
-            userData[playerID].max_AP += equip[itemID].add_max_Ap;
+            userData[playerID].max_Hp += equip[itemID].add_max_Hp;
+            userData[playerID].max_Mp += equip[itemID].add_max_Mp;
+            userData[playerID].max_Ap += equip[itemID].add_max_Ap;
             userData[playerID].max_Weight += equip[itemID].add_max_Weight;
             userData[playerID].atk += equip[itemID].add_atk;
             userData[playerID].def += equip[itemID].add_def;
