@@ -6,13 +6,14 @@ const userData = require("../players_data.json");
 const all_item = require("../all_item_id_data.json");
 const adv_time = require("../players_adventure_time.json");
 
+
 let chooseMaps = function(choose_number, playerID, adventure_time){
     adventure_time = adventure_time;
     switch (choose_number) {
         case '001':
             adv_time[playerID].isAdventure = true;
             adv_time[playerID].adventure_time = adventure_time;
-            adv_time[playerID].need_time = 60;
+            adv_time[playerID].need_time = 15;
             adv_time[playerID].adventure_id = "001";
             adv_time[playerID].adventure_place = "平原";
             userData[playerID].adventure = "正在冒險";
@@ -30,7 +31,7 @@ let chooseMaps = function(choose_number, playerID, adventure_time){
     }
 }
 
-module.exports = class add_Item {
+module.exports = class adventure_Character {
     constructor() {
         this.name = 'adventure',
         this.alias = ['冒險','adv'],
@@ -53,53 +54,7 @@ module.exports = class add_Item {
             message.reply("已在冒險中，輸入!advtime，查看冒險過程").then(msg => {msg.delete(10000)});
         }
     
-        /*let get_item_to_player_inv = inv[playerID];
         
-        if(get_item_to_player_inv.default_inv.inv_1.itemID == "000"){
-            get_item_to_player_inv.default_inv.inv_1 ={
-                itemID: dropitem_id
-            }
-        }else if(get_item_to_player_inv.default_inv.inv_2.itemID == "000"){
-            get_item_to_player_inv.default_inv.inv_2 ={
-                itemID: dropitem_id
-            }
-        }else if(get_item_to_player_inv.default_inv.inv_3.itemID == "000"){
-            get_item_to_player_inv.default_inv.inv_3 ={
-                itemID: dropitem_id
-            }
-        }else if(get_item_to_player_inv.default_inv.inv_4.itemID == "000"){
-            get_item_to_player_inv.default_inv.inv_4 ={
-                itemID: dropitem_id
-            }
-        }else if(get_item_to_player_inv.default_inv.inv_5.itemID == "000"){
-            get_item_to_player_inv.default_inv.inv_5 ={
-                itemID: dropitem_id
-            }
-        }else if(get_item_to_player_inv.default_inv.inv_6.itemID == "000"){
-            get_item_to_player_inv.default_inv.inv_6 ={
-                itemID: dropitem_id
-            }
-        }else if(get_item_to_player_inv.default_inv.inv_7.itemID == "000"){
-            get_item_to_player_inv.default_inv.inv_7 ={
-                itemID: dropitem_id
-            }
-        }else if(get_item_to_player_inv.default_inv.inv_8.itemID == "000"){
-            get_item_to_player_inv.default_inv.inv_8 ={
-                itemID: dropitem_id
-            }
-        }else if(get_item_to_player_inv.default_inv.inv_9.itemID == "000"){
-            get_item_to_player_inv.default_inv.inv_9 ={
-                itemID: dropitem_id
-            }
-        }else if(get_item_to_player_inv.default_inv.inv_10.itemID == "000"){
-            get_item_to_player_inv.default_inv.inv_10 ={
-                itemID: dropitem_id
-            } 
-        }else{
-            return message.reply("此玩家背包已滿.").then(msg => {
-                msg.delete(1000)
-            });
-        }*/
 
         fs.writeFile("./players_adventure_time.json", JSON.stringify(adv_time), (err) =>{
         });
