@@ -6,37 +6,36 @@ const player_equip = require("../character_equip.json");
 const userData = require("../players_data.json");
 const equip = require("../all_item_id_data.json");
 
-let checkItem = function(itemID, playerID){
-    if(itemID == myinv_info.default_inv.inv_1.itemID){
-        my_equip.weapon1 = itemID;
-        myinv_info.default_inv.inv_1.itemID = "000";
-    }else if(itemID == myinv_info.default_inv.inv_2.itemID){
-        my_equip.weapon1 = itemID;
-        myinv_info.default_inv.inv_2.itemID = "000";
-    }else if(itemID == myinv_info.default_inv.inv_3.itemID){
-        my_equip.weapon1 = itemID;
-        myinv_info.default_inv.inv_3.itemID = "000";
-    }else if(itemID == myinv_info.default_inv.inv_4.itemID){
-        my_equip.weapon1 = itemID;
-        myinv_info.default_inv.inv_4.itemID = "000";
-    }else if(itemID == myinv_info.default_inv.inv_5.itemID){
-        my_equip.weapon1 = itemID;
-        myinv_info.default_inv.inv_5.itemID = "000";
-    }else if(itemID == myinv_info.default_inv.inv_6.itemID){
-        my_equip.weapon1 = itemID;
-        myinv_info.default_inv.inv_6.itemID = "000";
-    }else if(itemID == myinv_info.default_inv.inv_7.itemID){
-        my_equip.weapon1 = itemID;
-        myinv_info.default_inv.inv_7.itemID = "000";
-    }else if(itemID == myinv_info.default_inv.inv_8.itemID){
-        my_equip.weapon1 = itemID;
-        myinv_info.default_inv.inv_8.itemID = "000";
-    }else if(itemID == myinv_info.default_inv.inv_9.itemID){
-        my_equip.weapon1 = itemID;
-        myinv_info.default_inv.inv_9.itemID = "000";
-    }else if(itemID == myinv_info.default_inv.inv_10.itemID){
-        my_equip.weapon1 = itemID;
-        myinv_info.default_inv.inv_10.itemID = "000";
+let checkItem = function (tradePlayer_info, itemID) {
+    if (itemID == tradePlayer_info.default_inv.inv_1.itemID) {
+        tradePlayer_info.default_inv.inv_1.itemID = "000";
+
+    } else if (itemID == tradePlayer_info.default_inv.inv_2.itemID) {
+        tradePlayer_info.default_inv.inv_2.itemID = "000";
+
+    } else if (itemID == tradePlayer_info.default_inv.inv_3.itemID) {
+        tradePlayer_info.default_inv.inv_3.itemID = "000";
+
+    } else if (itemID == tradePlayer_info.default_inv.inv_4.itemID) {
+        tradePlayer_info.default_inv.inv_4.itemID = "000";
+
+    } else if (itemID == tradePlayer_info.default_inv.inv_5.itemID) {
+        tradePlayer_info.default_inv.inv_5.itemID = "000";
+
+    } else if (itemID == tradePlayer_info.default_inv.inv_6.itemID) {
+        tradePlayer_info.default_inv.inv_6.itemID = "000";
+
+    } else if (itemID == tradePlayer_info.default_inv.inv_7.itemID) {
+        tradePlayer_info.default_inv.inv_7.itemID = "000";
+
+    } else if (itemID == tradePlayer_info.default_inv.inv_8.itemID) {
+        tradePlayer_info.default_inv.inv_8.itemID = "000";
+
+    } else if (itemID == tradePlayer_info.default_inv.inv_9.itemID) {
+        tradePlayer_info.default_inv.inv_9.itemID = "000";
+
+    } else if (itemID == tradePlayer_info.default_inv.inv_10.itemID) {
+        tradePlayer_info.default_inv.inv_10.itemID = "000";
     }
 }
 module.exports = class create_Character {
@@ -56,8 +55,8 @@ module.exports = class create_Character {
             msg.delete(1000)
         });
 
-        tradePlayer_info = inv[playerID];
-        getPlayer_info = inv[tradePlayerID];
+        let tradePlayer_info = inv[playerID];
+        let getPlayer_info = inv[tradePlayerID];
 
         /**
          * 檢查交易玩家背包內有無選擇道具
@@ -76,55 +75,69 @@ module.exports = class create_Character {
             return message.reply("你沒有此裝備，請再次確認.").then(msg => {
                 msg.delete(5000)
             });
-        }else{
+        } else {
             /**
              * 檢查得到道具玩家的背包是否已滿
              */
-            if(getPlayer_info.default_inv.inv_1.itemID == "000"){
-                getPlayer_info.default_inv.inv_1 ={
+            if (getPlayer_info.default_inv.inv_1.itemID == "000") {
+                getPlayer_info.default_inv.inv_1 = {
                     itemID: itemID
                 }
-            }else if(getPlayer_info.default_inv.inv_2.itemID == "000"){
-                getPlayer_info.default_inv.inv_2 ={
+                checkItem(tradePlayer_info, itemID);
+            } else if (getPlayer_info.default_inv.inv_2.itemID == "000") {
+                getPlayer_info.default_inv.inv_2 = {
                     itemID: itemID
                 }
-            }else if(getPlayer_info.default_inv.inv_3.itemID == "000"){
-                getPlayer_info.default_inv.inv_3 ={
+                checkItem(tradePlayer_info, itemID);
+            } else if (getPlayer_info.default_inv.inv_3.itemID == "000") {
+                getPlayer_info.default_inv.inv_3 = {
                     itemID: itemID
                 }
-            }else if(getPlayer_info.default_inv.inv_4.itemID == "000"){
-                getPlayer_info.default_inv.inv_4 ={
+                checkItem(tradePlayer_info, itemID);
+            } else if (getPlayer_info.default_inv.inv_4.itemID == "000") {
+                getPlayer_info.default_inv.inv_4 = {
                     itemID: itemID
                 }
-            }else if(getPlayer_info.default_inv.inv_5.itemID == "000"){
-                getPlayer_info.default_inv.inv_5 ={
+                checkItem(tradePlayer_info, itemID);
+            } else if (getPlayer_info.default_inv.inv_5.itemID == "000") {
+                getPlayer_info.default_inv.inv_5 = {
                     itemID: itemID
                 }
-            }else if(getPlayer_info.default_inv.inv_6.itemID == "000"){
-                getPlayer_info.default_inv.inv_6 ={
+                checkItem(tradePlayer_info, itemID);
+            } else if (getPlayer_info.default_inv.inv_6.itemID == "000") {
+                getPlayer_info.default_inv.inv_6 = {
                     itemID: itemID
                 }
-            }else if(getPlayer_info.default_inv.inv_7.itemID == "000"){
-                getPlayer_info.default_inv.inv_7 ={
+                checkItem(tradePlayer_info, itemID);
+            } else if (getPlayer_info.default_inv.inv_7.itemID == "000") {
+                getPlayer_info.default_inv.inv_7 = {
                     itemID: itemID
                 }
-            }else if(getPlayer_info.default_inv.inv_8.itemID == "000"){
-                getPlayer_info.default_inv.inv_8 ={
+                checkItem(tradePlayer_info, itemID);
+            } else if (getPlayer_info.default_inv.inv_8.itemID == "000") {
+                getPlayer_info.default_inv.inv_8 = {
                     itemID: itemID
                 }
-            }else if(getPlayer_info.default_inv.inv_9.itemID == "000"){
-                getPlayer_info.default_inv.inv_9 ={
+                checkItem(tradePlayer_info, itemID);
+            } else if (getPlayer_info.default_inv.inv_9.itemID == "000") {
+                getPlayer_info.default_inv.inv_9 = {
                     itemID: itemID
                 }
-            }else if(getPlayer_info.default_inv.inv_10.itemID == "000"){
-                getPlayer_info.default_inv.inv_10 ={
+                checkItem(tradePlayer_info, itemID);
+            } else if (getPlayer_info.default_inv.inv_10.itemID == "000") {
+                getPlayer_info.default_inv.inv_10 = {
                     itemID: itemID
-                } 
-            }else{
+                }
+                checkItem(tradePlayer_info, itemID);
+            } else {
                 return message.reply("此玩家背包已滿.").then(msg => {
                     msg.delete(1000)
                 });
             }
+            message.reply("給予裝備完成.").then(msg => {
+                msg.delete(1000)
+            });
+            fs.writeFile("./players_inventory.json", JSON.stringify(inv), (err) => {});
         }
     }
 }
