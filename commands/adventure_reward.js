@@ -43,10 +43,6 @@ let adv_time_reset = function (playerID) {
     userData[playerID].adventure = "無";
 }
 
-
-
-
-
 module.exports = class adventure_reward {
     constructor() {
         this.name = 'reward',
@@ -57,6 +53,7 @@ module.exports = class adventure_reward {
     async run(bot, message, args) {
         await message.delete();
         let playerID = message.author.id;
+        if(!userData[playerID]) return message.reply("角色不存在，請輸入「!角色創建」.").then(msg => {msg.delete(1000)});
         console.log(`使用者(ID: ${playerID})使用「獎勵」`)
         let pass_time = Math.round(Math.abs(adv_time[playerID].adventure_time - (message.createdAt / 1000)));
         let actual_time = formatSecond(pass_time);
@@ -70,18 +67,21 @@ module.exports = class adventure_reward {
             console.log(adventure_number)
             /**
              * 金錢處理
+             * loots_money => require("../loots/loot_Money.js");
              */
             let getMoney = loots_money.lootMoney(adventure_number);
             userData[playerID].money += getMoney; //得到金錢
             console.log(`使用者(ID: ${playerID})已取得金錢${getMoney}元`)
             /**
              * 經驗處理
+             * loots_exp  => require("../loots/loot_Exp.js");
              */
             let getExp = loots_exp.lootExp(adventure_number);
             userData[playerID].exp += getExp; //得到Exp
             console.log(`使用者(ID: ${playerID})已取得經驗${getExp}元`)
             /**
              * 取得道具處理
+             * loots_item  => require("../loots/loot_Item.js");
              */
             let getitem = loots_item.lootItem(playerID);
             /**
@@ -89,7 +89,7 @@ module.exports = class adventure_reward {
              */
             adv_time_reset(playerID)
 
-            message.reply(`金幣獎勵「${getMoney}元」已加入.\n經驗獎勵「${getExp}」已加入.\n道具獎勵「${getitem}」已加入`).then(msg => {
+            message.reply(`金幣獎勵「${getMoney}元」已獲得.\n經驗獎勵「${getExp}」已獲得.\n道具獎勵「${getitem}」已獲得.`).then(msg => {
                 msg.delete(10000)
             });
         } else {

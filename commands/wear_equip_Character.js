@@ -23,6 +23,8 @@ module.exports = class wear_equip {
             userData[playerID].max_Weight += equip[itemID].add_max_Weight;
             userData[playerID].atk += equip[itemID].add_atk;
             userData[playerID].def += equip[itemID].add_def;
+            userData[playerID].atk += equip[itemID].strengthen;
+            userData[playerID].weight += equip[itemID].needWeight;
         }
         let myinv_info = inv[playerID];
         let my_equip = player_equip[playerID];
@@ -126,6 +128,279 @@ module.exports = class wear_equip {
                         });
                     }else{
                         return message.reply("你的武器欄已滿，請脫下武器或盾牌");
+                    }
+                }
+                if(equip[itemID].equip_Type == "頭盔"){
+                    if(my_equip.head == "000"){
+                        if(itemID == myinv_info.default_inv.inv_1.itemID){
+                            my_equip.head = itemID;
+                            myinv_info.default_inv.inv_1.itemID = "000";
+                        }else if(itemID == myinv_info.default_inv.inv_2.itemID){
+                            my_equip.head = itemID;
+                            myinv_info.default_inv.inv_2.itemID = "000";
+                        }else if(itemID == myinv_info.default_inv.inv_3.itemID){
+                            my_equip.head = itemID;
+                            myinv_info.default_inv.inv_3.itemID = "000";
+                        }else if(itemID == myinv_info.default_inv.inv_4.itemID){
+                            my_equip.head = itemID;
+                            myinv_info.default_inv.inv_4.itemID = "000";
+                        }else if(itemID == myinv_info.default_inv.inv_5.itemID){
+                            my_equip.head = itemID;
+                            myinv_info.default_inv.inv_5.itemID = "000";
+                        }else if(itemID == myinv_info.default_inv.inv_6.itemID){
+                            my_equip.head = itemID;
+                            myinv_info.default_inv.inv_6.itemID = "000";
+                        }else if(itemID == myinv_info.default_inv.inv_7.itemID){
+                            my_equip.head = itemID;
+                            myinv_info.default_inv.inv_7.itemID = "000";
+                        }else if(itemID == myinv_info.default_inv.inv_8.itemID){
+                            my_equip.head = itemID;
+                            myinv_info.default_inv.inv_8.itemID = "000";
+                        }else if(itemID == myinv_info.default_inv.inv_9.itemID){
+                            my_equip.head = itemID;
+                            myinv_info.default_inv.inv_9.itemID = "000";
+                        }else if(itemID == myinv_info.default_inv.inv_10.itemID){
+                            my_equip.head = itemID;
+                            myinv_info.default_inv.inv_10.itemID = "000";
+                        }
+                        wear(itemID);
+                        message.reply("頭盔裝備完成").then(msg => {
+                            msg.delete(1000)
+                        });
+                    }
+                }
+                if(equip[itemID].equip_Type == "護甲"){
+                    if(my_equip.body == "000"){
+                        if(itemID == myinv_info.default_inv.inv_1.itemID){
+                            my_equip.body = itemID;
+                            myinv_info.default_inv.inv_1.itemID = "000";
+                        }else if(itemID == myinv_info.default_inv.inv_2.itemID){
+                            my_equip.body = itemID;
+                            myinv_info.default_inv.inv_2.itemID = "000";
+                        }else if(itemID == myinv_info.default_inv.inv_3.itemID){
+                            my_equip.body = itemID;
+                            myinv_info.default_inv.inv_3.itemID = "000";
+                        }else if(itemID == myinv_info.default_inv.inv_4.itemID){
+                            my_equip.body = itemID;
+                            myinv_info.default_inv.inv_4.itemID = "000";
+                        }else if(itemID == myinv_info.default_inv.inv_5.itemID){
+                            my_equip.body = itemID;
+                            myinv_info.default_inv.inv_5.itemID = "000";
+                        }else if(itemID == myinv_info.default_inv.inv_6.itemID){
+                            my_equip.body = itemID;
+                            myinv_info.default_inv.inv_6.itemID = "000";
+                        }else if(itemID == myinv_info.default_inv.inv_7.itemID){
+                            my_equip.body = itemID;
+                            myinv_info.default_inv.inv_7.itemID = "000";
+                        }else if(itemID == myinv_info.default_inv.inv_8.itemID){
+                            my_equip.body = itemID;
+                            myinv_info.default_inv.inv_8.itemID = "000";
+                        }else if(itemID == myinv_info.default_inv.inv_9.itemID){
+                            my_equip.body = itemID;
+                            myinv_info.default_inv.inv_9.itemID = "000";
+                        }else if(itemID == myinv_info.default_inv.inv_10.itemID){
+                            my_equip.body = itemID;
+                            myinv_info.default_inv.inv_10.itemID = "000";
+                        }
+                        wear(itemID);
+                        message.reply("護甲裝備完成").then(msg => {
+                            msg.delete(1000)
+                        });
+                    }
+                }
+                if(equip[itemID].equip_Type == "手套"){
+                    if(my_equip.gloves == "000"){
+                        if(itemID == myinv_info.default_inv.inv_1.itemID){
+                            my_equip.gloves = itemID;
+                            myinv_info.default_inv.inv_1.itemID = "000";
+                        }else if(itemID == myinv_info.default_inv.inv_2.itemID){
+                            my_equip.gloves = itemID;
+                            myinv_info.default_inv.inv_2.itemID = "000";
+                        }else if(itemID == myinv_info.default_inv.inv_3.itemID){
+                            my_equip.gloves = itemID;
+                            myinv_info.default_inv.inv_3.itemID = "000";
+                        }else if(itemID == myinv_info.default_inv.inv_4.itemID){
+                            my_equip.gloves = itemID;
+                            myinv_info.default_inv.inv_4.itemID = "000";
+                        }else if(itemID == myinv_info.default_inv.inv_5.itemID){
+                            my_equip.gloves = itemID;
+                            myinv_info.default_inv.inv_5.itemID = "000";
+                        }else if(itemID == myinv_info.default_inv.inv_6.itemID){
+                            my_equip.gloves = itemID;
+                            myinv_info.default_inv.inv_6.itemID = "000";
+                        }else if(itemID == myinv_info.default_inv.inv_7.itemID){
+                            my_equip.gloves = itemID;
+                            myinv_info.default_inv.inv_7.itemID = "000";
+                        }else if(itemID == myinv_info.default_inv.inv_8.itemID){
+                            my_equip.gloves = itemID;
+                            myinv_info.default_inv.inv_8.itemID = "000";
+                        }else if(itemID == myinv_info.default_inv.inv_9.itemID){
+                            my_equip.gloves = itemID;
+                            myinv_info.default_inv.inv_9.itemID = "000";
+                        }else if(itemID == myinv_info.default_inv.inv_10.itemID){
+                            my_equip.gloves = itemID;
+                            myinv_info.default_inv.inv_10.itemID = "000";
+                        }
+                        wear(itemID);
+                        message.reply("手套裝備完成").then(msg => {
+                            msg.delete(1000)
+                        });
+                    }
+                }
+                if(equip[itemID].equip_Type == "護腿"){
+                    if(my_equip.leg == "000"){
+                        if(itemID == myinv_info.default_inv.inv_1.itemID){
+                            my_equip.leg = itemID;
+                            myinv_info.default_inv.inv_1.itemID = "000";
+                        }else if(itemID == myinv_info.default_inv.inv_2.itemID){
+                            my_equip.leg = itemID;
+                            myinv_info.default_inv.inv_2.itemID = "000";
+                        }else if(itemID == myinv_info.default_inv.inv_3.itemID){
+                            my_equip.leg = itemID;
+                            myinv_info.default_inv.inv_3.itemID = "000";
+                        }else if(itemID == myinv_info.default_inv.inv_4.itemID){
+                            my_equip.leg = itemID;
+                            myinv_info.default_inv.inv_4.itemID = "000";
+                        }else if(itemID == myinv_info.default_inv.inv_5.itemID){
+                            my_equip.leg = itemID;
+                            myinv_info.default_inv.inv_5.itemID = "000";
+                        }else if(itemID == myinv_info.default_inv.inv_6.itemID){
+                            my_equip.leg = itemID;
+                            myinv_info.default_inv.inv_6.itemID = "000";
+                        }else if(itemID == myinv_info.default_inv.inv_7.itemID){
+                            my_equip.leg = itemID;
+                            myinv_info.default_inv.inv_7.itemID = "000";
+                        }else if(itemID == myinv_info.default_inv.inv_8.itemID){
+                            my_equip.leg = itemID;
+                            myinv_info.default_inv.inv_8.itemID = "000";
+                        }else if(itemID == myinv_info.default_inv.inv_9.itemID){
+                            my_equip.leg = itemID;
+                            myinv_info.default_inv.inv_9.itemID = "000";
+                        }else if(itemID == myinv_info.default_inv.inv_10.itemID){
+                            my_equip.leg = itemID;
+                            myinv_info.default_inv.inv_10.itemID = "000";
+                        }
+                        wear(itemID);
+                        message.reply("護腿裝備完成").then(msg => {
+                            msg.delete(1000)
+                        });
+                    }
+                }
+                if(equip[itemID].equip_Type == "鞋子"){
+                    if(my_equip.boots == "000"){
+                        if(itemID == myinv_info.default_inv.inv_1.itemID){
+                            my_equip.boots = itemID;
+                            myinv_info.default_inv.inv_1.itemID = "000";
+                        }else if(itemID == myinv_info.default_inv.inv_2.itemID){
+                            my_equip.boots = itemID;
+                            myinv_info.default_inv.inv_2.itemID = "000";
+                        }else if(itemID == myinv_info.default_inv.inv_3.itemID){
+                            my_equip.boots = itemID;
+                            myinv_info.default_inv.inv_3.itemID = "000";
+                        }else if(itemID == myinv_info.default_inv.inv_4.itemID){
+                            my_equip.boots = itemID;
+                            myinv_info.default_inv.inv_4.itemID = "000";
+                        }else if(itemID == myinv_info.default_inv.inv_5.itemID){
+                            my_equip.boots = itemID;
+                            myinv_info.default_inv.inv_5.itemID = "000";
+                        }else if(itemID == myinv_info.default_inv.inv_6.itemID){
+                            my_equip.boots = itemID;
+                            myinv_info.default_inv.inv_6.itemID = "000";
+                        }else if(itemID == myinv_info.default_inv.inv_7.itemID){
+                            my_equip.boots = itemID;
+                            myinv_info.default_inv.inv_7.itemID = "000";
+                        }else if(itemID == myinv_info.default_inv.inv_8.itemID){
+                            my_equip.boots = itemID;
+                            myinv_info.default_inv.inv_8.itemID = "000";
+                        }else if(itemID == myinv_info.default_inv.inv_9.itemID){
+                            my_equip.boots = itemID;
+                            myinv_info.default_inv.inv_9.itemID = "000";
+                        }else if(itemID == myinv_info.default_inv.inv_10.itemID){
+                            my_equip.boots = itemID;
+                            myinv_info.default_inv.inv_10.itemID = "000";
+                        }
+                        wear(itemID);
+                        message.reply("鞋子裝備完成").then(msg => {
+                            msg.delete(1000)
+                        });
+                    }
+                }
+                if(equip[itemID].equip_Type == "戒指"){
+                    if(my_equip.ring == "000"){
+                        if(itemID == myinv_info.default_inv.inv_1.itemID){
+                            my_equip.ring = itemID;
+                            myinv_info.default_inv.inv_1.itemID = "000";
+                        }else if(itemID == myinv_info.default_inv.inv_2.itemID){
+                            my_equip.ring = itemID;
+                            myinv_info.default_inv.inv_2.itemID = "000";
+                        }else if(itemID == myinv_info.default_inv.inv_3.itemID){
+                            my_equip.ring = itemID;
+                            myinv_info.default_inv.inv_3.itemID = "000";
+                        }else if(itemID == myinv_info.default_inv.inv_4.itemID){
+                            my_equip.ring = itemID;
+                            myinv_info.default_inv.inv_4.itemID = "000";
+                        }else if(itemID == myinv_info.default_inv.inv_5.itemID){
+                            my_equip.ring = itemID;
+                            myinv_info.default_inv.inv_5.itemID = "000";
+                        }else if(itemID == myinv_info.default_inv.inv_6.itemID){
+                            my_equip.ring = itemID;
+                            myinv_info.default_inv.inv_6.itemID = "000";
+                        }else if(itemID == myinv_info.default_inv.inv_7.itemID){
+                            my_equip.ring = itemID;
+                            myinv_info.default_inv.inv_7.itemID = "000";
+                        }else if(itemID == myinv_info.default_inv.inv_8.itemID){
+                            my_equip.ring = itemID;
+                            myinv_info.default_inv.inv_8.itemID = "000";
+                        }else if(itemID == myinv_info.default_inv.inv_9.itemID){
+                            my_equip.ring = itemID;
+                            myinv_info.default_inv.inv_9.itemID = "000";
+                        }else if(itemID == myinv_info.default_inv.inv_10.itemID){
+                            my_equip.ring = itemID;
+                            myinv_info.default_inv.inv_10.itemID = "000";
+                        }
+                        wear(itemID);
+                        message.reply("戒指裝備完成").then(msg => {
+                            msg.delete(1000)
+                        });
+                    }
+                }
+                if(equip[itemID].equip_Type == "護身符"){
+                    if(my_equip.amulet == "000"){
+                        if(itemID == myinv_info.default_inv.inv_1.itemID){
+                            my_equip.amulet = itemID;
+                            myinv_info.default_inv.inv_1.itemID = "000";
+                        }else if(itemID == myinv_info.default_inv.inv_2.itemID){
+                            my_equip.amulet = itemID;
+                            myinv_info.default_inv.inv_2.itemID = "000";
+                        }else if(itemID == myinv_info.default_inv.inv_3.itemID){
+                            my_equip.amulet = itemID;
+                            myinv_info.default_inv.inv_3.itemID = "000";
+                        }else if(itemID == myinv_info.default_inv.inv_4.itemID){
+                            my_equip.amulet = itemID;
+                            myinv_info.default_inv.inv_4.itemID = "000";
+                        }else if(itemID == myinv_info.default_inv.inv_5.itemID){
+                            my_equip.amulet = itemID;
+                            myinv_info.default_inv.inv_5.itemID = "000";
+                        }else if(itemID == myinv_info.default_inv.inv_6.itemID){
+                            my_equip.amulet = itemID;
+                            myinv_info.default_inv.inv_6.itemID = "000";
+                        }else if(itemID == myinv_info.default_inv.inv_7.itemID){
+                            my_equip.amulet = itemID;
+                            myinv_info.default_inv.inv_7.itemID = "000";
+                        }else if(itemID == myinv_info.default_inv.inv_8.itemID){
+                            my_equip.amulet = itemID;
+                            myinv_info.default_inv.inv_8.itemID = "000";
+                        }else if(itemID == myinv_info.default_inv.inv_9.itemID){
+                            my_equip.amulet = itemID;
+                            myinv_info.default_inv.inv_9.itemID = "000";
+                        }else if(itemID == myinv_info.default_inv.inv_10.itemID){
+                            my_equip.amulet = itemID;
+                            myinv_info.default_inv.inv_10.itemID = "000";
+                        }
+                        wear(itemID);
+                        message.reply("護身符裝備完成").then(msg => {
+                            msg.delete(1000)
+                        });
                     }
                 }
             }

@@ -1,10 +1,6 @@
 const Discord = require("discord.js");
-const config = require("../config.json");
-const fs = require("fs");
-const inv = require("../players_inventory.json");
 const userData = require("../players_data.json");
-const all_item = require("../all_item_id_data.json");
-const adv_time = require("../players_adventure_time.json");
+
 
 module.exports = class adventure_maps {
     constructor() {

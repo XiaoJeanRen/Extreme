@@ -23,6 +23,8 @@ module.exports = class wear_equip {
             userData[playerID].max_Weight -= equip[itemID].add_max_Weight;
             userData[playerID].atk -= equip[itemID].add_atk;
             userData[playerID].def -= equip[itemID].add_def;
+            userData[playerID].atk -= equip[itemID].strengthen;
+            userData[playerID].weight -= equip[itemID].needWeight;
             if (itemID == player_equip[playerID].weapon1){
                 player_equip[playerID].weapon1 = "000"
             }else if(itemID == player_equip[playerID].weapon2){

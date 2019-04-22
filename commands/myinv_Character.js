@@ -19,7 +19,7 @@ module.exports = class myinv{
     if(!userData[playerID]) return message.reply("角色不存在，請輸入「!角色創建」.").then(msg => {msg.delete(1000)});
     console.log(`使用者(ID: ${playerID})使用「角色背包」`)
     
-
+  
     let playerInvEmbed = new Discord.RichEmbed()
     .setAuthor(info.characterName)
     .setColor(info.color)

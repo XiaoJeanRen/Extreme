@@ -10,10 +10,10 @@ const default_inv = require("../default_inventory.json");
  * userName         使用者名稱              weapon1          武器欄位1
  * userId           使用者Id                weapon2          武器欄位2
  * characterName    角色名稱                head             頭盔欄位
- * guild            所屬公會                body             身體欄位
+ * guild            所屬公會                body             護甲欄位
  * rank             冒險等級                gloves           手套欄位
  * title            角色稱號                leg              護腿欄位
- * reputation       角色名聲                boots            靴子欄位
+ * reputation       角色名聲                boots            鞋子欄位
  * max_Hp           血量上限                ring             戒指欄位
  * hp               血量                    amulet           護身符欄位
  * max_Mp           魔力上限
@@ -33,7 +33,7 @@ const default_inv = require("../default_inventory.json");
 module.exports = class create_Character{
   constructor(){
     this.name = 'create',
-    this.alias = ['角色創建'],
+    this.alias = ['角色創建','創建角色'],
     this.usage = '!create'
   }
 
@@ -49,7 +49,7 @@ module.exports = class create_Character{
       time: 20000
     }).then(collection =>{
       let characterName = collection.first().content;
-      if(characterName === "cancel") return message.reply("取消").then(msg => {msg.delete(1000)});
+      if(characterName === "cancel") return message.reply("取消").then(msg => {msg.delete(5000)});
       if(!userData[message.author.id]){
         userData[message.author.id] = {
           userName: message.author.username,
@@ -128,7 +128,7 @@ module.exports = class create_Character{
 
     }).catch(err =>{
       console.log(err)
-      message.reply("取消").then(msg => {
+      return message.reply("取消").then(msg => {
         msg.delete(1000)
       });
     });
