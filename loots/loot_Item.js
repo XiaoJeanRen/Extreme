@@ -81,9 +81,7 @@ module.exports = {
                 itemID: dropitem_id
             }
         } else {
-            return message.reply("此玩家背包已滿.").then(msg => {
-                msg.delete(1000)
-            });
+            
         }
     },
 

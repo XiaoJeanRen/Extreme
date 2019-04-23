@@ -26,7 +26,7 @@ module.exports = class trade_item {
                 msg.delete(1000)
             });
         } else {
-            message.reply(`開始進行「升級」，本次升級將消耗${nextLevelExp}經驗值，你確定要升級嗎(yes / no)`).then(msg => {
+            message.reply(`開始進行「升級」，本次升級將消耗${nextLevelExp}經驗值，你確定要升級嗎?(yes / no)`).then(msg => {
                 msg.delete(20000)
             });
             const filter = m => m.author.id === message.author.id;

@@ -8,6 +8,22 @@ const adv_time = require("../players_adventure_time.json");
 const loots_money = require("../loots/loot_Money.js");
 const loots_exp = require("../loots/loot_Exp.js");
 const loots_item = require("../loots/loot_Item.js");
+
+let invfull = function (myinv_info,playerID) {
+    if (myinv_info.default_inv.inv_1.itemID != "000" &&
+        myinv_info.default_inv.inv_2.itemID != "000" &&
+        myinv_info.default_inv.inv_3.itemID != "000" &&
+        myinv_info.default_inv.inv_4.itemID != "000" &&
+        myinv_info.default_inv.inv_5.itemID != "000" &&
+        myinv_info.default_inv.inv_6.itemID != "000" &&
+        myinv_info.default_inv.inv_7.itemID != "000" &&
+        myinv_info.default_inv.inv_8.itemID != "000" &&
+        myinv_info.default_inv.inv_9.itemID != "000" &&
+        myinv_info.default_inv.inv_10.itemID != "000") {
+        console.log(`使用者(ID: ${playerID})背包已滿.`)
+        return "full"
+    }
+}
 //玩家取得冒險獎勵指令
 let formatSecond = function (number) {
     let secondTime = number; //秒
@@ -53,7 +69,9 @@ module.exports = class adventure_reward {
     async run(bot, message, args) {
         await message.delete();
         let playerID = message.author.id;
-        if(!userData[playerID]) return message.reply("角色不存在，請輸入「!角色創建」.").then(msg => {msg.delete(1000)});
+        if (!userData[playerID]) return message.reply("角色不存在，請輸入「!角色創建」.").then(msg => {
+            msg.delete(1000)
+        });
         console.log(`使用者(ID: ${playerID})使用「獎勵」`)
         let pass_time = Math.round(Math.abs(adv_time[playerID].adventure_time - (message.createdAt / 1000)));
         let actual_time = formatSecond(pass_time);
@@ -88,7 +106,11 @@ module.exports = class adventure_reward {
              * 玩家冒險資料重置
              */
             adv_time_reset(playerID)
-
+            if(invfull(inv[playerID],playerID) == "full"){
+                message.reply("你的背包已滿，請清理後再進行冒險，以免無法獲得道具.").then(msg => {
+                    msg.delete(10000)
+                });
+            }
             message.reply(`金幣獎勵「${getMoney}元」已獲得.\n經驗獎勵「${getExp}」已獲得.\n道具獎勵「${getitem}」已獲得.`).then(msg => {
                 msg.delete(10000)
             });

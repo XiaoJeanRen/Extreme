@@ -39,9 +39,9 @@ let checkItem = function (myinv_info, itemID) {
 
 module.exports = class drop {
     constructor() {
-        this.name = 'drop',
-            this.alias = ['丟棄'],
-            this.usage = '!drop'
+        this.name = 'sell',
+            this.alias = ['販賣'],
+            this.usage = '!sell'
     }
 
     async run(bot, message, args) {
@@ -53,7 +53,7 @@ module.exports = class drop {
         if (!itemID || itemID == "000") return message.reply("請輸入背包內的裝備id.").then(msg => {
             msg.delete(1000)
         });
-        console.log(`使用者(ID: ${playerID})使用「丟棄」.`)
+        console.log(`使用者(ID: ${playerID})使用「穿戴」.`)
         if (itemID != myinv_info.default_inv.inv_1.itemID &&
             itemID != myinv_info.default_inv.inv_2.itemID &&
             itemID != myinv_info.default_inv.inv_3.itemID &&
