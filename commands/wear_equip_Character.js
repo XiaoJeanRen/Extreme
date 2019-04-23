@@ -8,7 +8,7 @@ const equip = require("../all_item_id_data.json");
 // 穿戴裝備指令
 
 
-let wear = function (itemID){
+let wear = function (itemID,playerID){
     userData[playerID].max_Hp += equip[itemID].add_max_Hp;
     userData[playerID].max_Mp += equip[itemID].add_max_Mp;
     userData[playerID].max_Ap += equip[itemID].add_max_Ap;
@@ -91,7 +91,7 @@ module.exports = class wear_equip {
                             my_equip.weapon1 = itemID;
                             myinv_info.default_inv.inv_10.itemID = "000";
                         }
-                        wear(itemID);
+                        wear(itemID,playerID);
                         message.reply("武器或盾牌裝備完成").then(msg => {
                             msg.delete(1000)
                         });
@@ -127,7 +127,7 @@ module.exports = class wear_equip {
                             my_equip.weapon2 = itemID;
                             myinv_info.default_inv.inv_10.itemID = "000";
                         }
-                        wear(itemID);
+                        wear(itemID,playerID);
                         message.reply("武器或盾牌裝備完成").then(msg => {
                             msg.delete(1000)
                         });
@@ -168,7 +168,7 @@ module.exports = class wear_equip {
                             my_equip.head = itemID;
                             myinv_info.default_inv.inv_10.itemID = "000";
                         }
-                        wear(itemID);
+                        wear(itemID,playerID);
                         message.reply("頭盔裝備完成").then(msg => {
                             msg.delete(1000)
                         });
@@ -207,7 +207,7 @@ module.exports = class wear_equip {
                             my_equip.body = itemID;
                             myinv_info.default_inv.inv_10.itemID = "000";
                         }
-                        wear(itemID);
+                        wear(itemID,playerID);
                         message.reply("護甲裝備完成").then(msg => {
                             msg.delete(1000)
                         });
@@ -246,7 +246,7 @@ module.exports = class wear_equip {
                             my_equip.gloves = itemID;
                             myinv_info.default_inv.inv_10.itemID = "000";
                         }
-                        wear(itemID);
+                        wear(itemID,playerID);
                         message.reply("手套裝備完成").then(msg => {
                             msg.delete(1000)
                         });
@@ -285,7 +285,7 @@ module.exports = class wear_equip {
                             my_equip.leg = itemID;
                             myinv_info.default_inv.inv_10.itemID = "000";
                         }
-                        wear(itemID);
+                        wear(itemID,playerID);
                         message.reply("護腿裝備完成").then(msg => {
                             msg.delete(1000)
                         });
@@ -324,7 +324,7 @@ module.exports = class wear_equip {
                             my_equip.boots = itemID;
                             myinv_info.default_inv.inv_10.itemID = "000";
                         }
-                        wear(itemID);
+                        wear(itemID,playerID);
                         message.reply("鞋子裝備完成").then(msg => {
                             msg.delete(1000)
                         });
@@ -363,7 +363,7 @@ module.exports = class wear_equip {
                             my_equip.ring = itemID;
                             myinv_info.default_inv.inv_10.itemID = "000";
                         }
-                        wear(itemID);
+                        wear(itemID,playerID);
                         message.reply("戒指裝備完成").then(msg => {
                             msg.delete(1000)
                         });
@@ -402,7 +402,7 @@ module.exports = class wear_equip {
                             my_equip.amulet = itemID;
                             myinv_info.default_inv.inv_10.itemID = "000";
                         }
-                        wear(itemID);
+                        wear(itemID,playerID);
                         message.reply("護身符裝備完成").then(msg => {
                             msg.delete(1000)
                         });

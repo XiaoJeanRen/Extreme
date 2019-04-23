@@ -1,6 +1,6 @@
 const Discord = require("discord.js");
 //查看遊戲指令的指令
-module.exports = class myinfo{
+module.exports = class help{
   constructor(){
     this.name = 'help',
     this.alias = ['指令'],
@@ -15,7 +15,8 @@ module.exports = class myinfo{
     .addField("**__系統相關__**",
     "**!create：**``創建一位新角色``\n "+
     "**!check <裝備代碼>：**``查看裝備素質``\n" +
-    "**!recolor：**``自訂角色狀態的顏色``\n "
+    "**!recolor：**``自訂角色狀態的顏色``\n " +
+    "**!drop <裝備代碼>：**``丟棄背包內的裝備``\n "
     )
     .addField("**__角色相關指令__**",
     "**!myinfo：**``查看角色目前狀態``\n" + 
@@ -23,7 +24,8 @@ module.exports = class myinfo{
     "**!myeq：**``查看角色裝備內容``\n" +
     "**!wear <裝備代碼>：**``穿戴裝備``\n" +
     "**!unwear <裝備代碼>：**``脫下裝備``\n" +
-    "**!rename：**``重新更改角色名稱``\n"
+    "**!rename：**``重新更改角色名稱``\n" +
+    "**!levelup：**``升級角色等級``\n" 
     )
     .addField("**__冒險相關指令__**",
     "**!advs：**``查看副本地圖資料``\n" + 

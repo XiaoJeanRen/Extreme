@@ -6,7 +6,7 @@ const userData = require("../players_data.json");
 module.exports = class myinfo{
   constructor(){
     this.name = 'myinfo',
-    this.alias = ['角色資訊'],
+    this.alias = ['角色資訊','狀態'],
     this.usage = '!myinfo'
   }
 

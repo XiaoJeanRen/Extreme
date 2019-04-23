@@ -4,6 +4,7 @@ const adv_time = require("../players_adventure_time.json");
 /**
  * qualityCheck 檢查裝備品質
  * 傳奇(legendary): 1  史詩(epic): 2~5 稀有(rare): 6~50 魔法(magic): 51~200
+ * 傳奇基值 +20 史詩基值 +10 稀有基值 +5 魔法基值+2 普通基值+0
  */
 module.exports = {
     qualityCheck: function (){
