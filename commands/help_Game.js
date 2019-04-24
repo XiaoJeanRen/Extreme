@@ -12,7 +12,18 @@ module.exports = class help{
     
     let gamehelpEmbed = new Discord.RichEmbed()
     .setTitle("**遊戲指令**")
+    .setThumbnail(bot.user.displayAvatarURL)
+    .addField("**公告**",
+    "```1. 2019/4/24已重新刪檔，測試新數值\n" +
+    "2. RPG遊戲測試階段，資料隨時可能刪除```"
+     )
+    .addField("**近期更新**",
+    "__1. 新增了!翔哥 指令\n" +
+    "2. 重置了!myinfo指令，現在更簡短!myi，舊指令能照常使用\n" +
+    "3. 新增了!mys更詳細的角色資料指令\n__"
+     )
     .addField("**__系統相關__**",
+    "**!翔哥：**``查看一位井底之蛙``\n "+
     "**!create：**``創建一位新角色``\n "+
     "**!check <裝備代碼>：**``查看裝備素質``\n" +
     "**!recolor：**``自訂角色狀態的顏色``\n " +
@@ -20,7 +31,8 @@ module.exports = class help{
     "**!clearInv：**``丟棄背包內所有的裝備``\n " 
     )
     .addField("**__角色相關指令__**",
-    "**!myinfo：**``查看角色目前狀態``\n" + 
+    "**!myi：**``查看角色目前資料``\n" + 
+    "**!mys：**``查看角色詳細狀態``\n" + 
     "**!myinv：**``查看角色背包內容``\n" + 
     "**!myeq：**``查看角色裝備內容``\n" +
     "**!wear <裝備代碼>：**``穿戴裝備``\n" +

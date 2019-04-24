@@ -21,29 +21,39 @@ module.exports = class check_item{
     let playerInfoEmbed = new Discord.RichEmbed()
     .setAuthor(info.equip_Name)
     .addField("**裝備資料**",
-    "**物品ID(item_Id)： **"            + info.item_Id + "\n" +
-    "**物品類型(item_Type)： **"        + info.item_Type + "\n" +
-    "**裝備名稱(equip_Name)： **"       + info.equip_Name + "\n" +
-    "**裝備類型(equip_Type)： **"       + info.equip_Type + "\n" +
-    "**裝備品質(quality)： **"          + info.quality + "\n" +
-    "**裝備強化度(strengthen)： **"     + info.strengthen + "\n" +
-    "**裝備品質(Identification)： **"   + info.Identification + "\n" +
-    "**增加血量(add_max_Hp)： **"       + info.add_max_Hp + "\n" +
-    "**增加魔力(add_max_Mp)： **"       + info.add_max_Mp + "\n" +
-    "**增加行動點數(add_max_Ap)： **"   + info.add_max_Ap + "\n" +
-    "**增加負重(add_max_Weight)： **"   + info.add_max_Weight + "\n" +
-    "**增加攻擊力(add_atk)： **"        + info.add_atk + "\n" +
-    "**增加防禦力(add_def)： **"        + info.add_def + "\n" +
-    "**需求等級(needLevel)： **"        + info.needLevel + "\n" +
-    "**需求職業(needClass)： **"        + info.needClass + "\n" +
-    "**需求負重(needWeight)： **"       + info.needWeight + "\n" +
-    "**特殊能力(special)： **"          + info.special + "\n" +
-    "**物品介紹(itemInfo)： **"         + info.itemInfo + "\n" +
-    "**物品價值(itemValue)： **"        + info.itemValue + "\n" +
-    "**物品特殊id(itemSpecialId)： **"  + info.itemSpecialId
+    "**物品ID(item_Id)： **"                + info.item_Id + "\n" +
+    "**物品類型(item_Type)： **"            + info.item_Type + "\n" +
+    "**裝備名稱(equip_Name)： **"           + info.equip_Name + "\n" +
+    "**裝備類型(equip_Type)： **"           + info.equip_Type + "\n" +
+    "**裝備屬性(equip_Shape)： **"          + info.equip_Shape + "\n" +
+    "**裝備品質(quality)： **"              + info.quality + "\n" +
+    "**裝備強化度(strengthen)： **"         + info.strengthen + "\n" +
+    "**裝備品質(Identification)： **"       + info.Identification + "\n" +
+    "**增加血量(add_max_Hp)： **"           + info.add_max_Hp + "\n" +
+    "**增加魔力(add_max_Mp)： **"           + info.add_max_Mp + "\n" +
+    "**增加行動點數(add_max_Ap)： **"       + info.add_max_Ap + "\n" +
+    "**增加負重(add_max_Weight)： **"       + info.add_max_Weight + "\n" +
+    "**增加攻擊力(add_atk)： **"            + info.add_atk + "\n" +
+    "**增加火焰傷害(add_fire_atk)： **"     + info.add_fire_atk + "\n" +
+    "**增加冰冷傷害(add_cold_atk)： **"     + info.add_cold_atk + "\n" +
+    "**增加閃電傷害(add_light_atk)： **"    + info.add_light_atk + "\n" +
+    "**增加防禦力(add_def)： **"            + info.add_def + "\n" +
+    "**增加火焰抗性(add_fire_def)： **"     + info.add_fire_def + "\n" +
+    "**增加冰冷抗性(add_cold_def)： **"     + info.add_cold_def + "\n" +
+    "**增加閃電抗性(add_light_def)： **"    + info.add_light_def + "\n" +
+    "**需求等級(needLevel)： **"            + info.needLevel + "\n" +
+    "**需求職業(needClass)： **"            + info.needClass + "\n" +
+    "**需求負重(needWeight)： **"           + info.needWeight + "\n" +
+    "**需求力量(needStr)： **"              + info.needStr + "\n" +
+    "**需求智慧(needInt)： **"              + info.needInt + "\n" +
+    "**需求敏捷(needDex)： **"              + info.needDex + "\n" +
+    "**特殊能力(special)： **"              + info.special + "\n" +
+    "**物品介紹(itemInfo)： **"             + info.itemInfo + "\n" +
+    "**物品價值(itemValue)： **"            + info.itemValue + "\n" +
+    "**物品特殊id(itemSpecialId)： **"      + info.itemSpecialId
     );
 
-    message.reply(playerInfoEmbed).then(msg => {msg.delete(15000)});
+    message.reply(playerInfoEmbed).then(msg => {msg.delete(20000)});
   }
 
 }
