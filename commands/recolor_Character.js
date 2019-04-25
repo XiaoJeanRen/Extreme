@@ -28,7 +28,7 @@ module.exports = class recolor {
             if (newColor == "cancel") return message.reply("取消").then(msg => {
                 msg.delete(5000)
             });
-            userData[playerID].color = newColor;
+            userData[playerID].Character_Color = newColor;
             message.reply(`自訂顏色更改完成，新顏色代碼為「${newColor}」`).then(msg => {msg.delete(10000)});
         }).catch(err => {
             //console.log(err)

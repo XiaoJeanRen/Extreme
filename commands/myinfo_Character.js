@@ -16,30 +16,28 @@ module.exports = class myinfo{
     let info = userData[playerID];
     if(!userData[playerID]) return message.reply("角色不存在，請輸入「!角色創建」.").then(msg => {msg.delete(1000)});
     console.log(`使用者(ID: ${playerID})使用「角色資訊」`)
-    let nextLevelExp = info.level * 300 * 2.5;
-    let difference = nextLevelExp - info.exp;
+    let nextLevelExp = info.Character_Level * 300 * 2.5;
+    let difference = nextLevelExp - info.Character_Exp;
     
     let playerInfoEmbed = new Discord.RichEmbed()
-    .setAuthor(info.characterName)
-    .setColor(info.color)
+    .setAuthor(info.CharacterName)
+    .setColor(info.Character_Color)
     .setThumbnail(message.author.displayAvatarURL)
-    .addField("**角色稱號**", info.title)
+    .addField("**角色稱號**", info.Character_Title)
     .addField("**角色資料**",
-    "**生命： **" + info.hp + " / " + info.max_Hp + "\n" +
-    "**魔力： **" + info.mp + " / " + info.max_Mp + "\n" +
-    "**行動點數： **" + info.ap + " / " + info.max_Ap + "\n" +
-    "**負量： **" + info.weight + " / " + info.max_Weight + "\n" +
-    "**名聲： **" + info.reputation + "\n" +
-    "**職業： **" + info.class + "\n" +
-    "**副職業： **" + info.secondclass + "\n" +
-    "**目前狀況： **" + info.status + "\n" +
-    "**冒險狀況： **" + info.adventure + "\n" +
-    "**社會地位： **" + info.socialstatus + "\n" +
-    "**所屬公會： **" + info.guild + "\n" +
-    "**所屬家族： **" + info.family + "\n" +
-    "**金錢💰： **" + info.money
+    "**生命： **" + info.Character_HP + " / " + info.Character_MaxHP + "\n" +
+    "**魔力： **" + info.Character_MP + " / " + info.Character_MaxMP + "\n" +
+    "**行動點數： **" + info.Character_AP + " / " + info.Character_MaxAP + "\n" +
+    "**負量： **" + info.Character_Weight + " / " + info.Character_MaxWeight + "\n" +
+    "**名聲： **" + info.Character_Reputation + "\n" +
+    "**職業： **" + info.Character_Class + "\n" +
+    "**冒險狀況： **" + info.Character_Adventure + "\n" +
+    "**社會地位： **" + info.Character_Socialstatus + "\n" +
+    "**所屬公會： **" + info.Character_Guild + "\n" +
+    "**所屬家族： **" + info.Character_Family + "\n" +
+    "**金錢💰： **" + info.Character_Money
     )
-    .addField("等級","**目前等級：**" + info.level + "** 目前經驗：**" + info.exp)
+    .addField("等級","**目前等級：**" + info.Character_Level + "** 目前經驗：**" + info.Character_Exp)
     .setFooter(`離下一個等級還有 ${difference} 經驗值`,message.author.displayAvatarURL);
 
     message.reply(playerInfoEmbed).then(msg => {msg.delete(20000)});

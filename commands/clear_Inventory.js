@@ -5,16 +5,16 @@ const inv = require("../players_inventory.json");
 const userData = require("../players_data.json");
 // 丟棄裝備指令
 let clearAllItem = function (myinv_info) {
-    myinv_info.default_inv.inv_1.itemID = "000";
-    myinv_info.default_inv.inv_2.itemID = "000";
-    myinv_info.default_inv.inv_3.itemID = "000";
-    myinv_info.default_inv.inv_4.itemID = "000";
-    myinv_info.default_inv.inv_5.itemID = "000";
-    myinv_info.default_inv.inv_6.itemID = "000";
-    myinv_info.default_inv.inv_7.itemID = "000";
-    myinv_info.default_inv.inv_8.itemID = "000";
-    myinv_info.default_inv.inv_9.itemID = "000";
-    myinv_info.default_inv.inv_10.itemID = "000";
+    myinv_info.inv_1.itemID = "000";
+    myinv_info.inv_2.itemID = "000";
+    myinv_info.inv_3.itemID = "000";
+    myinv_info.inv_4.itemID = "000";
+    myinv_info.inv_5.itemID = "000";
+    myinv_info.inv_6.itemID = "000";
+    myinv_info.inv_7.itemID = "000";
+    myinv_info.inv_8.itemID = "000";
+    myinv_info.inv_9.itemID = "000";
+    myinv_info.inv_10.itemID = "000";
 }
 
 module.exports = class clearItem {

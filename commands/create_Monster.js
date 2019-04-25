@@ -56,6 +56,7 @@ module.exports = class create_monster {
       monster_Hp: default_point,
       monster_Mp: default_point,
       monster_Ap: default_point,
+      monster_level: default_point,
       mosnter_Fire_Damage: default_point,
       mosnter_Cold_Damage: default_point,
       mosnter_Light_Damage: default_point,

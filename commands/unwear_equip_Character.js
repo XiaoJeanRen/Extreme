@@ -20,51 +20,90 @@ module.exports = class wear_equip {
             msg.delete(1000)
         });
         let unwear = function (itemID) {
-            userData[playerID].max_Hp -= equip[itemID].add_max_Hp; //裝備減少HP
-            userData[playerID].max_Mp -= equip[itemID].add_max_Mp; //裝備減少MP
-            userData[playerID].max_Ap -= equip[itemID].add_max_Ap; //裝備減少AP
-            userData[playerID].max_Weight -= equip[itemID].add_max_Weight; //裝備減少負重
-            userData[playerID].str -= equip[itemID].add_Str; //裝備減少力量
-            userData[playerID].int -= equip[itemID].add_Int; //裝備減少智慧
-            userData[playerID].dex -= equip[itemID].add_Dex; //裝備減少敏捷
-            userData[playerID].acc -= equip[itemID].add_Acc; //裝備減少命中
-            userData[playerID].atk -= equip[itemID].add_atk; //裝備減少攻擊
-            userData[playerID].def -= equip[itemID].add_def; //裝備減少防禦
-            userData[playerID].matk -= equip[itemID].add_Matk; //裝備減少攻擊
-            userData[playerID].mdef -= equip[itemID].add_Mdef; //裝備減少防禦
-            userData[playerID].atk -= equip[itemID].strengthen; //裝備減少強化指數
-            userData[playerID].weight -= equip[itemID].needWeight; //裝備需求負重
-            userData[playerID].fight_fire_Damage -= equip[itemID].add_fire_atk; //裝備減少火焰傷害
-            userData[playerID].fight_cold_Damage -= equip[itemID].add_cold_atk; //裝備減少冰冷傷害
-            userData[playerID].fight_light_Damage -= equip[itemID].add_light_atk; //裝備減少閃電傷害
-            userData[playerID].fight_hit_Damage -= equip[itemID].fight_hit_Damage; //裝備減少打擊傷害
-            userData[playerID].fight_cut_Damage -= equip[itemID].fight_cut_Damage; //裝備減少斬擊傷害
-            userData[playerID].fight_poke_Damage -= equip[itemID].fight_poke_Damage; //裝備減少刺擊傷害
-            userData[playerID].fight_fire_Defence -= equip[itemID].add_fire_def; //裝備減少火焰防禦
-            userData[playerID].fight_cold_Defence -= equip[itemID].add_cold_def; //裝備減少冰冷防禦
-            userData[playerID].fight_light_Defence -= equip[itemID].add_light_def; //裝備減少閃電防禦
-            userData[playerID].fight_hit_Defence -= equip[itemID].fight_hit_Defence; //裝備減少打擊防禦
-            userData[playerID].fight_cut_Defence -= equip[itemID].fight_cut_Defence; //裝備減少斬擊防禦
-            userData[playerID].fight_poke_Defence -= equip[itemID].fight_poke_Defence; //裝備減少刺擊防禦
+            userData[playerID].Character_MaxHP -= equip[itemID].Equip_Add_MaxHP;
+            userData[playerID].Character_MaxMP -= equip[itemID].Equip_Add_MaxMP;
+            userData[playerID].Character_MaxAP -= equip[itemID].Equip_Add_MaxAP;
+            userData[playerID].Character_MaxWeight -= equip[itemID].Equip_Add_MaxWeight;
 
-            if (itemID == player_equip[playerID].weapon1) {
-                player_equip[playerID].weapon1 = "000"
-            } else if (itemID == player_equip[playerID].weapon2) {
-                player_equip[playerID].weapon2 = "000"
-            } else if (itemID == player_equip[playerID].head) {
-                player_equip[playerID].head = "000"
-            } else if (itemID == player_equip[playerID].body) {
-                player_equip[playerID].body = "000"
-            } else if (itemID == player_equip[playerID].gloves) {
-                player_equip[playerID].gloves = "000"
-            } else if (itemID == player_equip[playerID].leg) {
-                player_equip[playerID].leg = "000"
-            } else if (itemID == player_equip[playerID].boots) {
-                player_equip[playerID].boots = "000"
-            } else if (itemID == player_equip[playerID].ring) {
-                player_equip[playerID].ring = "000"
-            } else if (itemID == player_equip[playerID].amulet) {
-                player_equip[playerID].amulet = "000"
+            userData[playerID].Character_Extra_Material -= equip[itemID].Equip_Extra_Material; //裝備增加HP
+            userData[playerID].Character_Extra_Money -= equip[itemID].Equip_Extra_Money; //裝備增加MP
+            userData[playerID].Character_Extra_Exp -= equip[itemID].Equip_Extra_Exp;
+
+            userData[playerID].Character_Str -= equip[itemID].Equip_Add_Str;
+            userData[playerID].Character_Int -= equip[itemID].Equip_Add_Int;
+            userData[playerID].Character_Dex -= equip[itemID].Equip_Add_Dex;
+            userData[playerID].Character_Acc -= equip[itemID].Equip_Add_Acc;
+
+            userData[playerID].Character_DMG -= equip[itemID].Equip_Add_DMG;
+            userData[playerID].Character_DEF -= equip[itemID].Equip_Add_DEF;
+
+            userData[playerID].Character_Strike -= equip[itemID].Equip_Add_Strike;
+            userData[playerID].Character_Accurate -= equip[itemID].Equip_Add_Accurate;
+            userData[playerID].Character_Taunt -= equip[itemID].Equip_Add_Taunt;
+
+            userData[playerID].Character_M_DMG -= equip[itemID].Equip_Add_M_DMG;
+            userData[playerID].Character_M_Def -= equip[itemID].Equip_Add_M_Def;
+
+            userData[playerID].Character_Weight -= equip[itemID].Equip_Need_Weight;
+
+            //火
+            userData[playerID].Character_FIRE_DMG -= equip[itemID].Equip_Add_FIRE_DMG;
+            userData[playerID].Character_FIRE_DEF -= equip[itemID].Equip_Add_FIRE_DEF;
+
+            //水
+            userData[playerID].Character_COLD_DMG -= equip[itemID].Equip_Add_COLD_DMG;
+            userData[playerID].Character_COLD_DEF -= equip[itemID].Equip_Add_COLD_DEF;
+
+            //木
+            userData[playerID].Character_WOOD_DMG -= equip[itemID].Equip_Add_WOOD_DMG;
+            userData[playerID].Character_WOOD_DEF -= equip[itemID].Equip_Add_WOOD_DEF;
+
+            //閃電
+            userData[playerID].Character_LIGHT_DMG -= equip[itemID].Equip_Add_LIGHT_DMG;
+            userData[playerID].Character_LIGHT_DEF -= equip[itemID].Equip_Add_LIGHT_DEF;
+
+            //光明
+            userData[playerID].Character_BRIGHT_DMG -= equip[itemID].Equip_Add_BRIGHT_DMG;
+            userData[playerID].Character_BRIGHT_DEF -= equip[itemID].Equip_Add_BRIGHT_DEF;
+
+            //黑暗
+            userData[playerID].Character_DARK_DMG -= equip[itemID].Equip_Add_DARK_DMG;
+            userData[playerID].Character_DARK_DEF -= equip[itemID].Equip_Add_DARK_DEF;
+
+            //毒
+            userData[playerID].Character_POISON_DMG -= equip[itemID].Equip_Add_POISON_DMG;
+            userData[playerID].Character_POISON_DEF -= equip[itemID].Equip_Add_POISON_DEF;
+
+            //打
+            userData[playerID].Character_HIT_DMG -= equip[itemID].Equip_Add_HIT_DMG;
+            userData[playerID].Character_HIT_DEF -= equip[itemID].Equip_Add_HIT_DEF;
+
+            //斬
+            userData[playerID].Character_CUT_DMG -= equip[itemID].Equip_Add_CUT_DMG;
+            userData[playerID].Character_CUT_DEF -= equip[itemID].Equip_Add_CUT_DEF;
+
+            //刺
+            userData[playerID].Character_POKE_DMG -= equip[itemID].Equip_Add_POKE_DMG;
+            userData[playerID].Character_POKE_DEF -= equip[itemID].Equip_Add_POKE_DEF;
+
+            if (itemID == player_equip[playerID].Weapon1) {
+                player_equip[playerID].Weapon1 = "000"
+            } else if (itemID == player_equip[playerID].Weapon2) {
+                player_equip[playerID].Weapon2 = "000"
+            } else if (itemID == player_equip[playerID].Head) {
+                player_equip[playerID].Head = "000"
+            } else if (itemID == player_equip[playerID].Body) {
+                player_equip[playerID].Body = "000"
+            } else if (itemID == player_equip[playerID].Gloves) {
+                player_equip[playerID].Gloves = "000"
+            } else if (itemID == player_equip[playerID].Leg) {
+                player_equip[playerID].Leg = "000"
+            } else if (itemID == player_equip[playerID].Boots) {
+                player_equip[playerID].Boots = "000"
+            } else if (itemID == player_equip[playerID].Ring) {
+                player_equip[playerID].Ring = "000"
+            } else if (itemID == player_equip[playerID].Amulet) {
+                player_equip[playerID].Amulet = "000"
             }
         }
         let myinv_info = inv[playerID];
@@ -74,15 +113,16 @@ module.exports = class wear_equip {
             msg.delete(1000)
         });
         console.log(`使用者(ID: ${playerID})使用「脫下」.`)
-        if (itemID != my_equip.weapon1 &&
-            itemID != my_equip.weapon2 &&
-            itemID != my_equip.head &&
-            itemID != my_equip.body &&
-            itemID != my_equip.gloves &&
-            itemID != my_equip.leg &&
-            itemID != my_equip.boots &&
-            itemID != my_equip.ring &&
-            itemID != my_equip.amulet) {
+        if (itemID != my_equip.Weapon1 &&
+            itemID != my_equip.Weapon2 &&
+            itemID != my_equip.Arrowbag &&
+            itemID != my_equip.Head &&
+            itemID != my_equip.Body &&
+            itemID != my_equip.Gloves &&
+            itemID != my_equip.Leg &&
+            itemID != my_equip.Boots &&
+            itemID != my_equip.Ring &&
+            itemID != my_equip.Amulet) {
             console.log(`使用者(ID: ${playerID})使用「脫下」失敗.`)
             return message.reply("你沒有穿戴此裝備，請再次確認.").then(msg => {
                 msg.delete(5000)

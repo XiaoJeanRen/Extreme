@@ -19,21 +19,23 @@ module.exports = class gameReset{
     let user = userData[playerID];
     if(!info) return message.reply("角色不存在，請輸入「!角色創建」.").then(msg => {msg.delete(1000)});
     console.log(`使用者(ID: ${playerID})使用「角色裝備」`)
-
+    
     let playerInfoEmbed = new Discord.RichEmbed()
-    .setAuthor(info.characterName)
+    .setAuthor(info.CharacterName)
     .addField("**角色裝備**",
-    "**武器(左手)： **`物品id: " + info.weapon1 + "` 名稱: `" + equip[info.weapon1].equip_Name  + "`\n" +
-    "**武器(右手)： **`物品id: " + info.weapon2 + "` 名稱: `" + equip[info.weapon2].equip_Name  + "`\n" +
-    "**頭盔： **`物品id: "      + info.head    + "` 名稱: `" + equip[info.head].equip_Name      + "`\n" +
-    "**盔甲： **`物品id: "      + info.body    + "` 名稱: `" + equip[info.body].equip_Name      + "`\n" +
-    "**手套： **`物品id: "      + info.gloves  + "` 名稱: `" + equip[info.gloves].equip_Name    + "`\n" +
-    "**護腿： **`物品id: "      + info.leg     + "` 名稱: `" + equip[info.leg].equip_Name       + "`\n" +
-    "**鞋子： **`物品id: "      + info.boots   + "` 名稱: `" + equip[info.boots].equip_Name     + "`\n" +
-    "**戒指： **`物品id: "      + info.ring    + "` 名稱: `" + equip[info.ring].equip_Name      + "`\n" +
-    "**護身符： **`物品id: "      + info.amulet  + "` 名稱: `" + equip[info.amulet].equip_Name    + "`"
+    "**武器(左手)： **`物品id: " + info.Weapon1 + "` 名稱: `" + equip[info.Weapon1].Equip_Name  + "`\n" +
+    "**武器(右手)： **`物品id: " + info.Weapon2 + "` 名稱: `" + equip[info.Weapon2].Equip_Name  + "`\n" +
+    "**箭袋： **`物品id: "       + info.Arrowbag + "` 名稱: `" + equip[info.Arrowbag].Equip_Name  + "`\n" +
+    "**頭盔： **`物品id: "      + info.Head    + "` 名稱: `" + equip[info.Head].Equip_Name      + "`\n" +
+    "**盔甲： **`物品id: "      + info.Body    + "` 名稱: `" + equip[info.Body].Equip_Name      + "`\n" +
+    "**手套： **`物品id: "      + info.Gloves  + "` 名稱: `" + equip[info.Gloves].Equip_Name    + "`\n" +
+    "**護腿： **`物品id: "      + info.Leg     + "` 名稱: `" + equip[info.Leg].Equip_Name       + "`\n" +
+    "**鞋子： **`物品id: "      + info.Boots   + "` 名稱: `" + equip[info.Boots].Equip_Name     + "`\n" +
+    "**戒指： **`物品id: "      + info.Ring    + "` 名稱: `" + equip[info.Ring].Equip_Name      + "`\n" +
+    "**護身符： **`物品id: "      + info.Amulet  + "` 名稱: `" + equip[info.Amulet].Equip_Name    + "`\n" +
+    "**箭矢數量： **`"       + info.Arrows  + "`\n" 
     )
-    .setFooter(`負重 ${user.weight}  /  ${user.max_Weight}`,message.author.displayAvatarURL);
+    .setFooter(`負重 ${user.Character_Weight}  /  ${user.Character_MaxWeight}`,message.author.displayAvatarURL);
 
     message.reply(playerInfoEmbed).then(msg => {msg.delete(10000)});
   }

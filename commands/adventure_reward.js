@@ -10,16 +10,16 @@ const loots_exp = require("../loots/loot_Exp.js");
 const loots_item = require("../loots/loot_Item.js");
 
 let invfull = function (myinv_info,playerID) {
-    if (myinv_info.default_inv.inv_1.itemID != "000" &&
-        myinv_info.default_inv.inv_2.itemID != "000" &&
-        myinv_info.default_inv.inv_3.itemID != "000" &&
-        myinv_info.default_inv.inv_4.itemID != "000" &&
-        myinv_info.default_inv.inv_5.itemID != "000" &&
-        myinv_info.default_inv.inv_6.itemID != "000" &&
-        myinv_info.default_inv.inv_7.itemID != "000" &&
-        myinv_info.default_inv.inv_8.itemID != "000" &&
-        myinv_info.default_inv.inv_9.itemID != "000" &&
-        myinv_info.default_inv.inv_10.itemID != "000") {
+    if (myinv_info.inv_1.itemID != "000" &&
+        myinv_info.inv_2.itemID != "000" &&
+        myinv_info.inv_3.itemID != "000" &&
+        myinv_info.inv_4.itemID != "000" &&
+        myinv_info.inv_5.itemID != "000" &&
+        myinv_info.inv_6.itemID != "000" &&
+        myinv_info.inv_7.itemID != "000" &&
+        myinv_info.inv_8.itemID != "000" &&
+        myinv_info.inv_9.itemID != "000" &&
+        myinv_info.inv_10.itemID != "000") {
         console.log(`使用者(ID: ${playerID})背包已滿.`)
         return "full"
     }
@@ -88,14 +88,14 @@ module.exports = class adventure_reward {
              * loots_money => require("../loots/loot_Money.js");
              */
             let getMoney = loots_money.lootMoney(adventure_number);
-            userData[playerID].money += getMoney; //得到金錢
+            userData[playerID].Character_Money += getMoney; //得到金錢
             console.log(`使用者(ID: ${playerID})已取得金錢${getMoney}元`)
             /**
              * 經驗處理
              * loots_exp  => require("../loots/loot_Exp.js");
              */
             let getExp = loots_exp.lootExp(adventure_number);
-            userData[playerID].exp += getExp; //得到Exp
+            userData[playerID].Character_Exp += getExp; //得到Exp
             console.log(`使用者(ID: ${playerID})已取得經驗${getExp}元`)
             /**
              * 取得道具處理

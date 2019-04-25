@@ -38,8 +38,8 @@ module.exports = class trade_item {
             });
         }else{
             console.log(`使用者(ID: ${playerID})對使用者(ID: ${tradePlayerID})使用「交易金錢」成功，給予了${payMoneyNumber}元`)
-            tradePlayer.money -= payMoneyNumber;
-            getPlayer.money += payMoneyNumber;
+            tradePlayer.Character_Money -= payMoneyNumber;
+            getPlayer.Character_Money += payMoneyNumber;
             
             message.reply("付款成功.").then(msg => {
                 msg.delete(1000)

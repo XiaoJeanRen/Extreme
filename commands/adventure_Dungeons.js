@@ -28,7 +28,6 @@ let ismonsterGroup = function (playerID, monsterGroup, monsterNumber) {
         dun_fight_Monster[playerID].monster3 = fightMonster[monsterNumber];
     }
     fs.writeFile("./dungeon_players_fight.json", JSON.stringify(dun_fight_Monster), (err) => {});
-    fs.writeFile("./monster_data.json", JSON.stringify(fightMonster), (err) => {});
 }
 
 let chooseMonster = function (playerID, pick_Dun_Floor) {
@@ -36,7 +35,7 @@ let chooseMonster = function (playerID, pick_Dun_Floor) {
         case '1':
             console.log("pick")
             let monsterGroup = Math.floor(Math.random() * 1) + 1;
-            let monsterNumber = Math.floor(Math.random() * 1) + 1;
+            let monsterNumber = Math.floor(Math.random() * 2) + 2;
             ismonsterGroup(playerID, monsterGroup, monsterNumber);
 
         default:

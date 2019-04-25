@@ -22,7 +22,7 @@ module.exports = class myskill {
         let player_skills = player_learn_Skill[playerID];
         let checkMySkill = args[1];
         if (!args[1]) return message.reply(
-            "指令錯誤，指令格式為 !mysk [法師系 / 牧師系 / 弓手系 / 盜賊系 / 騎士系 / 戰士系]"
+            "指令錯誤，指令格式為 !mysk [法師 / 牧師 / 弓手 / 盜賊 / 騎士 / 戰士]"
         ).then(msg => {
             msg.delete(10000)
         });
@@ -89,7 +89,7 @@ module.exports = class myskill {
                 });
                 break;
             case '騎士系':
-                let thiefEmbed = new Discord.RichEmbed()
+                let knightEmbed = new Discord.RichEmbed()
                     .setTitle("**" + info.characterName + "**")
                     .addField("**__騎士系技能__**",
                         "**盾牌精通　Level_" + player_skills.skill_5001.skillLevel + "　**``習得狀況：" + player_skills.skill_5001.isskillGet + "``\n" +
@@ -99,12 +99,12 @@ module.exports = class myskill {
                         "**挑釁　　　Level_" + player_skills.skill_5005.skillLevel + "　**``習得狀況：" + player_skills.skill_5005.isskillGet + "``\n" +
                         "**鼓舞　　　Level_" + player_skills.skill_5006.skillLevel + "　**``習得狀況：" + player_skills.skill_5006.isskillGet + "``\n"
                     )
-                message.reply(thiefEmbed).then(msg => {
+                message.reply(knightEmbed).then(msg => {
                     msg.delete(20000)
                 });
                 break;
             case '戰士系':
-                let thiefEmbed = new Discord.RichEmbed()
+                let warriorEmbed = new Discord.RichEmbed()
                     .setTitle("**" + info.characterName + "**")
                     .addField("**__戰士系技能__**",
                         "**近戰精通　Level_" + player_skills.skill_6001.skillLevel + "　**``習得狀況：" + player_skills.skill_6001.isskillGet + "``\n" +
@@ -114,7 +114,7 @@ module.exports = class myskill {
                         "**突刺　　　Level_" + player_skills.skill_6005.skillLevel + "　**``習得狀況：" + player_skills.skill_6005.isskillGet + "``\n" +
                         "**敲打　　　Level_" + player_skills.skill_6006.skillLevel + "　**``習得狀況：" + player_skills.skill_6006.isskillGet + "``\n"
                     )
-                message.reply(thiefEmbed).then(msg => {
+                message.reply(warriorEmbed).then(msg => {
                     msg.delete(20000)
                 });
                 break;

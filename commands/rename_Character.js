@@ -29,7 +29,7 @@ module.exports = class rename {
             if (newCharacterName == "cancel") return message.reply("取消").then(msg => {
                 msg.delete(5000)
             });
-            userData[playerID].characterName = newCharacterName;
+            userData[playerID].CharacterName = newCharacterName;
             message.reply(`角色更名完成，新名稱為「${newCharacterName}」創建完成`).then(msg => {msg.delete(10000)});
         }).catch(err => {
             //console.log(err)

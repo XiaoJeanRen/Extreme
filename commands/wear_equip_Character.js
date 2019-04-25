@@ -9,32 +9,71 @@ const equip = require("../all_item_id_data.json");
 
 
 let wear = function (itemID,playerID){
-    userData[playerID].max_Hp += equip[itemID].add_max_Hp;                              //裝備增加HP
-    userData[playerID].max_Mp += equip[itemID].add_max_Mp;                              //裝備增加MP
-    userData[playerID].max_Ap += equip[itemID].add_max_Ap;                              //裝備增加AP
-    userData[playerID].max_Weight += equip[itemID].add_max_Weight;                      //裝備增加負重
-    userData[playerID].str += equip[itemID].add_Str;                                    //裝備增加力量
-    userData[playerID].int += equip[itemID].add_Int;                                    //裝備增加智慧
-    userData[playerID].dex += equip[itemID].add_Dex;                                    //裝備增加敏捷
-    userData[playerID].acc += equip[itemID].add_Acc;                                    //裝備增加命中
-    userData[playerID].atk += equip[itemID].add_atk;                                    //裝備增加攻擊
-    userData[playerID].def += equip[itemID].add_def;                                    //裝備增加防禦
-    userData[playerID].matk += equip[itemID].add_Matk;                                    //裝備增加攻擊
-    userData[playerID].mdef += equip[itemID].add_Mdef;                                    //裝備增加防禦
-    userData[playerID].atk += equip[itemID].strengthen;                                 //裝備增加強化指數
-    userData[playerID].weight += equip[itemID].needWeight;                              //裝備需求負重
-    userData[playerID].fight_fire_Damage += equip[itemID].add_fire_atk;                 //裝備增加火焰傷害
-    userData[playerID].fight_cold_Damage += equip[itemID].add_cold_atk;                 //裝備增加冰冷傷害
-    userData[playerID].fight_light_Damage += equip[itemID].add_light_atk;               //裝備增加閃電傷害
-    userData[playerID].fight_hit_Damage += equip[itemID].fight_hit_Damage;              //裝備增加打擊傷害
-    userData[playerID].fight_cut_Damage += equip[itemID].fight_cut_Damage;              //裝備增加斬擊傷害
-    userData[playerID].fight_poke_Damage += equip[itemID].fight_poke_Damage;            //裝備增加刺擊傷害
-    userData[playerID].fight_fire_Defence += equip[itemID].add_fire_def;                 //裝備增加火焰防禦
-    userData[playerID].fight_cold_Defence += equip[itemID].add_cold_def;                 //裝備增加冰冷防禦
-    userData[playerID].fight_light_Defence += equip[itemID].add_light_def;               //裝備增加閃電防禦
-    userData[playerID].fight_hit_Defence += equip[itemID].fight_hit_Defence;              //裝備增加打擊防禦
-    userData[playerID].fight_cut_Defence += equip[itemID].fight_cut_Defence;              //裝備增加斬擊防禦
-    userData[playerID].fight_poke_Defence += equip[itemID].fight_poke_Defence;            //裝備增加刺擊防禦
+    userData[playerID].Character_MaxHP += equip[itemID].Equip_Add_MaxHP;
+    userData[playerID].Character_MaxMP += equip[itemID].Equip_Add_MaxMP;
+    userData[playerID].Character_MaxAP += equip[itemID].Equip_Add_MaxAP;
+    userData[playerID].Character_MaxWeight += equip[itemID].Equip_Add_MaxWeight;
+
+    userData[playerID].Character_Extra_Material += equip[itemID].Equip_Extra_Material;                              //裝備增加HP
+    userData[playerID].Character_Extra_Money += equip[itemID].Equip_Extra_Money;                              //裝備增加MP
+    userData[playerID].Character_Extra_Exp += equip[itemID].Equip_Extra_Exp;
+
+    userData[playerID].Character_Str += equip[itemID].Equip_Add_Str;
+    userData[playerID].Character_Int += equip[itemID].Equip_Add_Int;
+    userData[playerID].Character_Dex += equip[itemID].Equip_Add_Dex;
+    userData[playerID].Character_Acc += equip[itemID].Equip_Add_Acc;
+
+    userData[playerID].Character_DMG += equip[itemID].Equip_Add_DMG;
+    userData[playerID].Character_DEF += equip[itemID].Equip_Add_DEF;
+
+    userData[playerID].Character_Strike += equip[itemID].Equip_Add_Strike;
+    userData[playerID].Character_Accurate += equip[itemID].Equip_Add_Accurate;
+    userData[playerID].Character_Taunt += equip[itemID].Equip_Add_Taunt;
+
+    userData[playerID].Character_M_DMG += equip[itemID].Equip_Add_M_DMG;
+    userData[playerID].Character_M_Def += equip[itemID].Equip_Add_M_Def;
+    
+    userData[playerID].Character_Weight += equip[itemID].Equip_Need_Weight;
+
+    //火
+    userData[playerID].Character_FIRE_DMG += equip[itemID].Equip_Add_FIRE_DMG;
+    userData[playerID].Character_FIRE_DEF += equip[itemID].Equip_Add_FIRE_DEF;
+
+    //水
+    userData[playerID].Character_COLD_DMG += equip[itemID].Equip_Add_COLD_DMG;
+    userData[playerID].Character_COLD_DEF += equip[itemID].Equip_Add_COLD_DEF;
+
+    //木
+    userData[playerID].Character_WOOD_DMG += equip[itemID].Equip_Add_WOOD_DMG;
+    userData[playerID].Character_WOOD_DEF += equip[itemID].Equip_Add_WOOD_DEF;
+
+    //閃電
+    userData[playerID].Character_LIGHT_DMG += equip[itemID].Equip_Add_LIGHT_DMG;
+    userData[playerID].Character_LIGHT_DEF += equip[itemID].Equip_Add_LIGHT_DEF;
+    
+    //光明
+    userData[playerID].Character_BRIGHT_DMG += equip[itemID].Equip_Add_BRIGHT_DMG;
+    userData[playerID].Character_BRIGHT_DEF += equip[itemID].Equip_Add_BRIGHT_DEF;
+
+    //黑暗
+    userData[playerID].Character_DARK_DMG += equip[itemID].Equip_Add_DARK_DMG;
+    userData[playerID].Character_DARK_DEF += equip[itemID].Equip_Add_DARK_DEF;
+
+    //毒
+    userData[playerID].Character_POISON_DMG += equip[itemID].Equip_Add_POISON_DMG;
+    userData[playerID].Character_POISON_DEF += equip[itemID].Equip_Add_POISON_DEF;
+
+    //打
+    userData[playerID].Character_HIT_DMG += equip[itemID].Equip_Add_HIT_DMG;
+    userData[playerID].Character_HIT_DEF += equip[itemID].Equip_Add_HIT_DEF;
+
+    //斬
+    userData[playerID].Character_CUT_DMG += equip[itemID].Equip_Add_CUT_DMG;
+    userData[playerID].Character_CUT_DEF += equip[itemID].Equip_Add_CUT_DEF;
+
+    //刺
+    userData[playerID].Character_POKE_DMG += equip[itemID].Equip_Add_POKE_DMG;
+    userData[playerID].Character_POKE_DEF += equip[itemID].Equip_Add_POKE_DEF;
     
 }
 
@@ -56,6 +95,7 @@ module.exports = class wear_equip {
         if (!itemID) return message.reply("請輸入背包內的裝備id.").then(msg => {
             msg.delete(1000)
         });
+        console.log(equip[itemID].Item_Type)
         console.log(`使用者(ID: ${playerID})使用「穿戴」.`)
         if (itemID != myinv_info.inv_1.itemID &&
             itemID != myinv_info.inv_2.itemID &&
@@ -72,78 +112,78 @@ module.exports = class wear_equip {
                     msg.delete(5000)
                 });
         }else{
-            if(equip[itemID].item_Type != "裝備"){
+            if(equip[itemID].Item_Type != "裝備"){
                 return message.reply("此物品不是裝備，請再次確認.").then(msg => {
                     msg.delete(5000)
                 });
             }else{
-                if(equip[itemID].equip_Type == "武器" || equip[itemID].equip_Type == "盾牌"){
-                    if(my_equip.weapon1 == "000"){
+                if(equip[itemID].Equip_Type == "武器" || equip[itemID].Equip_Type == "盾牌"){
+                    if(my_equip.Weapon1 == "000"){
                         if(itemID == myinv_info.inv_1.itemID){
-                            my_equip.weapon1 = itemID;
+                            my_equip.Weapon1 = itemID;
                             myinv_info.inv_1.itemID = "000";
                         }else if(itemID == myinv_info.inv_2.itemID){
-                            my_equip.weapon1 = itemID;
+                            my_equip.Weapon1 = itemID;
                             myinv_info.inv_2.itemID = "000";
                         }else if(itemID == myinv_info.inv_3.itemID){
-                            my_equip.weapon1 = itemID;
+                            my_equip.Weapon1 = itemID;
                             myinv_info.inv_3.itemID = "000";
                         }else if(itemID == myinv_info.inv_4.itemID){
-                            my_equip.weapon1 = itemID;
+                            my_equip.Weapon1 = itemID;
                             myinv_info.inv_4.itemID = "000";
                         }else if(itemID == myinv_info.inv_5.itemID){
-                            my_equip.weapon1 = itemID;
+                            my_equip.Weapon1 = itemID;
                             myinv_info.inv_5.itemID = "000";
                         }else if(itemID == myinv_info.inv_6.itemID){
-                            my_equip.weapon1 = itemID;
+                            my_equip.Weapon1 = itemID;
                             myinv_info.inv_6.itemID = "000";
                         }else if(itemID == myinv_info.inv_7.itemID){
-                            my_equip.weapon1 = itemID;
+                            my_equip.Weapon1 = itemID;
                             myinv_info.inv_7.itemID = "000";
                         }else if(itemID == myinv_info.inv_8.itemID){
-                            my_equip.weapon1 = itemID;
+                            my_equip.Weapon1 = itemID;
                             myinv_info.inv_8.itemID = "000";
                         }else if(itemID == myinv_info.inv_9.itemID){
-                            my_equip.weapon1 = itemID;
+                            my_equip.Weapon1 = itemID;
                             myinv_info.inv_9.itemID = "000";
                         }else if(itemID == myinv_info.inv_10.itemID){
-                            my_equip.weapon1 = itemID;
+                            my_equip.Weapon1 = itemID;
                             myinv_info.inv_10.itemID = "000";
                         }
                         wear(itemID,playerID);
                         message.reply("武器或盾牌裝備完成").then(msg => {
                             msg.delete(1000)
                         });
-                    }else if(my_equip.weapon2 == "000"){
+                    }else if(my_equip.Weapon2 == "000"){
                         if(itemID == myinv_info.inv_1.itemID){
-                            my_equip.weapon2 = itemID;
+                            my_equip.Weapon2 = itemID;
                             myinv_info.inv_1.itemID = "000";
                         }else if(itemID == myinv_info.inv_2.itemID){
-                            my_equip.weapon2 = itemID;
+                            my_equip.Weapon2 = itemID;
                             myinv_info.inv_2.itemID = "000";
                         }else if(itemID == myinv_info.inv_3.itemID){
-                            my_equip.weapon2 = itemID;
+                            my_equip.Weapon2 = itemID;
                             myinv_info.inv_3.itemID = "000";
                         }else if(itemID == myinv_info.inv_4.itemID){
-                            my_equip.weapon2 = itemID;
+                            my_equip.Weapon2 = itemID;
                             myinv_info.inv_4.itemID = "000";
                         }else if(itemID == myinv_info.inv_5.itemID){
-                            my_equip.weapon2 = itemID;
+                            my_equip.Weapon2 = itemID;
                             myinv_info.inv_5.itemID = "000";
                         }else if(itemID == myinv_info.inv_6.itemID){
-                            my_equip.weapon2 = itemID;
+                            my_equip.Weapon2 = itemID;
                             myinv_info.inv_6.itemID = "000";
                         }else if(itemID == myinv_info.inv_7.itemID){
-                            my_equip.weapon2 = itemID;
+                            my_equip.Weapon2 = itemID;
                             myinv_info.inv_7.itemID = "000";
                         }else if(itemID == myinv_info.inv_8.itemID){
-                            my_equip.weapon2 = itemID;
+                            my_equip.Weapon2 = itemID;
                             myinv_info.inv_8.itemID = "000";
                         }else if(itemID == myinv_info.inv_9.itemID){
-                            my_equip.weapon2 = itemID;
+                            my_equip.Weapon2 = itemID;
                             myinv_info.inv_9.itemID = "000";
                         }else if(itemID == myinv_info.inv_10.itemID){
-                            my_equip.weapon2 = itemID;
+                            my_equip.Weapon2 = itemID;
                             myinv_info.inv_10.itemID = "000";
                         }
                         wear(itemID,playerID);
@@ -154,37 +194,37 @@ module.exports = class wear_equip {
                         return message.reply("你的武器欄已滿，請脫下武器或盾牌");
                     }
                 }
-                if(equip[itemID].equip_Type == "頭盔"){
-                    if(my_equip.head == "000"){
+                if(equip[itemID].Equip_Type == "頭盔"){
+                    if(my_equip.Head == "000"){
                         if(itemID == myinv_info.inv_1.itemID){
-                            my_equip.head = itemID;
+                            my_equip.Head = itemID;
                             myinv_info.inv_1.itemID = "000";
                         }else if(itemID == myinv_info.inv_2.itemID){
-                            my_equip.head = itemID;
+                            my_equip.Head = itemID;
                             myinv_info.inv_2.itemID = "000";
                         }else if(itemID == myinv_info.inv_3.itemID){
-                            my_equip.head = itemID;
+                            my_equip.Head = itemID;
                             myinv_info.inv_3.itemID = "000";
                         }else if(itemID == myinv_info.inv_4.itemID){
-                            my_equip.head = itemID;
+                            my_equip.Head = itemID;
                             myinv_info.inv_4.itemID = "000";
                         }else if(itemID == myinv_info.inv_5.itemID){
-                            my_equip.head = itemID;
+                            my_equip.Head = itemID;
                             myinv_info.inv_5.itemID = "000";
                         }else if(itemID == myinv_info.inv_6.itemID){
-                            my_equip.head = itemID;
+                            my_equip.Head = itemID;
                             myinv_info.inv_6.itemID = "000";
                         }else if(itemID == myinv_info.inv_7.itemID){
-                            my_equip.head = itemID;
+                            my_equip.Head = itemID;
                             myinv_info.inv_7.itemID = "000";
                         }else if(itemID == myinv_info.inv_8.itemID){
-                            my_equip.head = itemID;
+                            my_equip.Head = itemID;
                             myinv_info.inv_8.itemID = "000";
                         }else if(itemID == myinv_info.inv_9.itemID){
-                            my_equip.head = itemID;
+                            my_equip.Head = itemID;
                             myinv_info.inv_9.itemID = "000";
                         }else if(itemID == myinv_info.inv_10.itemID){
-                            my_equip.head = itemID;
+                            my_equip.Head = itemID;
                             myinv_info.inv_10.itemID = "000";
                         }
                         wear(itemID,playerID);
@@ -193,37 +233,37 @@ module.exports = class wear_equip {
                         });
                     }
                 }
-                if(equip[itemID].equip_Type == "護甲"){
-                    if(my_equip.body == "000"){
+                if(equip[itemID].Equip_Type == "護甲"){
+                    if(my_equip.Body == "000"){
                         if(itemID == myinv_info.inv_1.itemID){
-                            my_equip.body = itemID;
+                            my_equip.Body = itemID;
                             myinv_info.inv_1.itemID = "000";
                         }else if(itemID == myinv_info.inv_2.itemID){
-                            my_equip.body = itemID;
+                            my_equip.Body = itemID;
                             myinv_info.inv_2.itemID = "000";
                         }else if(itemID == myinv_info.inv_3.itemID){
-                            my_equip.body = itemID;
+                            my_equip.Body = itemID;
                             myinv_info.inv_3.itemID = "000";
                         }else if(itemID == myinv_info.inv_4.itemID){
-                            my_equip.body = itemID;
+                            my_equip.Body = itemID;
                             myinv_info.inv_4.itemID = "000";
                         }else if(itemID == myinv_info.inv_5.itemID){
-                            my_equip.body = itemID;
+                            my_equip.Body = itemID;
                             myinv_info.inv_5.itemID = "000";
                         }else if(itemID == myinv_info.inv_6.itemID){
-                            my_equip.body = itemID;
+                            my_equip.Body = itemID;
                             myinv_info.inv_6.itemID = "000";
                         }else if(itemID == myinv_info.inv_7.itemID){
-                            my_equip.body = itemID;
+                            my_equip.Body = itemID;
                             myinv_info.inv_7.itemID = "000";
                         }else if(itemID == myinv_info.inv_8.itemID){
-                            my_equip.body = itemID;
+                            my_equip.Body = itemID;
                             myinv_info.inv_8.itemID = "000";
                         }else if(itemID == myinv_info.inv_9.itemID){
-                            my_equip.body = itemID;
+                            my_equip.Body = itemID;
                             myinv_info.inv_9.itemID = "000";
                         }else if(itemID == myinv_info.inv_10.itemID){
-                            my_equip.body = itemID;
+                            my_equip.Body = itemID;
                             myinv_info.inv_10.itemID = "000";
                         }
                         wear(itemID,playerID);
@@ -232,37 +272,37 @@ module.exports = class wear_equip {
                         });
                     }
                 }
-                if(equip[itemID].equip_Type == "手套"){
-                    if(my_equip.gloves == "000"){
+                if(equip[itemID].Equip_Type == "手套"){
+                    if(my_equip.Gloves == "000"){
                         if(itemID == myinv_info.inv_1.itemID){
-                            my_equip.gloves = itemID;
+                            my_equip.Gloves = itemID;
                             myinv_info.inv_1.itemID = "000";
                         }else if(itemID == myinv_info.inv_2.itemID){
-                            my_equip.gloves = itemID;
+                            my_equip.Gloves = itemID;
                             myinv_info.inv_2.itemID = "000";
                         }else if(itemID == myinv_info.inv_3.itemID){
-                            my_equip.gloves = itemID;
+                            my_equip.Gloves = itemID;
                             myinv_info.inv_3.itemID = "000";
                         }else if(itemID == myinv_info.inv_4.itemID){
-                            my_equip.gloves = itemID;
+                            my_equip.Gloves = itemID;
                             myinv_info.inv_4.itemID = "000";
                         }else if(itemID == myinv_info.inv_5.itemID){
-                            my_equip.gloves = itemID;
+                            my_equip.Gloves = itemID;
                             myinv_info.inv_5.itemID = "000";
                         }else if(itemID == myinv_info.inv_6.itemID){
-                            my_equip.gloves = itemID;
+                            my_equip.Gloves = itemID;
                             myinv_info.inv_6.itemID = "000";
                         }else if(itemID == myinv_info.inv_7.itemID){
-                            my_equip.gloves = itemID;
+                            my_equip.Gloves = itemID;
                             myinv_info.inv_7.itemID = "000";
                         }else if(itemID == myinv_info.inv_8.itemID){
-                            my_equip.gloves = itemID;
+                            my_equip.Gloves = itemID;
                             myinv_info.inv_8.itemID = "000";
                         }else if(itemID == myinv_info.inv_9.itemID){
-                            my_equip.gloves = itemID;
+                            my_equip.Gloves = itemID;
                             myinv_info.inv_9.itemID = "000";
                         }else if(itemID == myinv_info.inv_10.itemID){
-                            my_equip.gloves = itemID;
+                            my_equip.Gloves = itemID;
                             myinv_info.inv_10.itemID = "000";
                         }
                         wear(itemID,playerID);
@@ -271,37 +311,37 @@ module.exports = class wear_equip {
                         });
                     }
                 }
-                if(equip[itemID].equip_Type == "護腿"){
-                    if(my_equip.leg == "000"){
+                if(equip[itemID].Equip_Type == "護腿"){
+                    if(my_equip.Leg == "000"){
                         if(itemID == myinv_info.inv_1.itemID){
-                            my_equip.leg = itemID;
+                            my_equip.Leg = itemID;
                             myinv_info.inv_1.itemID = "000";
                         }else if(itemID == myinv_info.inv_2.itemID){
-                            my_equip.leg = itemID;
+                            my_equip.Leg = itemID;
                             myinv_info.inv_2.itemID = "000";
                         }else if(itemID == myinv_info.inv_3.itemID){
-                            my_equip.leg = itemID;
+                            my_equip.Leg = itemID;
                             myinv_info.inv_3.itemID = "000";
                         }else if(itemID == myinv_info.inv_4.itemID){
-                            my_equip.leg = itemID;
+                            my_equip.Leg = itemID;
                             myinv_info.inv_4.itemID = "000";
                         }else if(itemID == myinv_info.inv_5.itemID){
-                            my_equip.leg = itemID;
+                            my_equip.Leg = itemID;
                             myinv_info.inv_5.itemID = "000";
                         }else if(itemID == myinv_info.inv_6.itemID){
-                            my_equip.leg = itemID;
+                            my_equip.Leg = itemID;
                             myinv_info.inv_6.itemID = "000";
                         }else if(itemID == myinv_info.inv_7.itemID){
-                            my_equip.leg = itemID;
+                            my_equip.Leg = itemID;
                             myinv_info.inv_7.itemID = "000";
                         }else if(itemID == myinv_info.inv_8.itemID){
-                            my_equip.leg = itemID;
+                            my_equip.Leg = itemID;
                             myinv_info.inv_8.itemID = "000";
                         }else if(itemID == myinv_info.inv_9.itemID){
-                            my_equip.leg = itemID;
+                            my_equip.Leg = itemID;
                             myinv_info.inv_9.itemID = "000";
                         }else if(itemID == myinv_info.inv_10.itemID){
-                            my_equip.leg = itemID;
+                            my_equip.Leg = itemID;
                             myinv_info.inv_10.itemID = "000";
                         }
                         wear(itemID,playerID);
@@ -310,37 +350,37 @@ module.exports = class wear_equip {
                         });
                     }
                 }
-                if(equip[itemID].equip_Type == "鞋子"){
-                    if(my_equip.boots == "000"){
+                if(equip[itemID].Equip_Type == "鞋子"){
+                    if(my_equip.Boots == "000"){
                         if(itemID == myinv_info.inv_1.itemID){
-                            my_equip.boots = itemID;
+                            my_equip.Boots = itemID;
                             myinv_info.inv_1.itemID = "000";
                         }else if(itemID == myinv_info.inv_2.itemID){
-                            my_equip.boots = itemID;
+                            my_equip.Boots = itemID;
                             myinv_info.inv_2.itemID = "000";
                         }else if(itemID == myinv_info.inv_3.itemID){
-                            my_equip.boots = itemID;
+                            my_equip.Boots = itemID;
                             myinv_info.inv_3.itemID = "000";
                         }else if(itemID == myinv_info.inv_4.itemID){
-                            my_equip.boots = itemID;
+                            my_equip.Boots = itemID;
                             myinv_info.inv_4.itemID = "000";
                         }else if(itemID == myinv_info.inv_5.itemID){
-                            my_equip.boots = itemID;
+                            my_equip.Boots = itemID;
                             myinv_info.inv_5.itemID = "000";
                         }else if(itemID == myinv_info.inv_6.itemID){
-                            my_equip.boots = itemID;
+                            my_equip.Boots = itemID;
                             myinv_info.inv_6.itemID = "000";
                         }else if(itemID == myinv_info.inv_7.itemID){
-                            my_equip.boots = itemID;
+                            my_equip.Boots = itemID;
                             myinv_info.inv_7.itemID = "000";
                         }else if(itemID == myinv_info.inv_8.itemID){
-                            my_equip.boots = itemID;
+                            my_equip.Boots = itemID;
                             myinv_info.inv_8.itemID = "000";
                         }else if(itemID == myinv_info.inv_9.itemID){
-                            my_equip.boots = itemID;
+                            my_equip.Boots = itemID;
                             myinv_info.inv_9.itemID = "000";
                         }else if(itemID == myinv_info.inv_10.itemID){
-                            my_equip.boots = itemID;
+                            my_equip.Boots = itemID;
                             myinv_info.inv_10.itemID = "000";
                         }
                         wear(itemID,playerID);
@@ -349,37 +389,37 @@ module.exports = class wear_equip {
                         });
                     }
                 }
-                if(equip[itemID].equip_Type == "戒指"){
-                    if(my_equip.ring == "000"){
+                if(equip[itemID].Equip_Type == "戒指"){
+                    if(my_equip.Ring == "000"){
                         if(itemID == myinv_info.inv_1.itemID){
-                            my_equip.ring = itemID;
+                            my_equip.Ring = itemID;
                             myinv_info.inv_1.itemID = "000";
                         }else if(itemID == myinv_info.inv_2.itemID){
-                            my_equip.ring = itemID;
+                            my_equip.Ring = itemID;
                             myinv_info.inv_2.itemID = "000";
                         }else if(itemID == myinv_info.inv_3.itemID){
-                            my_equip.ring = itemID;
+                            my_equip.Ring = itemID;
                             myinv_info.inv_3.itemID = "000";
                         }else if(itemID == myinv_info.inv_4.itemID){
-                            my_equip.ring = itemID;
+                            my_equip.Ring = itemID;
                             myinv_info.inv_4.itemID = "000";
                         }else if(itemID == myinv_info.inv_5.itemID){
-                            my_equip.ring = itemID;
+                            my_equip.Ring = itemID;
                             myinv_info.inv_5.itemID = "000";
                         }else if(itemID == myinv_info.inv_6.itemID){
-                            my_equip.ring = itemID;
+                            my_equip.Ring = itemID;
                             myinv_info.inv_6.itemID = "000";
                         }else if(itemID == myinv_info.inv_7.itemID){
-                            my_equip.ring = itemID;
+                            my_equip.Ring = itemID;
                             myinv_info.inv_7.itemID = "000";
                         }else if(itemID == myinv_info.inv_8.itemID){
-                            my_equip.ring = itemID;
+                            my_equip.Ring = itemID;
                             myinv_info.inv_8.itemID = "000";
                         }else if(itemID == myinv_info.inv_9.itemID){
-                            my_equip.ring = itemID;
+                            my_equip.Ring = itemID;
                             myinv_info.inv_9.itemID = "000";
                         }else if(itemID == myinv_info.inv_10.itemID){
-                            my_equip.ring = itemID;
+                            my_equip.Ring = itemID;
                             myinv_info.inv_10.itemID = "000";
                         }
                         wear(itemID,playerID);
@@ -388,41 +428,80 @@ module.exports = class wear_equip {
                         });
                     }
                 }
-                if(equip[itemID].equip_Type == "護身符"){
-                    if(my_equip.amulet == "000"){
+                if(equip[itemID].Equip_Type == "護身符"){
+                    if(my_equip.Amulet == "000"){
                         if(itemID == myinv_info.inv_1.itemID){
-                            my_equip.amulet = itemID;
+                            my_equip.Amulet = itemID;
                             myinv_info.inv_1.itemID = "000";
                         }else if(itemID == myinv_info.inv_2.itemID){
-                            my_equip.amulet = itemID;
+                            my_equip.Amulet = itemID;
                             myinv_info.inv_2.itemID = "000";
                         }else if(itemID == myinv_info.inv_3.itemID){
-                            my_equip.amulet = itemID;
+                            my_equip.Amulet = itemID;
                             myinv_info.inv_3.itemID = "000";
                         }else if(itemID == myinv_info.inv_4.itemID){
-                            my_equip.amulet = itemID;
+                            my_equip.Amulet = itemID;
                             myinv_info.inv_4.itemID = "000";
                         }else if(itemID == myinv_info.inv_5.itemID){
-                            my_equip.amulet = itemID;
+                            my_equip.Amulet = itemID;
                             myinv_info.inv_5.itemID = "000";
                         }else if(itemID == myinv_info.inv_6.itemID){
-                            my_equip.amulet = itemID;
+                            my_equip.Amulet = itemID;
                             myinv_info.inv_6.itemID = "000";
                         }else if(itemID == myinv_info.inv_7.itemID){
-                            my_equip.amulet = itemID;
+                            my_equip.Amulet = itemID;
                             myinv_info.inv_7.itemID = "000";
                         }else if(itemID == myinv_info.inv_8.itemID){
-                            my_equip.amulet = itemID;
+                            my_equip.Amulet = itemID;
                             myinv_info.inv_8.itemID = "000";
                         }else if(itemID == myinv_info.inv_9.itemID){
-                            my_equip.amulet = itemID;
+                            my_equip.Amulet = itemID;
                             myinv_info.inv_9.itemID = "000";
                         }else if(itemID == myinv_info.inv_10.itemID){
-                            my_equip.amulet = itemID;
+                            my_equip.Amulet = itemID;
                             myinv_info.inv_10.itemID = "000";
                         }
                         wear(itemID,playerID);
                         message.reply("護身符裝備完成").then(msg => {
+                            msg.delete(1000)
+                        });
+                    }
+                }
+                if(equip[itemID].Equip_Type == "箭袋"){
+                    if(my_equip.Arrowbag == "000"){
+                        if(itemID == myinv_info.inv_1.itemID){
+                            my_equip.Arrowbag = itemID;
+                            myinv_info.inv_1.itemID = "000";
+                        }else if(itemID == myinv_info.inv_2.itemID){
+                            my_equip.Arrowbag = itemID;
+                            myinv_info.inv_2.itemID = "000";
+                        }else if(itemID == myinv_info.inv_3.itemID){
+                            my_equip.Arrowbag = itemID;
+                            myinv_info.inv_3.itemID = "000";
+                        }else if(itemID == myinv_info.inv_4.itemID){
+                            my_equip.Arrowbag = itemID;
+                            myinv_info.inv_4.itemID = "000";
+                        }else if(itemID == myinv_info.inv_5.itemID){
+                            my_equip.Arrowbag = itemID;
+                            myinv_info.inv_5.itemID = "000";
+                        }else if(itemID == myinv_info.inv_6.itemID){
+                            my_equip.Arrowbag = itemID;
+                            myinv_info.inv_6.itemID = "000";
+                        }else if(itemID == myinv_info.inv_7.itemID){
+                            my_equip.Arrowbag = itemID;
+                            myinv_info.inv_7.itemID = "000";
+                        }else if(itemID == myinv_info.inv_8.itemID){
+                            my_equip.Arrowbag = itemID;
+                            myinv_info.inv_8.itemID = "000";
+                        }else if(itemID == myinv_info.inv_9.itemID){
+                            my_equip.Arrowbag = itemID;
+                            myinv_info.inv_9.itemID = "000";
+                        }else if(itemID == myinv_info.inv_10.itemID){
+                            my_equip.Arrowbag = itemID;
+                            myinv_info.inv_10.itemID = "000";
+                        }
+                        wear(itemID,playerID);
+                        message.reply("箭袋裝備完成").then(msg => {
                             msg.delete(1000)
                         });
                     }
