@@ -88,52 +88,52 @@ module.exports = class wear_equip {
                 msg.delete(5000)
             });
         } else {
-            if (myinv_info.default_inv.inv_1.itemID == "000") {
-                myinv_info.default_inv.inv_1 = {
+            if (myinv_info.inv_1.itemID == "000") {
+                myinv_info.inv_1 = {
                     itemID: itemID
                 }
                 unwear(itemID);
-            } else if (myinv_info.default_inv.inv_2.itemID == "000") {
-                myinv_info.default_inv.inv_2 = {
+            } else if (myinv_info.inv_2.itemID == "000") {
+                myinv_info.inv_2 = {
                     itemID: itemID
                 }
                 unwear(itemID);
-            } else if (myinv_info.default_inv.inv_3.itemID == "000") {
-                myinv_info.default_inv.inv_3 = {
+            } else if (myinv_info.inv_3.itemID == "000") {
+                myinv_info.inv_3 = {
                     itemID: itemID
                 }
                 unwear(itemID);
-            } else if (myinv_info.default_inv.inv_4.itemID == "000") {
-                myinv_info.default_inv.inv_4 = {
+            } else if (myinv_info.inv_4.itemID == "000") {
+                myinv_info.inv_4 = {
                     itemID: itemID
                 }
-            } else if (myinv_info.default_inv.inv_5.itemID == "000") {
-                myinv_info.default_inv.inv_5 = {
-                    itemID: itemID
-                }
-                unwear(itemID);
-            } else if (myinv_info.default_inv.inv_6.itemID == "000") {
-                myinv_info.default_inv.inv_6 = {
+            } else if (myinv_info.inv_5.itemID == "000") {
+                myinv_info.inv_5 = {
                     itemID: itemID
                 }
                 unwear(itemID);
-            } else if (myinv_info.default_inv.inv_7.itemID == "000") {
-                myinv_info.default_inv.inv_7 = {
+            } else if (myinv_info.inv_6.itemID == "000") {
+                myinv_info.inv_6 = {
                     itemID: itemID
                 }
                 unwear(itemID);
-            } else if (myinv_info.default_inv.inv_8.itemID == "000") {
-                myinv_info.default_inv.inv_8 = {
+            } else if (myinv_info.inv_7.itemID == "000") {
+                myinv_info.inv_7 = {
                     itemID: itemID
                 }
                 unwear(itemID);
-            } else if (myinv_info.default_inv.inv_9.itemID == "000") {
-                myinv_info.default_inv.inv_9 = {
+            } else if (myinv_info.inv_8.itemID == "000") {
+                myinv_info.inv_8 = {
                     itemID: itemID
                 }
                 unwear(itemID);
-            } else if (myinv_info.default_inv.inv_10.itemID == "000") {
-                myinv_info.default_inv.inv_10 = {
+            } else if (myinv_info.inv_9.itemID == "000") {
+                myinv_info.inv_9 = {
+                    itemID: itemID
+                }
+                unwear(itemID);
+            } else if (myinv_info.inv_10.itemID == "000") {
+                myinv_info.inv_10 = {
                     itemID: itemID
                 }
                 unwear(itemID);

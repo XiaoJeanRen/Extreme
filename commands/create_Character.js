@@ -6,7 +6,9 @@ const equip = require("../character_equip.json");
 const inv = require("../players_inventory.json");
 const adv_time = require("../players_adventure_time.json");
 const default_inv = require("../default_inventory.json");
+const default_skills = require("../default_skills.json");
 const dun_fight_Monster = require("../dungeon_players_fight.json");
+const player_learn_Skill = require("../skills_players.json");
 //創建角色指令
 /** 建立全新角色的基礎素質                            建立全新角色的裝備狀況
  * userName                 使用者名稱              weapon1          武器欄位1
@@ -178,16 +180,20 @@ module.exports = class create_Character{
           need_time: 0
         }
 
-        inv[message.author.id] = {
-          default_inv
-         }
+        inv[message.author.id] = default_inv;
+
 
          dun_fight_Monster[message.author.id] = {
           monster1: 0,
           monster2: 0,
           monster3: 0
         }
-        
+
+        player_learn_Skill[message.author.id] = default_skills;
+  
+
+        fs.writeFile("./skills_players.json", JSON.stringify(player_learn_Skill), (err) => { 
+        });
         fs.writeFile("./dungeon_players_fight.json", JSON.stringify(dun_fight_Monster), (err) => { 
         });
         fs.writeFile("./players_adventure_time.json", JSON.stringify(adv_time), (err) => { 

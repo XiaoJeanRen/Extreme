@@ -5,35 +5,35 @@ const inv = require("../players_inventory.json");
 const userData = require("../players_data.json");
 //交易道具指令
 let checkItem = function (tradePlayer_info, itemID) {
-    if (itemID == tradePlayer_info.default_inv.inv_1.itemID) {
-        tradePlayer_info.default_inv.inv_1.itemID = "000";
+    if (itemID == tradePlayer_info.inv_1.itemID) {
+        tradePlayer_info.inv_1.itemID = "000";
 
-    } else if (itemID == tradePlayer_info.default_inv.inv_2.itemID) {
-        tradePlayer_info.default_inv.inv_2.itemID = "000";
+    } else if (itemID == tradePlayer_info.inv_2.itemID) {
+        tradePlayer_info.inv_2.itemID = "000";
 
-    } else if (itemID == tradePlayer_info.default_inv.inv_3.itemID) {
-        tradePlayer_info.default_inv.inv_3.itemID = "000";
+    } else if (itemID == tradePlayer_info.inv_3.itemID) {
+        tradePlayer_info.inv_3.itemID = "000";
 
-    } else if (itemID == tradePlayer_info.default_inv.inv_4.itemID) {
-        tradePlayer_info.default_inv.inv_4.itemID = "000";
+    } else if (itemID == tradePlayer_info.inv_4.itemID) {
+        tradePlayer_info.inv_4.itemID = "000";
 
-    } else if (itemID == tradePlayer_info.default_inv.inv_5.itemID) {
-        tradePlayer_info.default_inv.inv_5.itemID = "000";
+    } else if (itemID == tradePlayer_info.inv_5.itemID) {
+        tradePlayer_info.inv_5.itemID = "000";
 
-    } else if (itemID == tradePlayer_info.default_inv.inv_6.itemID) {
-        tradePlayer_info.default_inv.inv_6.itemID = "000";
+    } else if (itemID == tradePlayer_info.inv_6.itemID) {
+        tradePlayer_info.inv_6.itemID = "000";
 
-    } else if (itemID == tradePlayer_info.default_inv.inv_7.itemID) {
-        tradePlayer_info.default_inv.inv_7.itemID = "000";
+    } else if (itemID == tradePlayer_info.inv_7.itemID) {
+        tradePlayer_info.inv_7.itemID = "000";
 
-    } else if (itemID == tradePlayer_info.default_inv.inv_8.itemID) {
-        tradePlayer_info.default_inv.inv_8.itemID = "000";
+    } else if (itemID == tradePlayer_info.inv_8.itemID) {
+        tradePlayer_info.inv_8.itemID = "000";
 
-    } else if (itemID == tradePlayer_info.default_inv.inv_9.itemID) {
-        tradePlayer_info.default_inv.inv_9.itemID = "000";
+    } else if (itemID == tradePlayer_info.inv_9.itemID) {
+        tradePlayer_info.inv_9.itemID = "000";
 
-    } else if (itemID == tradePlayer_info.default_inv.inv_10.itemID) {
-        tradePlayer_info.default_inv.inv_10.itemID = "000";
+    } else if (itemID == tradePlayer_info.inv_10.itemID) {
+        tradePlayer_info.inv_10.itemID = "000";
     }
 }
 module.exports = class trade_item {
@@ -69,16 +69,16 @@ module.exports = class trade_item {
         /**
          * 檢查交易玩家背包內有無選擇道具
          */
-        if (itemID != tradePlayer_info.default_inv.inv_1.itemID &&
-            itemID != tradePlayer_info.default_inv.inv_2.itemID &&
-            itemID != tradePlayer_info.default_inv.inv_3.itemID &&
-            itemID != tradePlayer_info.default_inv.inv_4.itemID &&
-            itemID != tradePlayer_info.default_inv.inv_5.itemID &&
-            itemID != tradePlayer_info.default_inv.inv_6.itemID &&
-            itemID != tradePlayer_info.default_inv.inv_7.itemID &&
-            itemID != tradePlayer_info.default_inv.inv_8.itemID &&
-            itemID != tradePlayer_info.default_inv.inv_9.itemID &&
-            itemID != tradePlayer_info.default_inv.inv_10.itemID) {
+        if (itemID != tradePlayer_info.inv_1.itemID &&
+            itemID != tradePlayer_info.inv_2.itemID &&
+            itemID != tradePlayer_info.inv_3.itemID &&
+            itemID != tradePlayer_info.inv_4.itemID &&
+            itemID != tradePlayer_info.inv_5.itemID &&
+            itemID != tradePlayer_info.inv_6.itemID &&
+            itemID != tradePlayer_info.inv_7.itemID &&
+            itemID != tradePlayer_info.inv_8.itemID &&
+            itemID != tradePlayer_info.inv_9.itemID &&
+            itemID != tradePlayer_info.inv_10.itemID) {
             console.log(`使用者(ID: ${playerID})對使用者(ID: ${tradePlayerID})使用「交易道具」失敗.`)
             return message.reply("你沒有此裝備，請再次確認.").then(msg => {
                 msg.delete(5000)
@@ -87,53 +87,53 @@ module.exports = class trade_item {
             /**
              * 檢查得到道具玩家的背包是否已滿
              */
-            if (getPlayer_info.default_inv.inv_1.itemID == "000") {
-                getPlayer_info.default_inv.inv_1 = {
+            if (getPlayer_info.inv_1.itemID == "000") {
+                getPlayer_info.inv_1 = {
                     itemID: itemID
                 }
                 checkItem(tradePlayer_info, itemID);
-            } else if (getPlayer_info.default_inv.inv_2.itemID == "000") {
-                getPlayer_info.default_inv.inv_2 = {
+            } else if (getPlayer_info.inv_2.itemID == "000") {
+                getPlayer_info.inv_2 = {
                     itemID: itemID
                 }
                 checkItem(tradePlayer_info, itemID);
-            } else if (getPlayer_info.default_inv.inv_3.itemID == "000") {
-                getPlayer_info.default_inv.inv_3 = {
+            } else if (getPlayer_info.inv_3.itemID == "000") {
+                getPlayer_info.inv_3 = {
                     itemID: itemID
                 }
                 checkItem(tradePlayer_info, itemID);
-            } else if (getPlayer_info.default_inv.inv_4.itemID == "000") {
-                getPlayer_info.default_inv.inv_4 = {
+            } else if (getPlayer_info.inv_4.itemID == "000") {
+                getPlayer_info.inv_4 = {
                     itemID: itemID
                 }
                 checkItem(tradePlayer_info, itemID);
-            } else if (getPlayer_info.default_inv.inv_5.itemID == "000") {
-                getPlayer_info.default_inv.inv_5 = {
+            } else if (getPlayer_info.inv_5.itemID == "000") {
+                getPlayer_info.inv_5 = {
                     itemID: itemID
                 }
                 checkItem(tradePlayer_info, itemID);
-            } else if (getPlayer_info.default_inv.inv_6.itemID == "000") {
-                getPlayer_info.default_inv.inv_6 = {
+            } else if (getPlayer_info.inv_6.itemID == "000") {
+                getPlayer_info.inv_6 = {
                     itemID: itemID
                 }
                 checkItem(tradePlayer_info, itemID);
-            } else if (getPlayer_info.default_inv.inv_7.itemID == "000") {
-                getPlayer_info.default_inv.inv_7 = {
+            } else if (getPlayer_info.inv_7.itemID == "000") {
+                getPlayer_info.inv_7 = {
                     itemID: itemID
                 }
                 checkItem(tradePlayer_info, itemID);
-            } else if (getPlayer_info.default_inv.inv_8.itemID == "000") {
-                getPlayer_info.default_inv.inv_8 = {
+            } else if (getPlayer_info.inv_8.itemID == "000") {
+                getPlayer_info.inv_8 = {
                     itemID: itemID
                 }
                 checkItem(tradePlayer_info, itemID);
-            } else if (getPlayer_info.default_inv.inv_9.itemID == "000") {
-                getPlayer_info.default_inv.inv_9 = {
+            } else if (getPlayer_info.inv_9.itemID == "000") {
+                getPlayer_info.inv_9 = {
                     itemID: itemID
                 }
                 checkItem(tradePlayer_info, itemID);
-            } else if (getPlayer_info.default_inv.inv_10.itemID == "000") {
-                getPlayer_info.default_inv.inv_10 = {
+            } else if (getPlayer_info.inv_10.itemID == "000") {
+                getPlayer_info.inv_10 = {
                     itemID: itemID
                 }
                 checkItem(tradePlayer_info, itemID);
