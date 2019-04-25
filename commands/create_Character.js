@@ -6,7 +6,8 @@ const equip = require("../character_equip.json");
 const inv = require("../players_inventory.json");
 const adv_time = require("../players_adventure_time.json");
 const default_inv = require("../default_inventory.json");
-const default_skills = require("../default_skills.json");
+//const default_skills = require("../default_skills.json");
+const all_skill_data = require("../all_skills_data.json");
 const dun_fight_Monster = require("../dungeon_players_fight.json");
 const player_learn_Skill = require("../skills_players.json");
 //創建角色指令
@@ -189,7 +190,7 @@ module.exports = class create_Character{
           monster3: 0
         }
 
-        player_learn_Skill[message.author.id] = default_skills;
+        player_learn_Skill[message.author.id] = all_skill_data;
   
 
         fs.writeFile("./skills_players.json", JSON.stringify(player_learn_Skill), (err) => { 
