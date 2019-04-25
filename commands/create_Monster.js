@@ -82,7 +82,7 @@ module.exports = class create_monster {
 
     }
     console.log(`使用者(ID: ${playerID})使用「創造魔物」`)
-    message.reply(`怪物(id${monsterId}), 怪物名稱${monsterName}創建完成.`).then(msg => {
+    message.reply(`怪物(id${monsterId}), 怪物名稱「${monsterName}」創建完成.`).then(msg => {
       msg.delete(5000)
     });
     fs.writeFile("./monster_data.json", JSON.stringify(Createmonster), (err) => {});

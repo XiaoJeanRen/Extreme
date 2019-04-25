@@ -14,6 +14,7 @@ module.exports = class trade_item {
     async run(bot, message, args) {
         await message.delete();
         let playerID = message.author.id;
+        if(!userData[playerID]) return message.reply("角色不存在，請輸入「!角色創建」.").then(msg => {msg.delete(1000)});
         if (!message.mentions.members.first()) return message.reply("你的交易對象不正確.").then(msg => {
             msg.delete(1000)
         });

@@ -1,9 +1,7 @@
 const Discord = require("discord.js");
 const config = require("../config.json");
 const fs = require("fs");
-const inv = require("../players_inventory.json");
 const userData = require("../players_data.json");
-const all_item = require("../all_item_id_data.json");
 const adv_time = require("../players_adventure_time.json");
 
 //玩家冒險指令
@@ -59,13 +57,7 @@ module.exports = class adventure_Character {
         fs.writeFile("./players_adventure_time.json", JSON.stringify(adv_time), (err) =>{
         });
 
-        fs.writeFile("./players_inventory.json", JSON.stringify(inv), (err) =>{
-        });
-
         fs.writeFile("./players_data.json", JSON.stringify(userData), (err) =>{
-        });
-        
-        fs.writeFile("./all_item_id_data.json", JSON.stringify(all_item), (err) =>{
         });
         
         

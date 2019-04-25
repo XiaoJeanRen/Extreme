@@ -6,6 +6,7 @@ const equip = require("../character_equip.json");
 const inv = require("../players_inventory.json");
 const adv_time = require("../players_adventure_time.json");
 const default_inv = require("../default_inventory.json");
+const dun_fight_Monster = require("../dungeon_players_fight.json");
 //創建角色指令
 /** 建立全新角色的基礎素質                            建立全新角色的裝備狀況
  * userName                 使用者名稱              weapon1          武器欄位1
@@ -27,8 +28,11 @@ const default_inv = require("../default_inventory.json");
  * str                      力量
  * int                      智慧
  * dex                      敏捷
- * atk                      攻擊力
- * def                      防禦力
+ * acc                      命中
+ * atk                      物理攻擊力
+ * def                      物理防禦力
+ * matk                     魔法攻擊力
+ * mdef                     魔法防禦力
  * map                      所在區域
  * isFight                  是否正在戰鬥
  * fight_Strike_Value       爆擊值
@@ -42,7 +46,7 @@ const default_inv = require("../default_inventory.json");
  * fight_poke_Damage        刺擊傷害
  * fight_fire_Defence       火焰抗性
  * fight_cold_Defence       冰冷抗性
- * fight_light_Defence      冰冷抗性
+ * fight_light_Defence      閃定抗性
  * fight_hit_Defence        打擊抗性
  * fight_cut_Defence        斬擊抗性
  * fight_poke_Defence       刺擊抗性
@@ -107,8 +111,11 @@ module.exports = class create_Character{
           str: 5,
           int: 5,
           dex: 5,
+          acc: 5,
           atk: 10,
           def: 10,
+          matk: 10,
+          mdef: 10,
           map: "無",
           isFight: "無",
           fight_Strike_Value: 0,
@@ -174,10 +181,15 @@ module.exports = class create_Character{
         inv[message.author.id] = {
           default_inv
          }
-        
 
+         dun_fight_Monster[message.author.id] = {
+          monster1: 0,
+          monster2: 0,
+          monster3: 0
+        }
         
-        
+        fs.writeFile("./dungeon_players_fight.json", JSON.stringify(dun_fight_Monster), (err) => { 
+        });
         fs.writeFile("./players_adventure_time.json", JSON.stringify(adv_time), (err) => { 
         });
         fs.writeFile("./players_data.json", JSON.stringify(userData), (err) =>{

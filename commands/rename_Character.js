@@ -13,6 +13,7 @@ module.exports = class rename {
     async run(bot, message, args) {
         await message.delete();
         let playerID = message.author.id;
+        if(!userData[playerID]) return message.reply("角色不存在，請輸入「!角色創建」.").then(msg => {msg.delete(1000)});
         console.log(`使用者(ID: ${playerID})使用「角色創建」`)
         message.reply("開始更改角色名稱，請輸入新的「角色名稱」，輸入cancel取消.");
         const filter = m => m.author.id === message.author.id;

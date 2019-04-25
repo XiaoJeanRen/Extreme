@@ -1,9 +1,7 @@
 const Discord = require("discord.js");
 const config = require("../config.json");
 const fs = require("fs");
-const inv = require("../players_inventory.json");
 const userData = require("../players_data.json");
-const all_item = require("../all_item_id_data.json");
 const adv_time = require("../players_adventure_time.json");
 //玩家查看冒險時間指令
 var formatSecond = function (number) {
@@ -42,7 +40,7 @@ module.exports = class create_Character {
         await message.delete();
         let playerID = message.author.id;
         console.log(`使用者(ID: ${playerID})使用「冒險時間」`)
-
+        if(!userData[playerID]) return message.reply("角色不存在，請輸入「!角色創建」.").then(msg => {msg.delete(1000)});
         // adv_time[playerID].adventure_time 過去時間
         // (message.createdAt / 1000) 現在時間
         // time 秒數

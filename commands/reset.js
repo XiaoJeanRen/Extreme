@@ -3,8 +3,10 @@ const config = require("../config.json");
 const fs = require("fs");
 const userData = require("../players_data.json");
 const equip = require("../character_equip.json");
+const inv = require("../players_inventory.json");
 const adv_time = require("../players_adventure_time.json");
 const default_inv = require("../default_inventory.json");
+const dun_fight_Monster = require("../dungeon_players_fight.json");
 module.exports = class reset {
     constructor() {
         this.name = 'reset',
@@ -22,7 +24,10 @@ module.exports = class reset {
                 itemID: "000"
             }
         }
-
+        fs.writeFile("./players_inventory.json", JSON.stringify({}), (err) => {
+        });
+        fs.writeFile("./dungeon_players_fight.json", JSON.stringify({}), (err) => {
+        });
         fs.writeFile("./players_data.json", JSON.stringify({}), (err) => {
         });
         fs.writeFile("./players_adventure_time.json", JSON.stringify({}), (err) => { 

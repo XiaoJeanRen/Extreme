@@ -9,14 +9,33 @@ const equip = require("../all_item_id_data.json");
 
 
 let wear = function (itemID,playerID){
-    userData[playerID].max_Hp += equip[itemID].add_max_Hp;
-    userData[playerID].max_Mp += equip[itemID].add_max_Mp;
-    userData[playerID].max_Ap += equip[itemID].add_max_Ap;
-    userData[playerID].max_Weight += equip[itemID].add_max_Weight;
-    userData[playerID].atk += equip[itemID].add_atk;
-    userData[playerID].def += equip[itemID].add_def;
-    userData[playerID].atk += equip[itemID].strengthen;
-    userData[playerID].weight += equip[itemID].needWeight;
+    userData[playerID].max_Hp += equip[itemID].add_max_Hp;                              //裝備增加HP
+    userData[playerID].max_Mp += equip[itemID].add_max_Mp;                              //裝備增加MP
+    userData[playerID].max_Ap += equip[itemID].add_max_Ap;                              //裝備增加AP
+    userData[playerID].max_Weight += equip[itemID].add_max_Weight;                      //裝備增加負重
+    userData[playerID].str += equip[itemID].add_Str;                                    //裝備增加力量
+    userData[playerID].int += equip[itemID].add_Int;                                    //裝備增加智慧
+    userData[playerID].dex += equip[itemID].add_Dex;                                    //裝備增加敏捷
+    userData[playerID].acc += equip[itemID].add_Acc;                                    //裝備增加命中
+    userData[playerID].atk += equip[itemID].add_atk;                                    //裝備增加攻擊
+    userData[playerID].def += equip[itemID].add_def;                                    //裝備增加防禦
+    userData[playerID].matk += equip[itemID].add_Matk;                                    //裝備增加攻擊
+    userData[playerID].mdef += equip[itemID].add_Mdef;                                    //裝備增加防禦
+    userData[playerID].atk += equip[itemID].strengthen;                                 //裝備增加強化指數
+    userData[playerID].weight += equip[itemID].needWeight;                              //裝備需求負重
+    userData[playerID].fight_fire_Damage += equip[itemID].add_fire_atk;                 //裝備增加火焰傷害
+    userData[playerID].fight_cold_Damage += equip[itemID].add_cold_atk;                 //裝備增加冰冷傷害
+    userData[playerID].fight_light_Damage += equip[itemID].add_light_atk;               //裝備增加閃電傷害
+    userData[playerID].fight_hit_Damage += equip[itemID].fight_hit_Damage;              //裝備增加打擊傷害
+    userData[playerID].fight_cut_Damage += equip[itemID].fight_cut_Damage;              //裝備增加斬擊傷害
+    userData[playerID].fight_poke_Damage += equip[itemID].fight_poke_Damage;            //裝備增加刺擊傷害
+    userData[playerID].fight_fire_Defence += equip[itemID].add_fire_def;                 //裝備增加火焰防禦
+    userData[playerID].fight_cold_Defence += equip[itemID].add_cold_def;                 //裝備增加冰冷防禦
+    userData[playerID].fight_light_Defence += equip[itemID].add_light_def;               //裝備增加閃電防禦
+    userData[playerID].fight_hit_Defence += equip[itemID].fight_hit_Defence;              //裝備增加打擊防禦
+    userData[playerID].fight_cut_Defence += equip[itemID].fight_cut_Defence;              //裝備增加斬擊防禦
+    userData[playerID].fight_poke_Defence += equip[itemID].fight_poke_Defence;            //裝備增加刺擊防禦
+    
 }
 
 module.exports = class wear_equip {

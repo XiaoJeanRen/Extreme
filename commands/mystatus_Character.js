@@ -28,12 +28,14 @@ module.exports = class mystatus_character{
     "**魔力： **" + info.mp + " / " + info.max_Mp + "\n" +
     "**行動點數： **" + info.ap + " / " + info.max_Ap + "\n" +
     "**負量： **" + info.weight + " / " + info.max_Weight + "\n" +
-    "**攻擊力： **" + info.atk + "\n" +
+    "**物理攻擊力： **" + info.atk + "\n" +
+    "**魔法攻擊力： **" + info.matk + "\n" +
     "**(火/冰/雷)傷害： **(" + 
     info.fight_fire_Damage + "/" + 
     info.fight_cold_Damage + "/" +
     info.fight_light_Damage + ")" + "\n" +
-    "**防禦力： **" + info.def + "\n" +
+    "**物理防禦力： **" + info.def + "\n" +
+    "**魔法防禦力： **" + info.mdef + "\n" +
     "**(火/冰/雷)抗性： **(" + 
     info.fight_fire_Defence + "/" + 
     info.fight_cold_Defence + "/" +
@@ -41,6 +43,7 @@ module.exports = class mystatus_character{
     "**力量(STR)：**" + info.str + "\n" +
     "**智慧(INT)：**" + info.int + "\n" +
     "**敏捷(DEX)：**" + info.dex + "\n" +
+    "**命中(ACC)：**" + info.acc + "\n" +
     "**金錢💰： **" + info.money
     )
     .addField("等級","**目前等級：**" + info.level + "** 目前經驗：**" + info.exp)
