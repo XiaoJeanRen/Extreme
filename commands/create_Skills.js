@@ -1,12 +1,12 @@
 const Discord = require("discord.js");
 const config = require("../config.json");
 const fs = require("fs");
-const createSkill = require("../skills_data.json");
+const createSkill = require("../all_skills_data.json");
 
 module.exports = class create_skill {
   constructor() {
     this.name = 'createS',
-      this.alias = ['創造技能'],
+      this.alias = ['創造技能','cs'],
       this.usage = '!createS'
   }
 
@@ -16,9 +16,7 @@ module.exports = class create_skill {
       msg.delete(1000)
     });
 
-    let default_false = false;
-    let default_point = 1;
-    if (!args[1] || !args[2]) return message.reply("指令錯誤，指令格式微!createM 怪物ID 怪物名稱").then(msg => {
+    if (!args[1] || !args[2]) return message.reply("指令錯誤，指令格式微!createS 技能ID 技能名稱").then(msg => {
       msg.delete(1000)
     });
     let playerID = message.author.id;
@@ -29,6 +27,8 @@ module.exports = class create_skill {
       skillName: skillName,
       skillType: "無",
       skillClass: "無",
+      isskillGet: "尚未習得",
+      skillLevel: 0,
       skillNeedExp: 1,
       skillNeedLevel: 1,
       skill_require_skill_1: "無",
@@ -98,6 +98,6 @@ module.exports = class create_skill {
     message.reply(`技能(id:${skillId}), 技能名稱「${skillName}」創建完成.`).then(msg => {
       msg.delete(5000)
     });
-    fs.writeFile("./skills_data.json", JSON.stringify(createSkill), (err) => {});
+    fs.writeFile("./all_skills_data.json", JSON.stringify(createSkill), (err) => {});
   }
 }

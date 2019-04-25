@@ -11,20 +11,22 @@ module.exports = class help{
     await message.delete();
     
     let gamehelpEmbed = new Discord.RichEmbed()
-    .setTitle("**遊戲指令**")
+    .setTitle("**官方網站點我!!!!**")
     .setThumbnail(bot.user.displayAvatarURL)
+    .setURL("https://hackmd.io/s/BkpQWRTcE")
     .addField("**公告**",
     "```1. 2019/4/24已重新刪檔，測試新數值\n" +
     "2. RPG遊戲測試階段，資料隨時可能刪除```"
      )
     .addField("**近期更新**",
-    "__1. 新增了!翔哥和!猴子 指令\n" +
-    "2. 重置了!myinfo指令，現在更簡短!myi，舊指令能照常使用\n" +
+    "__1. 新增了!翔哥和!猴子和!狼人殺指令\n" +
+    "2. 新增了官方網址，請點選最上面的標題\n" +
     "3. 新增了!mys更詳細的角色資料指令\n__"
      )
     .addField("**__系統相關__**",
     "**!翔哥：**``查看一位井底之蛙``\n "+
     "**!猴子：**``查看一個猴子``\n "+
+    "**!狼人殺：**``查看一個有工作的高端人種``\n "+
     "**!create：**``創建一位新角色``\n "+
     "**!check <裝備代碼>：**``查看裝備素質``\n" +
     "**!recolor：**``自訂角色狀態的顏色``\n " +
