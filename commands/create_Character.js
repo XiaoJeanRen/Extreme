@@ -8,7 +8,7 @@ const adv_time = require("../players_adventure_time.json");
 const default_inv = require("../default_inventory.json");
 //const default_skills = require("../default_skills.json");
 const all_skill_data = require("../all_skills_data.json");
-const dun_fight_Monster = require("../dungeon_players_fight.json");
+const player_hunt = require("../players_hunt_monster.json");
 const player_learn_Skill = require("../skills_players.json");
 //創建角色指令
 module.exports = class create_Character{
@@ -92,7 +92,13 @@ module.exports = class create_Character{
           Character_DARK_DMG: 0,
           Character_DARK_DEF: 0,
           Character_POISON_DMG: 0,
-          Character_POISON_DEF: 0
+          Character_POISON_DEF: 0,
+          Character_Status1: "無",
+          Character_Status2: "無",
+          Character_Status3: "無",
+          Character_Status4: "無",
+          Character_Status5: "無",
+          Character_Status6: "無"
         };
 
         equip[message.author.id] = {
@@ -123,10 +129,14 @@ module.exports = class create_Character{
         inv[message.author.id] = default_inv;
 
 
-         dun_fight_Monster[message.author.id] = {
-          monster1: 0,
-          monster2: 0,
-          monster3: 0
+        player_hunt[message.author.id] = {
+          Monster_Name: "無",
+          Monster_ID: "無",
+          Monster_Number: 0,
+          Monster_Time: 0,
+          Monster_Need_Time: 0,
+          Fight_place: "無",
+          isFightMonster: "尚未戰鬥"
         }
 
         player_learn_Skill[message.author.id] = all_skill_data;
@@ -134,7 +144,7 @@ module.exports = class create_Character{
 
         fs.writeFile("./skills_players.json", JSON.stringify(player_learn_Skill), (err) => { 
         });
-        fs.writeFile("./dungeon_players_fight.json", JSON.stringify(dun_fight_Monster), (err) => { 
+        fs.writeFile("./dungeon_players_fight.json", JSON.stringify(player_hunt), (err) => { 
         });
         fs.writeFile("./players_adventure_time.json", JSON.stringify(adv_time), (err) => { 
         });
