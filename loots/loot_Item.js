@@ -1,6 +1,7 @@
 const inv = require("../players_inventory.json");
 const all_item = require("../all_item_id_data.json");
 const adv_time = require("../players_adventure_time.json");
+const defaultItem = require("../default_item_data.json");
 /**
  * qualityCheck 檢查裝備品質
  * 傳奇(legendary): 1  史詩(epic): 2~5 稀有(rare): 6~50 魔法(magic): 51~200
@@ -92,82 +93,13 @@ module.exports = {
         console.log("裝備強化度:" + powerUp)
         let choose_map = adv_time[playerID].adventure_id;
         if (choose_map == "001") { //副本代號 001
-            lootItem_number = Math.floor(Math.random() * 2) + 1;
+            lootItem_number = Math.floor(Math.random() * 1) + 1;
             console.log("取得裝備號碼:" + lootItem_number)
             switch (lootItem_number) {
-                case 1:
-                    all_item[all_item["總資料"].number] = {
-                        Item_ID: all_item["總資料"].number,
-                        Item_Type: "裝備",
-                        Equip_Name: "銅劍",
-                        Equip_Type: "武器",
-                        Equip_Shape: "單手劍",
-                        Equip_Identification: "已鑑定",
-                        Equip_Quality: quality,
-                        Equip_Value: 0,
-                        Equip_Strengthen: 0,
-                        Equip_Info: "無",
-                        Equip_Add_MaxHP: 10,
-                        Equip_Add_MaxMP: 10,
-                        Equip_Add_MaxAP: 10,
-                        Equip_Add_MaxWeight: 5,
-                        Equip_Extra_Material: 0,
-                        Equip_Extra_Money: 0,
-                        Equip_Extra_Exp: 0,
-                        Equip_Extra_Status1: 0,
-                        Equip_Extra_Status2: 0,
-                        Equip_Extra_Status3: 0,
-                        Equip_Extra_Enchanting_Value: 0,
-                        Equip_Add_Str: 3,
-                        Equip_Add_Int: 3,
-                        Equip_Add_Dex: 3,
-                        Equip_Add_Acc: 1,
-                        Equip_Add_DMG: 1,
-                        Equip_Add_DEF: 1,
-                        Equip_Add_M_DMG: 0,
-                        Equip_Add_M_Def: 1,
-                        Equip_Add_Strike: 1,
-                        Equip_Add_Accurate: 1,
-                        Equip_Add_Taunt: 0,
-                        Equip_Add_HIT_DMG: 0,
-                        Equip_Add_HIT_DEF: 0,
-                        Equip_Add_CUT_DMG: 0,
-                        Equip_Add_CUT_DEF: 0,
-                        Equip_Add_POKE_DMG: 0,
-                        Equip_Add_POKE_DEF: 0,
-                        Equip_Add_COLD_DMG: 0,
-                        Equip_Add_COLD_DEF: 0,
-                        Equip_Add_FIRE_DMG: 0,
-                        Equip_Add_FIRE_DEF: 0,
-                        Equip_Add_WOOD_DMG: 0,
-                        Equip_Add_WOOD_DEF: 0,
-                        Equip_Add_LIGHT_DMG: 0,
-                        Equip_Add_LIGHT_DEF: 0,
-                        Equip_Add_BRIGHT_DMG: 0,
-                        Equip_Add_BRIGHT_DEF: 0,
-                        Equip_Add_DARK_DMG: 0,
-                        Equip_Add_DARK_DEF: 0,
-                        Equip_Add_POISON_DMG: 0,
-                        Equip_Add_POISON_DEF: 0,
-                        Equip_Need_Level: 1,
-                        Equip_Need_Weight: 1,
-                        Equip_Need_Class: 1,
-                        Equip_Need_Str: 0,
-                        Equip_Need_Int: 0,
-                        Equip_Need_Dex: 0,
-                        Equip_Need_Skill1: "無",
-                        Equip_Need_Skill2: "無",
-                        Equip_Need_Skill3: "無",
-                        Equip_Enchanting1: "無",
-                        Equip_Enchanting2: "無",
-                        Equip_Enchanting3: "無",
-                        Equip_Enchanting4: "無",
-                        Equip_Enchanting5: "無",
-                        Equip_Enchanting6: "無",
-                        Equip_Special_Power1: "無",
-                        Equip_Special_Power2: "無",
-                        Equip_Special_Power3: "無",
-                    }
+                case 1: //銅劍
+                    all_item[all_item["總資料"].number] = defaultItem["銅劍"];
+                    all_item[all_item["總資料"].number].Item_ID = all_item["總資料"].number;
+                    all_item[all_item["總資料"].number].Equip_Quality = quality;
                     all_item["總資料"].number += 1;
                     return "銅劍";
                 case 2:
