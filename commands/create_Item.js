@@ -39,6 +39,7 @@ module.exports = class create_item {
             Equip_Extra_Material: 0,
             Equip_Extra_Money: 0,
             Equip_Extra_Exp: 0,
+            Equip_Extra_Escape: 0,
             Equip_Extra_Status1: 0,
             Equip_Extra_Status2: 0,
             Equip_Extra_Status3: 0,

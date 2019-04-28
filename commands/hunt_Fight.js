@@ -12,7 +12,7 @@ const equip = require("../all_item_id_data.json");
 module.exports = class hunt_fight {
     constructor() {
         this.name = 'huntfight',
-            this.alias = ['hf', 'huntFight', '狩獵操作','HF'],
+            this.alias = ['hf', 'huntFight', '狩獵操作', 'HF'],
             this.usage = '!huntfight'
     }
 
@@ -32,6 +32,10 @@ module.exports = class hunt_fight {
         if (!args[1]) return message.reply("指令錯誤，請輸入!hf (普攻/技能/狀態/逃跑)").then(msg => {
             msg.delete(1000)
         });
+
+        let Random_Damage = function(){
+            return Math.floor(Math.random() * 10) + (-10);
+        }
 
         let Random_Fight_Number = function () {
             return Math.floor(Math.random() * 100) + 1;
@@ -92,7 +96,7 @@ module.exports = class hunt_fight {
                 }
             }
         }
-        
+
         let CommonAttack = function () {
             let Weapon_Type = check_CommonAttack_Weapon_Type();
             console.log("使用武器屬性為: " + Weapon_Type);
@@ -100,31 +104,31 @@ module.exports = class hunt_fight {
                 if (Player_info.Character_POKE_DMG > Monster_info.Mosnter_POKE_DEF) {
                     let Player_Total_DMG = (Player_info.Character_DMG - Monster_info.Mosnter_DEF) * 1.2;
                     console.log("觸發刺屬弱點攻擊，總傷害: " + Player_Total_DMG);
-                    return Player_Total_DMG
+                    return Player_Total_DMG + Random_Damage()
                 } else {
                     let Player_Total_DMG = (Player_info.Character_DMG - Monster_info.Mosnter_DEF);
                     console.log("未觸發刺屬弱點攻擊，總傷害: " + Player_Total_DMG);
-                    return Player_Total_DMG
+                    return Player_Total_DMG + Random_Damage()
                 }
             } else if (Weapon_Type == "斬") {
                 if (Player_info.Character_CUT_DMG > Monster_info.Mosnter_CUT_DEF) {
                     let Player_Total_DMG = (Player_info.Character_DMG - Monster_info.Mosnter_DEF) * 1.2;
                     console.log("觸發斬屬弱點攻擊，總傷害: " + Player_Total_DMG);
-                    return Player_Total_DMG
+                    return Player_Total_DMG + Random_Damage()
                 } else {
                     let Player_Total_DMG = (Player_info.Character_DMG - Monster_info.Mosnter_DEF);
                     console.log("未觸發斬屬弱點攻擊，總傷害: " + Player_Total_DMG);
-                    return Player_Total_DMG
+                    return Player_Total_DMG + Random_Damage()
                 }
             } else if (Weapon_Type == "打") {
                 if (Player_info.Character_HIT_DMG > Monster_info.Mosnter_HIT_DEF) {
                     let Player_Total_DMG = (Player_info.Character_DMG - Monster_info.Mosnter_DEF) * 1.2;
                     console.log("觸發打屬弱點攻擊，總傷害: " + Player_Total_DMG);
-                    return Player_Total_DMG
+                    return Player_Total_DMG + Random_Damage()
                 } else {
                     let Player_Total_DMG = (Player_info.Character_DMG - Monster_info.Mosnter_DEF);
                     console.log("未觸發打屬弱點攻擊，總傷害: " + Player_Total_DMG);
-                    return Player_Total_DMG
+                    return Player_Total_DMG + Random_Damage()
                 }
             } else {
                 let Player_Total_DMG = 1;
@@ -133,31 +137,35 @@ module.exports = class hunt_fight {
             }
         }
 
-        let check_Skill_Extra_Damage = function(Player_Skill_info){
-            return Player_Skill_info.Skill_Extra_DMG + 
-            Player_Skill_info.Skill_Extra_M_DMG + 
-            Player_Skill_info.Skill_Extra_FIRE_DMG +
-            Player_Skill_info.Skill_Extra_COLD_DMG +
-            Player_Skill_info.Skill_Extra_WOOD_DMG +
-            Player_Skill_info.Skill_Extra_LIGHT_DMG +
-            Player_Skill_info.Skill_Extra_BRIGHT_DMG +
-            Player_Skill_info.Skill_Extra_DARK_DMG +
-            Player_Skill_info.Skill_Extra_HIT_DMG +
-            Player_Skill_info.Skill_Extra_CUT_DMG +
-            Player_Skill_info.Skill_Extra_POKE_DMG +
-            Player_Skill_info.Skill_Extra_POISON_DMG
+        let check_Skill_Extra_Damage = function (Player_Skill_info) {
+            return Player_Skill_info.Skill_Extra_DMG +
+                Player_Skill_info.Skill_Extra_M_DMG +
+                Player_Skill_info.Skill_Extra_FIRE_DMG +
+                Player_Skill_info.Skill_Extra_COLD_DMG +
+                Player_Skill_info.Skill_Extra_WOOD_DMG +
+                Player_Skill_info.Skill_Extra_LIGHT_DMG +
+                Player_Skill_info.Skill_Extra_BRIGHT_DMG +
+                Player_Skill_info.Skill_Extra_DARK_DMG +
+                Player_Skill_info.Skill_Extra_HIT_DMG +
+                Player_Skill_info.Skill_Extra_CUT_DMG +
+                Player_Skill_info.Skill_Extra_POKE_DMG +
+                Player_Skill_info.Skill_Extra_POISON_DMG
         }
 
-        let Monster_last_HP = function(){
+        let Monster_last_HP = function () {
             let Monster_TotalHP = hunt_Monster[playerID].FightMonster_TotalHP;
             let Monster_LastHP = hunt_Monster[playerID].FightMonster_FightHP;
-            if (Monster_LastHP <= 0) {
+            let Monster_MiddleHP = Math.floor(Monster_LastHP / 2);
+            //console.log("最大: " + Monster_TotalHP)
+            //console.log("一半: " + Monster_MiddleHP)
+            
+            if (Monster_LastHP <= 0 || Monster_MiddleHP == 0) {
                 return "魔物們似乎已經倒下了..."
-            } else if (Monster_LastHP <= 100 && Monster_LastHP > 0) {
+            } else if (Monster_LastHP <= Monster_MiddleHP && Monster_LastHP > 0) {
                 return "魔物們似乎已經瀕死..."
-            } else if (Monster_LastHP > 100 && Monster_LastHP < Monster_TotalHP) {
+            } else if (Monster_LastHP > Monster_MiddleHP && Monster_LastHP < Monster_TotalHP) {
                 return "魔物們似乎還很亢奮..."
-            }else{
+            } else {
                 return "錯誤"
             }
         }
@@ -165,13 +173,13 @@ module.exports = class hunt_fight {
         let SkillAttack = function (Player_Skill_info) {
             let Skill_Extra_Damage = check_Skill_Extra_Damage(Player_Skill_info);
             let Skill_Type = Player_Skill_info.Skill_Type;
-            let Monster_Total_DEF = (Monster_info.Mosnter_DEF+ Monster_info.Mosnter_M_DEF);
+            let Monster_Total_DEF = (Monster_info.Mosnter_DEF + Monster_info.Mosnter_M_DEF);
             let Skill_Attack_Damage = 1;
-            if(Player_Skill_info.Skill_Attack_Type == "物理"){
+            if (Player_Skill_info.Skill_Attack_Type == "物理") {
                 Skill_Attack_Damage = Player_info.Character_DMG;
-            }else if(Player_Skill_info.Skill_Attack_Type == "魔法"){
+            } else if (Player_Skill_info.Skill_Attack_Type == "魔法") {
                 Skill_Attack_Damage = Player_info.Character_M_DMG;
-            }else{
+            } else {
                 Skill_Attack_Damage = 1;
             }
             console.log(Skill_Attack_Damage);
@@ -179,80 +187,113 @@ module.exports = class hunt_fight {
             if (Skill_Type == "火") {
                 let player_Skill_Total_Damage = Skill_Attack_Damage * (Player_Skill_info.Skill_Add_FIRE_DMG / 100) + Skill_Extra_Damage;
                 if (player_Skill_Total_Damage > Monster_info.Mosnter_FIRE_DEF) {
-                    let Player_Total_DMG = (player_Skill_Total_Damage - Monster_Total_DEF) * 1.2;
+                    let Player_Total_DMG = (player_Skill_Total_Damage - Monster_Total_DEF) * 1.5;
                     console.log("觸發火屬弱點攻擊，總傷害: " + Player_Total_DMG);
-                    return Player_Total_DMG
+                    return Player_Total_DMG + Random_Damage()
                 } else {
                     let Player_Total_DMG = (player_Skill_Total_Damage - Monster_Total_DEF);
                     console.log("未觸發火屬弱點攻擊，總傷害: " + Player_Total_DMG);
-                    return Player_Total_DMG
+                    return Player_Total_DMG + Random_Damage()
                 }
             } else if (Skill_Type == "水") {
                 console.log(Player_Skill_info.Skill_Add_COLD_DMG)
                 let player_Skill_Total_Damage = Skill_Attack_Damage * (Player_Skill_info.Skill_Add_COLD_DMG / 100) + Skill_Extra_Damage;
                 if (player_Skill_Total_Damage > Monster_info.Mosnter_COLD_DEF) {
-                    let Player_Total_DMG = (player_Skill_Total_Damage - Monster_Total_DEF) * 1.2;
+                    let Player_Total_DMG = (player_Skill_Total_Damage - Monster_Total_DEF) * 1.5;
                     console.log("觸發水屬弱點攻擊，總傷害: " + Player_Total_DMG);
-                    return Player_Total_DMG
+                    return Player_Total_DMG + Random_Damage()
                 } else {
                     let Player_Total_DMG = (player_Skill_Total_Damage - Monster_Total_DEF);
                     console.log("未觸發水屬弱點攻擊，總傷害: " + Player_Total_DMG);
-                    return Player_Total_DMG
+                    return Player_Total_DMG + Random_Damage()
                 }
             } else if (Skill_Type == "木") {
                 let player_Skill_Total_Damage = Skill_Attack_Damage * (Player_Skill_info.Skill_Add_WOOD_DMG / 100) + Skill_Extra_Damage;
                 if (player_Skill_Total_Damage > Monster_info.Mosnter_WOOD_DEF) {
-                    let Player_Total_DMG = (player_Skill_Total_Damage - Monster_Total_DEF) * 1.2;
+                    let Player_Total_DMG = (player_Skill_Total_Damage - Monster_Total_DEF) * 1.5;
                     console.log("觸發木屬弱點攻擊，總傷害: " + Player_Total_DMG);
-                    return Player_Total_DMG
+                    return Player_Total_DMG + Random_Damage()
                 } else {
                     let Player_Total_DMG = (player_Skill_Total_Damage - Monster_Total_DEF);
                     console.log("未觸發木屬弱點攻擊，總傷害: " + Player_Total_DMG);
-                    return Player_Total_DMG
+                    return Player_Total_DMG + Random_Damage()
                 }
             } else if (Skill_Type == "雷") {
                 let player_Skill_Total_Damage = Skill_Attack_Damage * (Player_Skill_info.Skill_Add_LIGHT_DMG / 100) + Skill_Extra_Damage;
                 if (player_Skill_Total_Damage > Monster_info.Mosnter_LIGHT_DEF) {
-                    let Player_Total_DMG = (player_Skill_Total_Damage - Monster_Total_DEF) * 1.2;
+                    let Player_Total_DMG = (player_Skill_Total_Damage - Monster_Total_DEF) * 1.5;
                     console.log("觸發雷屬弱點攻擊，總傷害: " + Player_Total_DMG);
-                    return Player_Total_DMG
+                    return Player_Total_DMG + Random_Damage()
                 } else {
                     let Player_Total_DMG = (player_Skill_Total_Damage - Monster_Total_DEF);
                     console.log("未觸發雷屬弱點攻擊，總傷害: " + Player_Total_DMG);
-                    return Player_Total_DMG
+                    return Player_Total_DMG + Random_Damage()
                 }
             } else if (Skill_Type == "光") {
                 let player_Skill_Total_Damage = Skill_Attack_Damage * (Player_Skill_info.Skill_Add_BRIGHT_DMG / 100) + Skill_Extra_Damage;
                 if (player_Skill_Total_Damage > Monster_info.Mosnter_BRIGHT_DEF) {
-                    let Player_Total_DMG = (player_Skill_Total_Damage - Monster_Total_DEF) * 1.2;
+                    let Player_Total_DMG = (player_Skill_Total_Damage - Monster_Total_DEF) * 1.5;
                     console.log("觸發光屬弱點攻擊，總傷害: " + Player_Total_DMG);
-                    return Player_Total_DMG
+                    return Player_Total_DMG + Random_Damage()
                 } else {
                     let Player_Total_DMG = (player_Skill_Total_Damage - Monster_Total_DEF);
                     console.log("未觸發光屬弱點攻擊，總傷害: " + Player_Total_DMG);
-                    return Player_Total_DMG
+                    return Player_Total_DMG + Random_Damage()
                 }
             } else if (Skill_Type == "暗") {
                 let player_Skill_Total_Damage = Skill_Attack_Damage * (Player_Skill_info.Skill_Add_DARK_DMG / 100) + Skill_Extra_Damage;
                 if (player_Skill_Total_Damage > Monster_info.Mosnter_DARK_DEF) {
-                    let Player_Total_DMG = (player_Skill_Total_Damage - Monster_Total_DEF) * 1.2;
+                    let Player_Total_DMG = (player_Skill_Total_Damage - Monster_Total_DEF) * 1.5;
                     console.log("觸發暗屬弱點攻擊，總傷害: " + Player_Total_DMG);
-                    return Player_Total_DMG
+                    return Player_Total_DMG + Random_Damage()
                 } else {
                     let Player_Total_DMG = (player_Skill_Total_Damage - Monster_Total_DEF);
                     console.log("未觸發暗屬弱點攻擊，總傷害: " + Player_Total_DMG);
-                    return Player_Total_DMG
+                    return Player_Total_DMG + Random_Damage()
                 }
             } else if (Skill_Type == "毒") {
                 let player_Skill_Total_Damage = Skill_Attack_Damage * (Player_Skill_info.Skill_Add_POISON_DMG / 100) + Skill_Extra_Damage;
                 if (player_Skill_Total_Damage > Monster_info.Mosnter_POISON_DEF) {
-                    let Player_Total_DMG = (player_Skill_Total_Damage - Monster_Total_DEF) * 1.2;
+                    let Player_Total_DMG = (player_Skill_Total_Damage - Monster_Total_DEF) * 1.5;
                     console.log("觸發毒屬弱點攻擊，總傷害: " + Player_Total_DMG);
-                    return Player_Total_DMG
+                    return Player_Total_DMG + Random_Damage()
                 } else {
                     let Player_Total_DMG = (player_Skill_Total_Damage - Monster_Total_DEF);
-                    console.log("未觸毒雷屬弱點攻擊，總傷害: " + Player_Total_DMG);
-                    return Player_Total_DMG
+                    console.log("未觸毒屬弱點攻擊，總傷害: " + Player_Total_DMG);
+                    return Player_Total_DMG + Random_Damage()
+                }
+            } else if (Skill_Type == "打") {
+                let player_Skill_Total_Damage = Skill_Attack_Damage * (Player_Skill_info.Skill_Add_POISON_DMG / 100) + Skill_Extra_Damage;
+                if (player_Skill_Total_Damage > Monster_info.Mosnter_POISON_DEF) {
+                    let Player_Total_DMG = (player_Skill_Total_Damage - Monster_Total_DEF) * 1.5;
+                    console.log("觸發打屬弱點攻擊，總傷害: " + Player_Total_DMG);
+                    return Player_Total_DMG + Random_Damage()
+                } else {
+                    let Player_Total_DMG = (player_Skill_Total_Damage - Monster_Total_DEF);
+                    console.log("未觸打屬弱點攻擊，總傷害: " + Player_Total_DMG);
+                    return Player_Total_DMG + Random_Damage()
+                }
+            } else if (Skill_Type == "斬") {
+                let player_Skill_Total_Damage = Skill_Attack_Damage * (Player_Skill_info.Skill_Add_POISON_DMG / 100) + Skill_Extra_Damage;
+                if (player_Skill_Total_Damage > Monster_info.Mosnter_POISON_DEF) {
+                    let Player_Total_DMG = (player_Skill_Total_Damage - Monster_Total_DEF) * 1.5;
+                    console.log("觸發斬屬弱點攻擊，總傷害: " + Player_Total_DMG);
+                    return Player_Total_DMG + Random_Damage()
+                } else {
+                    let Player_Total_DMG = (player_Skill_Total_Damage - Monster_Total_DEF);
+                    console.log("未觸斬屬弱點攻擊，總傷害: " + Player_Total_DMG);
+                    return Player_Total_DMG + Random_Damage()
+                }
+            } else if (Skill_Type == "刺") {
+                let player_Skill_Total_Damage = Skill_Attack_Damage * (Player_Skill_info.Skill_Add_POISON_DMG / 100) + Skill_Extra_Damage;
+                if (player_Skill_Total_Damage > Monster_info.Mosnter_POISON_DEF) {
+                    let Player_Total_DMG = (player_Skill_Total_Damage - Monster_Total_DEF) * 1.5;
+                    console.log("觸發刺屬弱點攻擊，總傷害: " + Player_Total_DMG);
+                    return Player_Total_DMG + Random_Damage()
+                } else {
+                    let Player_Total_DMG = (player_Skill_Total_Damage - Monster_Total_DEF);
+                    console.log("未觸刺屬弱點攻擊，總傷害: " + Player_Total_DMG);
+                    return Player_Total_DMG + Random_Damage()
                 }
             } else {
                 let Player_Total_DMG = 1;
@@ -260,6 +301,7 @@ module.exports = class hunt_fight {
                 return Player_Total_DMG
             }
         }
+
         let isSkillMiss = function (Skill_Add_Accurate) {
             let Player_AND_Monster_Level_Difference = Player_info.Character_Level - Monster_info.Monster_Level;
             console.log("等差:" + Player_AND_Monster_Level_Difference)
@@ -292,6 +334,47 @@ module.exports = class hunt_fight {
                 }
             }
         }
+
+        let Monster_Level_Difference_Check = function(){
+            let Monster_AND_Player_Level_Difference = Monster_info.Monster_Level- Player_info.Character_Level;
+
+            console.log("怪物與玩家等差: " + Monster_AND_Player_Level_Difference)
+            if (Monster_AND_Player_Level_Difference >= 10){
+                console.log("魔物基礎傷害10*等差")
+                return 10 * Monster_AND_Player_Level_Difference;
+            }else if(Monster_AND_Player_Level_Difference >= 5 && Monster_AND_Player_Level_Difference < 10){
+                console.log("魔物基礎傷害5*等差")
+                return 5 * Monster_AND_Player_Level_Difference;
+            }else{
+                console.log("魔物基礎傷害20")
+                return 20;
+            }
+        }
+
+        let Monster_Attribute = function(){
+            let Monster_AttributeType = Monster_info.Monster_Attributes;
+            console.log("魔物屬性= " + Monster_AttributeType);
+            let baseAttack = (Monster_info.Mosnter_DMG + Monster_info.Mosnter_M_DMG) - (Player_info.Character_DEF + Player_info.Character_M_Def);
+            if (baseAttack <= 0){
+                baseAttack = 1;
+            }
+            if (Monster_AttributeType == "火"){
+                if(Monster_info.Mosnter_FIRE_DMG > Player_info.Character_FIRE_DEF){
+                    let Attrubute_Attack = baseAttack + (Monster_info.Mosnter_FIRE_DMG - Player_info.Character_FIRE_DEF);
+                    console.log("魔物造成火屬性傷害")
+                    return Attrubute_Attack;
+                }
+            }
+        }
+
+        let Monster_Damage = function (){
+            let Monster_Base_Damage = Monster_Level_Difference_Check() + Random_Damage();
+            let Monster_Attribute_Damage = Monster_Attribute();
+            let Monster_Total_Damage = Monster_Base_Damage + Monster_Attribute_Damage;
+            
+            return Monster_Total_Damage;
+        }
+
         switch (fight_Type) {
             case '普通攻擊':
             case '普攻':
@@ -303,62 +386,30 @@ module.exports = class hunt_fight {
                     message.reply("普通攻擊未命中");
                     console.log("普通攻擊未命中")
                 }
-                
-
 
                 break;
-            case '使用技能':
-            case '技能':
-                message.reply("請輸入你想使用的「技能代號」，輸入cancel取消").then(msg => {
+            case '技能1001':
+                message.reply("你使用技能1001").then(msg => {
                     msg.delete(20000)
                 });
-                const filter = m => m.author.id === message.author.id;
-                message.channel.awaitMessages(filter, {
-                    max: 1,
-                    time: 20000
-                }).then(collection => {
-                    let UseSkill = collection.first().content;
-                    console.log(UseSkill)
-                    /*if (!collection.first().content) return message.reply("取消").then(msg => {
+                if (Player_Skill_info.技能1001.Skill_isLearn == "尚未習得") {
+                    return message.reply("技能尚未學習，無法使用").then(msg => {
                         msg.delete(5000)
-                    });*/
-                    /*if (UseSkill == "cancel") return message.reply("取消").then(msg => {
-                        msg.delete(5000)
-                    });*/
-                    switch (UseSkill) {
-                        case '技能1001':
-                            if (Player_Skill_info.技能1001.Skill_isLearn == "尚未習得") {
-                                return message.reply("技能尚未學習，無法使用").then(msg => {
-                                    msg.delete(5000)
-                                });
-                            } else {
-                                Player_Skill_info = Player_Skill_info.技能1001;
-                               
-                                if (isSkillMiss(Player_Skill_info.Skill_Add_Accurate)) {
-                                    let Damage = SkillAttack(Player_Skill_info);
-                                    message.reply("技能攻擊命中，傷害為" + Damage +"，"+ Monster_last_HP());
-                                    console.log("技能攻擊命中")
-                                } else {
-                                    message.reply("技能攻擊未命中");
-                                    console.log("技能攻擊未命中")
-                                }
-                                
-                            }
-
-                            break;
-                        default:
-                            return message.reply("技能代號不存在，無法使用").then(msg => {
-                                msg.delete(5000)
-                            });
-                    }
-
-
-                }).catch(err => {
-                    console.log(err)
-                    return message.reply("取消").then(msg => {
-                        msg.delete(1000)
                     });
-                });
+                } else {
+                    Player_Skill_info = Player_Skill_info.技能1001;
+
+                    if (isSkillMiss(Player_Skill_info.Skill_Add_Accurate)) {
+                        let Damage = SkillAttack(Player_Skill_info);
+                        message.reply("技能攻擊命中，傷害為" + Damage + "，" + Monster_last_HP() + 
+                        "\n魔物們的攻擊對你造成" + Monster_Damage() + "傷害");
+                        console.log("技能攻擊命中")
+
+                    } else {
+                        message.reply("技能攻擊未命中，魔物們的攻擊對你造成" + Monster_Damage() + "傷害");
+                        console.log("技能攻擊未命中")
+                    }
+                }
                 break;
             case '狀態':
                 /*let statusEmbed = new Discord.RichEmbed()
@@ -378,6 +429,10 @@ module.exports = class hunt_fight {
             case '逃跑':
 
                 break;
+            default:
+                return message.reply("請輸入你想使用的「技能代號」，輸入cancel取消").then(msg => {
+                    msg.delete(20000)
+                });
         }
 
     }

@@ -62,6 +62,7 @@ module.exports = class create_Character{
           Character_Extra_Material: 0,
           Character_Extra_Money: 0,
           Character_Extra_Exp: 0,
+          Character_Extra_Escape: 0,
           Character_Str: 3,
           Character_Int: 3,
           Character_Dex: 3,

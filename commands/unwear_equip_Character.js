@@ -25,6 +25,7 @@ module.exports = class wear_equip {
             userData[playerID].Character_MaxAP -= equip[itemID].Equip_Add_MaxAP;
             userData[playerID].Character_MaxWeight -= equip[itemID].Equip_Add_MaxWeight;
 
+            userData[playerID].Character_Extra_Escape -= equip[itemID].Equip_Extra_Escape;
             userData[playerID].Character_Extra_Material -= equip[itemID].Equip_Extra_Material; //裝備增加HP
             userData[playerID].Character_Extra_Money -= equip[itemID].Equip_Extra_Money; //裝備增加MP
             userData[playerID].Character_Extra_Exp -= equip[itemID].Equip_Extra_Exp;
