@@ -3,7 +3,7 @@ const config = require("../config.json");
 const fs = require("fs");
 const userData = require("../players_data.json");
 const all_Skills_Data = require("../all_skills_data.json");
-const player_learn_Skill = require("../skills_players.json");
+const player_learn_Skill = require("../players_skills.json");
 //角色升級指令
 
 module.exports = class learnskill {
@@ -144,7 +144,7 @@ module.exports = class learnskill {
 
 
 
-        fs.writeFile("./skills_players.json", JSON.stringify(player_learn_Skill), (err) => {});
+        fs.writeFile("./players_skills.json", JSON.stringify(player_learn_Skill), (err) => {});
         message.reply("成功");
     }
 }

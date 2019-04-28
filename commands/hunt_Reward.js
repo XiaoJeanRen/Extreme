@@ -4,7 +4,7 @@ const fs = require("fs");
 const inv = require("../players_inventory.json");
 const userData = require("../players_data.json");
 const all_item = require("../all_item_id_data.json");
-const adv_time = require("../players_adventure_time.json");
+const hunt_time = require("../players_hunt_monster.json");
 const loots_money = require("../loots/loot_Money.js");
 const loots_exp = require("../loots/loot_Exp.js");
 const loots_item = require("../loots/loot_Item.js");
@@ -50,13 +50,18 @@ let formatSecond = function (number) {
 
 }
 
-let adv_time_reset = function (playerID) {
-    adv_time[playerID].isAdventure = false;
-    adv_time[playerID].adventure_id = "000";
-    adv_time[playerID].adventure_place = "無";
-    adv_time[playerID].adventure_time = 0;
-    adv_time[playerID].need_time = 0;
-    userData[playerID].adventure = "無";
+let hunt_time_reset = function (playerID) {
+    hunt_time[playerID].Monster_Name = "無";
+    hunt_time[playerID].Monster_ID = "無";
+    hunt_time[playerID].Monster_Number = 0;
+    hunt_time[playerID].Monster_Time = 0;
+    hunt_time[playerID].Monster_Need_Time = 0;
+    hunt_time[playerID].Fight_place = "無";
+    hunt_time[playerID].isFightMonster = false;
+    hunt_time[playerID].FightMonster = "尚未狩獵";
+    hunt_time[playerID].FightMonster_TotalHP = 0;
+    hunt_time[playerID].FightMonster_FightHP = 0;
+    userData[playerID].Character_Hunt = "無";
 }
 
 module.exports = class fight_reward {
@@ -73,60 +78,14 @@ module.exports = class fight_reward {
             msg.delete(1000)
         });
         console.log(`使用者(ID: ${playerID})使用「戰鬥獎勵」`)
-        let pass_time = Math.round(Math.abs(adv_time[playerID].adventure_time - (message.createdAt / 1000)));
+        let pass_time = Math.round(Math.abs(hunt_time[playerID].Monster_Time - (message.createdAt / 1000)));
         let actual_time = formatSecond(pass_time);
-        let need_time = formatSecond(adv_time[playerID].need_time);
-        if (adv_time[playerID].isAdventure === false) return message.reply("你還未參與任何冒險活動").then(msg => {
+        let need_time = formatSecond(hunt_time[playerID].Monster_Need_Time);
+        if (hunt_time[playerID].isFightMonster === false) return message.reply("你還未參與任何狩獵活動").then(msg => {
             msg.delete(10000)
         });
-        if (pass_time > adv_time[playerID].need_time) {
 
-            let adventure_number = adv_time[playerID].adventure_id; //玩家選擇副本id
-            console.log(adventure_number)
-            /**
-             * 金錢處理
-             * loots_money => require("../loots/loot_Money.js");
-             */
-            let getMoney = loots_money.lootMoney(adventure_number);
-            userData[playerID].Character_Money += getMoney; //得到金錢
-            console.log(`使用者(ID: ${playerID})已取得金錢${getMoney}元`)
-            /**
-             * 經驗處理
-             * loots_exp  => require("../loots/loot_Exp.js");
-             */
-            let getExp = loots_exp.lootExp(adventure_number);
-            userData[playerID].Character_Exp += getExp; //得到Exp
-            console.log(`使用者(ID: ${playerID})已取得經驗${getExp}元`)
-            /**
-             * 取得道具處理
-             * loots_item  => require("../loots/loot_Item.js");
-             */
-            let getitem = loots_item.lootItem(playerID);
-            /**
-             * 玩家冒險資料重置
-             */
-            adv_time_reset(playerID)
-            if(invfull(inv[playerID],playerID) == "full"){
-                message.reply("你的背包已滿，請清理後再進行冒險，以免無法獲得道具.").then(msg => {
-                    msg.delete(10000)
-                });
-            }
-            message.reply(`金幣獎勵「${getMoney}元」已獲得.\n經驗獎勵「${getExp}」已獲得.\n道具獎勵「${getitem}」已獲得.`).then(msg => {
-                msg.delete(10000)
-            });
-        } else {
-            message.reply(`冒險尚未完成，所需時間：${need_time}，冒險已經過的時間：${actual_time}`).then(msg => {
-                msg.delete(10000)
-            });
-        }
 
-        fs.writeFile("./players_adventure_time.json", JSON.stringify(adv_time), (err) => {});
-
-        fs.writeFile("./players_inventory.json", JSON.stringify(inv), (err) => {});
-
-        fs.writeFile("./players_data.json", JSON.stringify(userData), (err) => {});
-
-        fs.writeFile("./all_item_id_data.json", JSON.stringify(all_item), (err) => {});
 
     }
 }

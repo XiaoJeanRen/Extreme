@@ -2,7 +2,7 @@ const Discord = require("discord.js");
 const config = require("../config.json");
 const fs = require("fs");
 const userData = require("../players_data.json");
-const player_learn_Skill = require("../skills_players.json");
+const player_learn_Skill = require("../players_skills.json");
 //查看角色狀態指令
 module.exports = class myskill {
     constructor() {

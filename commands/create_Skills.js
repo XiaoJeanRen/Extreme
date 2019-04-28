@@ -25,7 +25,8 @@ module.exports = class create_skill {
     createSkill[skillId] = {
       Skill_ID: skillId,
       Skill_Name: skillName,
-      Skill_Type: "無",
+      Skill_Type: "火",
+      Skill_Attack_Type: "物理",
       Skill_Class: "無",
       Skill_isLearn: "尚未習得",
       Skill_Level: 0,

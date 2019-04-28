@@ -38,9 +38,12 @@ module.exports = class monsters {
                 playerHunt.Monster_ID = "1000";
                 playerHunt.Monster_Number = parseInt(MonsetrNumber);
                 playerHunt.Monster_Time = adventure_time;
-                playerHunt.Monster_Need_Time = 15;
+                playerHunt.Monster_Need_Time = 15 * MonsetrNumber;
                 playerHunt.Fight_place = "無";
-                playerHunt.isFightMonster = "戰鬥開始";
+                playerHunt.isFightMonster = true;
+                playerHunt.FightMonster = "正在狩獵";
+                playerHunt.FightMonster_TotalHP = MonsterData.Monster_HP * MonsetrNumber;
+                playerHunt.FightMonster_FightHP = MonsterData.Monster_HP * MonsetrNumber;
                 message.reply("狩獵開始，輸入!ht查看時間，輸入!hreward獲得獎勵.").then(msg => {
                     msg.delete(10000)
                 });

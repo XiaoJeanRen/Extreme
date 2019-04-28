@@ -14,7 +14,7 @@ let chooseMaps = function(choose_number, playerID, adventure_time){
             adv_time[playerID].need_time = 15;
             adv_time[playerID].adventure_id = "001";
             adv_time[playerID].adventure_place = "平原";
-            userData[playerID].adventure = "正在冒險";
+            userData[playerID].Character_Adventure = "正在冒險";
             return "選擇地圖「001 平原」";
         case '002':
             adv_time[playerID].isAdventure = true;
@@ -22,7 +22,7 @@ let chooseMaps = function(choose_number, playerID, adventure_time){
             adv_time[playerID].need_time = 300;
             adv_time[playerID].adventure_id = "002";
             adv_time[playerID].adventure_place = "森林";
-            userData[playerID].adventure = "正在冒險";
+            userData[playerID].Character_Adventure = "正在冒險";
             return "選擇地圖「002 森林」";
         default:
             return "選擇地圖失敗，請重新選擇.";

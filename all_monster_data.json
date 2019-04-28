@@ -26,6 +26,8 @@
         "Mosnter_BRIGHT_DEF": 1,
         "Mosnter_DARK_DMG": 1,
         "Mosnter_DARK_DEF": 1,
+        "Mosnter_POISON_DMG": 1,
+        "Mosnter_POISON_DEF": 1,
         "Mosnter_HIT_DMG": 1,
         "Mosnter_HIT_DEF": 1,
         "Mosnter_CUT_DMG": 1,

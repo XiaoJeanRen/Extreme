@@ -56,7 +56,7 @@ let adv_time_reset = function (playerID) {
     adv_time[playerID].adventure_place = "無";
     adv_time[playerID].adventure_time = 0;
     adv_time[playerID].need_time = 0;
-    userData[playerID].adventure = "無";
+    userData[playerID].Character_Adventure = "尚未冒險";
 }
 
 module.exports = class adventure_reward {

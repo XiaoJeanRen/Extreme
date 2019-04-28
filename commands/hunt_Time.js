@@ -49,9 +49,9 @@ module.exports = class create_Character {
         let actual_time = formatSecond(pass_time);
         let need_time = formatSecond(playerHunt_Data.Monster_Need_Time);
         if (pass_time > playerHunt_Data.Monster_Need_Time) {
-            message.reply(`戰鬥已完成，超出時間將不會有額外獎勵\n戰鬥已經過的時間：${actual_time}\n請輸入!hreward，結束戰鬥領取獎勵.`).then(msg => {msg.delete(10000)});
+            message.reply(`狩獵已完成，超出時間將不會有額外獎勵\n狩獵已經過的時間：${actual_time}\n請輸入!hreward，結束戰鬥領取獎勵.`).then(msg => {msg.delete(10000)});
         } else {
-            message.reply(`戰鬥尚未完成，所需時間：${need_time}，戰鬥已經過的時間：${actual_time}`).then(msg => {msg.delete(10000)});
+            message.reply(`狩獵尚未完成，狩獵完成所需時間：${need_time}，狩獵已經過的時間：${actual_time}\n你可以藉由使用技能，使狩獵成功率或時間增加`).then(msg => {msg.delete(10000)});
         }
     }
 }

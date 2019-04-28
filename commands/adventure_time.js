@@ -41,6 +41,9 @@ module.exports = class create_Character {
         let playerID = message.author.id;
         console.log(`使用者(ID: ${playerID})使用「冒險時間」`)
         if(!userData[playerID]) return message.reply("角色不存在，請輸入「!角色創建」.").then(msg => {msg.delete(1000)});
+        if (adv_time[playerID].isAdventure === false) return message.reply("你還未參與任何冒險活動").then(msg => {
+            msg.delete(10000)
+        });
         // adv_time[playerID].adventure_time 過去時間
         // (message.createdAt / 1000) 現在時間
         // time 秒數

@@ -51,6 +51,8 @@ module.exports = class create_monster {
       Mosnter_BRIGHT_DEF: default_point,
       Mosnter_DARK_DMG: default_point,
       Mosnter_DARK_DEF: default_point,
+      Mosnter_POISON_DMG: default_point,
+      Mosnter_POISON_DEF: default_point,
       Mosnter_HIT_DMG: default_point,
       Mosnter_HIT_DEF: default_point,
       Mosnter_CUT_DMG: default_point,

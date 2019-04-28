@@ -32,6 +32,7 @@ module.exports = class myinfo{
     "**名聲： **" + info.Character_Reputation + "\n" +
     "**職業： **" + info.Character_Class + "\n" +
     "**冒險狀況： **" + info.Character_Adventure + "\n" +
+    "**狩獵狀況： **" + info.Character_Hunt + "\n" +
     "**社會地位： **" + info.Character_Socialstatus + "\n" +
     "**所屬公會： **" + info.Character_Guild + "\n" +
     "**所屬家族： **" + info.Character_Family + "\n" +

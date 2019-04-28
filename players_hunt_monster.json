@@ -3,9 +3,12 @@
         "Monster_Name": "GM測試怪物",
         "Monster_ID": "1000",
         "Monster_Number": 1,
-        "Monster_Time": 1556303500.494,
+        "Monster_Time": 1556457489.928,
         "Monster_Need_Time": 15,
         "Fight_place": "無",
-        "isFightMonster": "戰鬥開始"
+        "isFightMonster": true,
+        "FightMonster": "正在狩獵",
+        "FightMonster_TotalHP": 1,
+        "FightMonster_FightHP": 1
     }
 }

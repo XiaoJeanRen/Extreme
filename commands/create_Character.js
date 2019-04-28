@@ -9,7 +9,7 @@ const default_inv = require("../default_inventory.json");
 //const default_skills = require("../default_skills.json");
 const all_skill_data = require("../all_skills_data.json");
 const player_hunt = require("../players_hunt_monster.json");
-const player_learn_Skill = require("../skills_players.json");
+const player_learn_Skill = require("../players_skills.json");
 //創建角色指令
 module.exports = class create_Character{
   constructor(){
@@ -48,7 +48,7 @@ module.exports = class create_Character{
           Character_Rank: "E",
           Character_Class: "初心者",
           Character_Adventure: "尚未冒險",
-          Character_Fight: "尚未戰鬥",
+          Character_Hunt: "尚未戰鬥",
           Character_isFight: false,          
           Character_Color: "##00cc00",
           Character_HP: 100,
@@ -136,15 +136,18 @@ module.exports = class create_Character{
           Monster_Time: 0,
           Monster_Need_Time: 0,
           Fight_place: "無",
-          isFightMonster: "尚未戰鬥"
+          isFightMonster: false,
+          FightMonster: "尚未狩獵",
+          FightMonster_TotalHP: 0,
+          FightMonster_FightHP: 0
         }
 
         player_learn_Skill[message.author.id] = all_skill_data;
   
 
-        fs.writeFile("./skills_players.json", JSON.stringify(player_learn_Skill), (err) => { 
+        fs.writeFile("./players_hunt_monster.json", JSON.stringify(player_hunt), (err) => { 
         });
-        fs.writeFile("./dungeon_players_fight.json", JSON.stringify(player_hunt), (err) => { 
+        fs.writeFile("./players_skills.json", JSON.stringify(player_learn_Skill), (err) => { 
         });
         fs.writeFile("./players_adventure_time.json", JSON.stringify(adv_time), (err) => { 
         });
