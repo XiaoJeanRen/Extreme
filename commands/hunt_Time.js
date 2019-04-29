@@ -29,6 +29,21 @@ var formatSecond = function (number) {
 
 }
 
+let player_Hunt_reset = function (playerID) {
+    console.log(player_Hunt[playerID].Monster_Name)
+    player_Hunt[playerID].Monster_Name = "無";
+    player_Hunt[playerID].Monster_ID = "無";
+    player_Hunt[playerID].Monster_Number = 0;
+    player_Hunt[playerID].Monster_Time = 0;
+    player_Hunt[playerID].Monster_Need_Time = 0;
+    player_Hunt[playerID].Fight_place = "無";
+    player_Hunt[playerID].isFightMonster = false;
+    player_Hunt[playerID].FightMonster = "尚未狩獵";
+    player_Hunt[playerID].FightMonster_TotalHP = 0;
+    player_Hunt[playerID].FightMonster_FightHP = 0;
+    userData[playerID].Character_Hunt = "無";
+}
+
 module.exports = class create_Character {
     constructor() {
         this.name = 'hunt_time',
@@ -41,6 +56,22 @@ module.exports = class create_Character {
         let playerID = message.author.id;
         console.log(`使用者(ID: ${playerID})使用「冒險時間」`)
         if(!userData[playerID]) return message.reply("角色不存在，請輸入「!角色創建」.").then(msg => {msg.delete(1000)});
+        if (player_Hunt[playerID].isFightMonster === false) return message.reply("你還未參與任何狩獵活動").then(msg => {
+            msg.delete(10000)
+        });
+
+        let isPlayer_Dead = function(){
+            if (userData[playerID].Player_info.Character_HP <= 0){
+                return true;
+            }
+        }
+
+        if(isPlayer_Dead()){
+            player_Hunt_reset(playerID);
+            return message.reply(`角色死亡`).then(msg => {
+                msg.delete(10000)
+            });
+        }
         let playerHunt_Data = player_Hunt[playerID];
         // adv_time[playerID].adventure_time 過去時間
         // (message.createdAt / 1000) 現在時間
@@ -49,9 +80,9 @@ module.exports = class create_Character {
         let actual_time = formatSecond(pass_time);
         let need_time = formatSecond(playerHunt_Data.Monster_Need_Time);
         if (pass_time > playerHunt_Data.Monster_Need_Time) {
-            message.reply(`狩獵已完成，超出時間將不會有額外獎勵\n狩獵已經過的時間：${actual_time}\n請輸入!hreward，結束戰鬥領取獎勵.`).then(msg => {msg.delete(10000)});
+            message.reply(`狩獵已結束，超出時間將不會有額外獎勵\n狩獵已過的時間：${actual_time}\n請輸入!hreward，結束狩獵領取獎勵.`).then(msg => {msg.delete(10000)});
         } else {
-            message.reply(`狩獵尚未完成，狩獵完成所需時間：${need_time}，狩獵已經過的時間：${actual_time}\n你可以藉由使用技能，使狩獵成功率或時間增加`).then(msg => {msg.delete(10000)});
+            message.reply(`狩獵中，挑戰狩獵時間：${need_time}，狩獵已過的時間：${actual_time}\n你可以藉由使用技能，使狩獵成功率增加`).then(msg => {msg.delete(10000)});
         }
     }
 }

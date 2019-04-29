@@ -20,6 +20,10 @@ module.exports = class trade_item {
         });
         let tradePlayerID = message.mentions.members.first().id; //獲得金錢玩家id
         let tradePlayer = userData[playerID];       //扣除金錢玩家
+        
+        if (tradePlayer.Character_HP <= 0) return message.reply("你似乎已經死亡了...請輸入!revive").then(msg => {
+            msg.delete(10000)
+        });
         let getPlayer = userData[tradePlayerID];    //獲得金錢玩家
         console.log(`使用者(ID: ${playerID})使用「交易金錢」`)
         if (!userData[tradePlayerID]) return message.reply("交易對象不存在.").then(msg => {

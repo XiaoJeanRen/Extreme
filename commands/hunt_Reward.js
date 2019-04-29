@@ -4,12 +4,12 @@ const fs = require("fs");
 const inv = require("../players_inventory.json");
 const userData = require("../players_data.json");
 const all_item = require("../all_item_id_data.json");
-const hunt_time = require("../players_hunt_monster.json");
-const loots_money = require("../loots/loot_Money.js");
-const loots_exp = require("../loots/loot_Exp.js");
-const loots_item = require("../loots/loot_Item.js");
+const player_Hunt = require("../players_hunt_monster.json");
+const loots_money = require("../hunt_loots/hunt_loot_Money.js");
+const loots_exp = require("../hunt_loots/hunt_loot_Exp.js");
+const loots_item = require("../hunt_loots/hunt_loot_Item.js");
 
-let invfull = function (myinv_info,playerID) {
+let invfull = function (myinv_info, playerID) {
     if (myinv_info.inv_1.itemID != "000" &&
         myinv_info.inv_2.itemID != "000" &&
         myinv_info.inv_3.itemID != "000" &&
@@ -50,24 +50,26 @@ let formatSecond = function (number) {
 
 }
 
-let hunt_time_reset = function (playerID) {
-    hunt_time[playerID].Monster_Name = "無";
-    hunt_time[playerID].Monster_ID = "無";
-    hunt_time[playerID].Monster_Number = 0;
-    hunt_time[playerID].Monster_Time = 0;
-    hunt_time[playerID].Monster_Need_Time = 0;
-    hunt_time[playerID].Fight_place = "無";
-    hunt_time[playerID].isFightMonster = false;
-    hunt_time[playerID].FightMonster = "尚未狩獵";
-    hunt_time[playerID].FightMonster_TotalHP = 0;
-    hunt_time[playerID].FightMonster_FightHP = 0;
+let player_Hunt_reset = function (playerID) {
+    console.log(player_Hunt[playerID].Monster_Name)
+    player_Hunt[playerID].Monster_Name = "無";
+    player_Hunt[playerID].Monster_ID = "無";
+    player_Hunt[playerID].Monster_Number = 0;
+    player_Hunt[playerID].Monster_Time = 0;
+    player_Hunt[playerID].Monster_Need_Time = 0;
+    player_Hunt[playerID].Fight_place = "無";
+    player_Hunt[playerID].isFightMonster = false;
+    player_Hunt[playerID].FightMonster = "尚未狩獵";
+    player_Hunt[playerID].FightMonster_TotalHP = 0;
+    player_Hunt[playerID].FightMonster_FightHP = 0;
     userData[playerID].Character_Hunt = "無";
 }
+
 
 module.exports = class fight_reward {
     constructor() {
         this.name = 'hreward',
-            this.alias = ['戰鬥獎勵','hre'],
+            this.alias = ['戰鬥獎勵', 'hre'],
             this.usage = '!hreward'
     }
 
@@ -77,14 +79,100 @@ module.exports = class fight_reward {
         if (!userData[playerID]) return message.reply("角色不存在，請輸入「!角色創建」.").then(msg => {
             msg.delete(1000)
         });
+        let playerHunt_Data = player_Hunt[playerID];
+
+        let Random_Number = function () {
+            return Math.floor(Math.random() * 100) + 1;
+        }
+        
+        let isSuccessful = function () {
+            var Failed_Value = 100;
+            if (playerHunt_Data.FightMonster_FightHP <= 0) {
+                Failed_Value = 0;
+                console.log("失敗率: " + Failed_Value)
+                if (Random_Number() > Failed_Value) {
+                    console.log("狩獵成功")
+                    return true
+                } else {
+                    console.log("狩獵失敗")
+                    return false
+                }
+            } else {
+                Failed_Value = (playerHunt_Data.FightMonster_FightHP / playerHunt_Data.FightMonster_TotalHP) * 100;
+                console.log("失敗率: " + Failed_Value)
+                if (Random_Number() > Failed_Value) {
+                    console.log("狩獵成功")
+                    return true
+                } else {
+                    console.log("狩獵失敗")
+                    return false
+                }
+            }
+
+        }
+
+        let isPlayer_Dead = function(){
+            if (userData[playerID].Character_HP <= 0){
+                return true;
+            }
+        }
+
+        if(isPlayer_Dead()){
+            player_Hunt_reset(playerID);
+            return message.reply(`角色死亡`).then(msg => {
+                msg.delete(10000)
+            });
+        }
         console.log(`使用者(ID: ${playerID})使用「戰鬥獎勵」`)
-        let pass_time = Math.round(Math.abs(hunt_time[playerID].Monster_Time - (message.createdAt / 1000)));
+        let pass_time = Math.round(Math.abs(playerHunt_Data.Monster_Time - (message.createdAt / 1000)));
         let actual_time = formatSecond(pass_time);
-        let need_time = formatSecond(hunt_time[playerID].Monster_Need_Time);
-        if (hunt_time[playerID].isFightMonster === false) return message.reply("你還未參與任何狩獵活動").then(msg => {
+        let need_time = formatSecond(playerHunt_Data.Monster_Need_Time);
+        if (playerHunt_Data.isFightMonster === false) return message.reply("你還未參與任何狩獵活動").then(msg => {
             msg.delete(10000)
         });
 
+        if (pass_time > playerHunt_Data.Monster_Need_Time) {
+            if (isSuccessful()) {
+                let getMoney = loots_money.lootMoney(playerHunt_Data.Monster_ID);
+                userData[playerID].Character_Money += getMoney * playerHunt_Data.Monster_Number; //得到金錢
+                console.log(`使用者(ID: ${playerID})已取得金錢${getMoney}元`)
+
+                let getExp = loots_exp.lootExp(playerHunt_Data.Monster_ID);
+                userData[playerID].Character_Exp += getExp * playerHunt_Data.Monster_Number; //得到Exp
+                console.log(`使用者(ID: ${playerID})已取得經驗${getExp}元`)
+
+
+                let getitem = loots_item.lootItem(playerID);
+                console.log(`使用者(ID: ${playerID})已取得道具${getitem}`)
+
+                if (invfull(inv[playerID], playerID) == "full") {
+                    message.reply("你的背包已滿，請清理後再進行冒險，以免無法獲得道具.").then(msg => {
+                        msg.delete(10000)
+                    });
+                }
+                message.reply(`金幣獎勵「${getMoney}元」已獲得.\n經驗獎勵「${getExp}」已獲得.\n道具獎勵「${getitem}」已獲得.`).then(msg => {
+                    msg.delete(10000)
+                });
+                player_Hunt_reset(playerID);
+            } else {
+                message.reply("狩獵失敗").then(msg => {
+                    msg.delete(10000)
+                });
+                player_Hunt_reset(playerID);
+            }
+            fs.writeFile("./players_adventure_time.json", JSON.stringify(player_Hunt), (err) => {});
+
+            fs.writeFile("./players_inventory.json", JSON.stringify(inv), (err) => {});
+
+            fs.writeFile("./players_data.json", JSON.stringify(userData), (err) => {});
+
+            fs.writeFile("./all_item_id_data.json", JSON.stringify(all_item), (err) => {});
+        } else {
+            message.reply(`狩獵中，挑戰狩獵時間：${need_time}，狩獵已過的時間：${actual_time}\n你可以藉由使用技能，使狩獵成功率增加`).then(msg => {
+                msg.delete(10000)
+            });
+
+        }
 
 
     }

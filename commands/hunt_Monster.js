@@ -17,6 +17,9 @@ module.exports = class monsters {
         if (!userData[playerID]) return message.reply("角色不存在，請輸入「!角色創建」.").then(msg => {
             msg.delete(1000)
         });
+        if (playerHunt_Data.isFightMonster) return message.reply("你已經在狩獵中了.").then(msg => {
+            msg.delete(10000)
+        });
         console.log(`使用者(ID: ${playerID})使用「魔物狩獵」`)
         let MonsetrID = args[1];
         let MonsetrNumber = args[2];
@@ -38,7 +41,7 @@ module.exports = class monsters {
                 playerHunt.Monster_ID = "1000";
                 playerHunt.Monster_Number = parseInt(MonsetrNumber);
                 playerHunt.Monster_Time = adventure_time;
-                playerHunt.Monster_Need_Time = 15 * MonsetrNumber;
+                playerHunt.Monster_Need_Time = 60 * MonsetrNumber;
                 playerHunt.Fight_place = "無";
                 playerHunt.isFightMonster = true;
                 playerHunt.FightMonster = "正在狩獵";

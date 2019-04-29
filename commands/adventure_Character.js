@@ -40,10 +40,14 @@ module.exports = class adventure_Character {
         let adventure_time = (message.createdAt / 1000);
         await message.delete();
         let playerID = message.author.id;
-        
         if(!userData[playerID]) return message.reply("角色不存在，請輸入「!角色創建」.").then(msg => {msg.delete(1000)});
+        Player_info = userData[playerID];
+        if (Player_info.Character_HP <= 0) return message.reply("你似乎已經死亡了...請輸入!revive").then(msg => {
+            msg.delete(10000)
+        });
         if (!args[1]) return message.reply("冒險請輸入!adv <number>，查看冒險地區請輸入!advs").then(msg => {msg.delete(10000)});
         let choose_number = args[1];
+
         console.log(`使用者(ID: ${playerID})使用「冒險」`)
         
         if (adv_time[playerID].isAdventure === false) {
