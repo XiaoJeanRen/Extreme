@@ -24,6 +24,9 @@ module.exports = class hunt_fight {
         let huntID = hunt_Monster[playerID].Monster_ID;
         //console.log(huntID)
         let Player_info = userData[playerID];
+        if (!Player_info) return message.reply("角色不存在，請輸入「!角色創建」.").then(msg => {
+            msg.delete(10000)
+        });
         let Player_Equip_info = character_equip_info[playerID];
         let Player_Skill_info = player_Skill[playerID];
         let Monster_info = hunt_MonsterData[huntID];
@@ -470,7 +473,8 @@ module.exports = class hunt_fight {
             Player_info.Character_AP -= Player_Skill_info.Skill_Decrease_Ap;
             Player_info.Character_HP += Player_Skill_info.Skill_Increase_Hp;
             Player_info.Character_MP += Player_Skill_info.Skill_Increase_Mp;
-            Player_info.Character_AP += Player_Skill_info.Skill_Increase_Ap;
+            Player_info.Character_Taunt += Player_Skill_info.Skill_Add_Taunt;
+            Player_info.Character_POKE_DEF += Player_Skill_info.Skill_Add_POKE_DEF;
             Player_info.Character_POKE_DEF += Player_Skill_info.Skill_Add_POKE_DEF;
             Player_info.Character_CUT_DEF += Player_Skill_info.Skill_Add_CUT_DEF;
             Player_info.Character_HIT_DEF += Player_Skill_info.Skill_Add_HIT_DEF;
@@ -488,7 +492,11 @@ module.exports = class hunt_fight {
                 msg.delete(10000)
             });
         }
-
+        //盾牌精通
+        let player_Shield_Mastery = player_Skill[playerID].技能5001.Skill_Add_DEF;
+        console.log("盾牌精通=" + player_Shield_Mastery)
+        var Damage = 0;
+        var MonsterDamage = 0;
         switch (fight_Type) {
             case '普通攻擊':
             case '普攻':
@@ -498,13 +506,14 @@ module.exports = class hunt_fight {
                     });
                 }
                 if (isMiss()) {
-                    if(Player_info.Character_Class == "戰士"){
-                        let warriorExtraDamage = Player_info.Level * 2;
-                    }else{
-                        warriorExtraDamage = 0;
+
+                    if (Player_info.Character_Class == "戰士") {
+                        var warriorExtraDamage = Player_info.Character_Level * 2;
+                        console.log("戰士額外=" + warriorExtraDamage)
                     }
-                    let Damage = Math.floor(CommonAttack()) + warriorExtraDamage;
-                    let MonsterDamage = Math.floor(Monster_Damage());
+
+                    Damage = Math.floor(CommonAttack()) + warriorExtraDamage;
+                    MonsterDamage = Math.floor(Monster_Damage()) - player_Shield_Mastery;
                     hunt_Monster[playerID].FightMonster_FightHP -= Damage;
                     Player_info.Character_HP -= MonsterDamage;
                     Player_info.Character_AP -= 5;
@@ -512,7 +521,7 @@ module.exports = class hunt_fight {
                     console.log("普通攻擊命中")
 
                 } else {
-                    let MonsterDamage = Monster_Damage()
+                    MonsterDamage = Monster_Damage()
                     Player_info.Character_HP -= MonsterDamage;
                     message.reply("普通攻擊未命中，魔物們的攻擊對你造成" + MonsterDamage + "傷害");
                     console.log("普通攻擊未命中")
@@ -532,8 +541,8 @@ module.exports = class hunt_fight {
                 }
 
                 if (isSkillMiss(Player_Skill_info.Skill_Add_Accurate)) {
-                    let Damage = Math.floor(SkillAttack(Player_Skill_info));
-                    let MonsterDamage = Math.floor(Monster_Damage());
+                    Damage = Math.floor(SkillAttack(Player_Skill_info));
+                    MonsterDamage = Math.floor(Monster_Damage()) - player_Shield_Mastery;
 
                     hunt_Monster[playerID].FightMonster_FightHP -= Damage;
 
@@ -543,12 +552,101 @@ module.exports = class hunt_fight {
                     console.log("技能攻擊命中")
 
                 } else {
-                    let MonsterDamage = Monster_Damage()
+                    MonsterDamage = Monster_Damage()
                     Player_info.Character_HP -= MonsterDamage;
                     message.reply("技能1001攻擊未命中，魔物們的攻擊對你造成" + MonsterDamage + "傷害");
                     console.log("技能攻擊未命中")
                 }
                 break;
+            case '盾牌精通':
+            case '技能5001':
+                return message.reply("使用失敗，此為被動技能").then(msg => {
+                    msg.delete(20000)
+                });
+            case '防禦精通':
+            case '技能5002':
+                return message.reply("使用失敗，此為被動技能").then(msg => {
+                    msg.delete(20000)
+                });
+            case '防禦姿態':
+            case '技能5003':
+                Player_Skill_info = Player_Skill_info.技能5003;
+                if (Player_Skill_info.Skill_isLearn == "尚未習得") {
+                    return message.reply("技能尚未學習，無法使用").then(msg => {
+                        msg.delete(5000)
+                    });
+                }
+
+                if (is_Player_NoHPMPAP(Player_Skill_info)) {
+                    return message.reply("發動失敗");
+                }
+
+                Player_Skill_Decrease_And_Increase(Player_Skill_info);
+
+                message.reply("技能「防禦姿態」發動，" + Monster_last_HP() +
+                    "\n魔物們的攻擊對你造成" + 0 + "傷害");
+                console.log("技能防禦姿態發動")
+
+                break;
+            case '盾牌衝擊':
+            case '技能5004':
+                Player_Skill_info = Player_Skill_info.技能5004;
+                if (Player_Skill_info.Skill_isLearn == "尚未習得") {
+                    return message.reply("技能尚未學習，無法使用").then(msg => {
+                        msg.delete(5000)
+                    });
+                }
+
+                if (is_Player_NoHPMPAP(Player_Skill_info)) {
+                    return message.reply("發動失敗");
+                }
+
+                if (isSkillMiss(Player_Skill_info.Skill_Add_Accurate)) {
+                    Damage = Math.floor(SkillAttack(Player_Skill_info));
+                    MonsterDamage = Math.floor(Monster_Damage()) - player_Shield_Mastery;
+
+                    hunt_Monster[playerID].FightMonster_FightHP -= Damage;
+
+                    Player_Skill_Decrease_And_Increase(Player_Skill_info);
+                    message.reply("技能「盾牌衝擊」攻擊命中，" + Monster_last_HP() +
+                        "\n魔物們的攻擊對你造成" + MonsterDamage + "傷害");
+                    console.log("技能攻擊命中")
+
+                } else {
+                    MonsterDamage = Monster_Damage()
+                    Player_info.Character_HP -= MonsterDamage;
+                    message.reply("技能「盾牌衝擊」攻擊未命中，魔物們的攻擊對你造成" + MonsterDamage + "傷害");
+                    console.log("技能攻擊未命中")
+                }
+                break;
+            case '挑釁':
+            case '技能5005':
+                Player_Skill_info = Player_Skill_info.技能5005;
+                if (Player_Skill_info.Skill_isLearn == "尚未習得") {
+                    return message.reply("技能尚未學習，無法使用").then(msg => {
+                        msg.delete(5000)
+                    });
+                }
+
+                if (is_Player_NoHPMPAP(Player_Skill_info)) {
+                    return message.reply("發動失敗");
+                }
+                MonsterDamage = Math.floor(Monster_Damage()) - player_Shield_Mastery;
+
+                Player_info.Character_HP -= MonsterDamage;
+                Player_Skill_Decrease_And_Increase(Player_Skill_info);
+
+
+
+                message.reply("技能「挑釁」發動，" + Monster_last_HP() +
+                    "\n魔物們的攻擊對你造成" + MonsterDamage + "傷害");
+                console.log("技能挑釁發動")
+                break;
+            case '鼓舞':
+            case '技能5006':
+                return message.reply("尚未設計").then(msg => {
+                    msg.delete(10000)
+                });
             case '近戰精通':
             case '技能6001':
                 return message.reply("使用失敗，此為被動技能").then(msg => {
@@ -571,7 +669,7 @@ module.exports = class hunt_fight {
                 if (is_Player_NoHPMPAP(Player_Skill_info)) {
                     return message.reply("發動失敗");
                 }
-                let MonsterDamage = Math.floor(Monster_Damage());
+                MonsterDamage = Math.floor(Monster_Damage()) - player_Shield_Mastery;
                 Player_info.Character_HP -= MonsterDamage;
                 Player_Skill_Decrease_And_Increase(Player_Skill_info);
                 message.reply("「勇氣」發動成功，" + Monster_last_HP() +
@@ -592,8 +690,8 @@ module.exports = class hunt_fight {
                 }
 
                 if (isSkillMiss(Player_Skill_info.Skill_Add_Accurate)) {
-                    let Damage = Math.floor(SkillAttack(Player_Skill_info));
-                    let MonsterDamage = Math.floor(Monster_Damage());
+                    Damage = Math.floor(SkillAttack(Player_Skill_info));
+                    MonsterDamage = Math.floor(Monster_Damage()) - player_Shield_Mastery;
 
                     hunt_Monster[playerID].FightMonster_FightHP -= Damage;
 
@@ -603,7 +701,7 @@ module.exports = class hunt_fight {
                     console.log("技能攻擊命中")
 
                 } else {
-                    let MonsterDamage = Math.floor(Monster_Damage());
+                    MonsterDamage = Math.floor(Monster_Damage()) - player_Shield_Mastery;
                     Player_info.Character_HP -= MonsterDamage;
                     message.reply("「劈砍」攻擊未命中，魔物們的攻擊對你造成" + MonsterDamage + "傷害");
                     console.log("技能攻擊未命中")
@@ -623,8 +721,8 @@ module.exports = class hunt_fight {
                 }
 
                 if (isSkillMiss(Player_Skill_info.Skill_Add_Accurate)) {
-                    let Damage = Math.floor(SkillAttack(Player_Skill_info));
-                    let MonsterDamage = Math.floor(Monster_Damage());
+                    Damage = Math.floor(SkillAttack(Player_Skill_info));
+                    MonsterDamage = Math.floor(Monster_Damage()) - player_Shield_Mastery;
 
                     hunt_Monster[playerID].FightMonster_FightHP -= Damage;
 
@@ -634,7 +732,7 @@ module.exports = class hunt_fight {
                     console.log("技能攻擊命中")
 
                 } else {
-                    let MonsterDamage = Math.floor(Monster_Damage());
+                    MonsterDamage = Math.floor(Monster_Damage()) - player_Shield_Mastery;
                     Player_info.Character_HP -= MonsterDamage;
                     message.reply("「突刺」攻擊未命中，魔物們的攻擊對你造成" + MonsterDamage + "傷害");
                     console.log("技能攻擊未命中")
@@ -654,8 +752,8 @@ module.exports = class hunt_fight {
                 }
 
                 if (isSkillMiss(Player_Skill_info.Skill_Add_Accurate)) {
-                    let Damage = Math.floor(SkillAttack(Player_Skill_info));
-                    let MonsterDamage = Math.floor(Monster_Damage());
+                    Damage = Math.floor(SkillAttack(Player_Skill_info));
+                    MonsterDamage = Math.floor(Monster_Damage()) - player_Shield_Mastery;
 
                     hunt_Monster[playerID].FightMonster_FightHP -= Damage;
 
@@ -665,7 +763,7 @@ module.exports = class hunt_fight {
                     console.log("技能攻擊命中")
 
                 } else {
-                    let MonsterDamage = Math.floor(Monster_Damage());
+                    MonsterDamage = Math.floor(Monster_Damage()) - player_Shield_Mastery;
                     Player_info.Character_HP -= MonsterDamage;
                     message.reply("「敲打」攻擊未命中，魔物們的攻擊對你造成" + MonsterDamage + "傷害");
                     console.log("技能攻擊未命中")

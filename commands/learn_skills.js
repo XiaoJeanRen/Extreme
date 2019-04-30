@@ -202,24 +202,179 @@ module.exports = class learn_skill {
             case 'skill_4006':
                 player_skills.skill_4006 = all_Skills
                 break;
-            case 'skill_5001':
-                player_skills.skill_5001 = all_Skills
+            case '盾牌精通':
+            case '技能5001':
+                player_skills = player_skills.技能5001;
+                var need_Exp = player_Need_Exp(player_skills)
+                if (isAlreadyLearn(player_skills)) {
+                    return message.reply("你已經會「盾牌精通」了，若你要升級技能，請輸入!升級技能.").then(msg => {
+                        msg.delete(10000)
+                    });
+                }
+                if (need_Exp > PlayerInfo.Character_Exp) {
+                    return message.reply(`你的經驗不足，至少需要${need_Exp}經驗.`).then(msg => {
+                        msg.delete(10000)
+                    });
+                }
+                //玩家技能
+                player_skills.Skill_isLearn = "已習得";
+                player_skills.Skill_Level = 1;
+                player_skills.Skill_Add_DEF = 2;
+                player_skills.Skill_Need_Exp *= 2;
+
+                //玩家素質
+                PlayerInfo.Character_Exp -= need_Exp;
+                player_skills.Character_DEF += 2;
+
+
+                message.reply("你學會了「盾牌精通」.").then(msg => {
+                    msg.delete(10000)
+                });
                 break;
-            case 'skill_5002':
-                player_skills.skill_5002 = all_Skills
+            case '防禦精通':
+            case '技能5002':
+                player_skills = player_skills.技能5002;
+                var need_Exp = player_Need_Exp(player_skills)
+                if (isAlreadyLearn(player_skills)) {
+                    return message.reply("你已經會「防禦精通」了，若你要升級技能，請輸入!升級技能.").then(msg => {
+                        msg.delete(10000)
+                    });
+                }
+                if (need_Exp > PlayerInfo.Character_Exp) {
+                    return message.reply(`你的經驗不足，至少需要${need_Exp}經驗.`).then(msg => {
+                        msg.delete(10000)
+                    });
+                }
+                //玩家技能
+                player_skills.Skill_isLearn = "已習得";
+                player_skills.Skill_Level = 1;
+                player_skills.Skill_Extra_DEF = 1;
+                player_skills.Skill_Extra_M_DEF = 1;
+                player_skills.Skill_Extra_FIRE_DEF = 1;
+                player_skills.Skill_Extra_COLD_DEF = 1;
+                player_skills.Skill_Extra_WOOD_DEF = 1;
+                player_skills.Skill_Extra_LIGHT_DEF = 1;
+                player_skills.Skill_Extra_BRIGHT_DEF = 1;
+                player_skills.Skill_Extra_DARK_DEF = 1;
+                player_skills.Skill_Extra_HIT_DEF = 1;
+                player_skills.Skill_Extra_CUT_DEF = 1;
+                player_skills.Skill_Extra_POKE_DEF = 1;
+                player_skills.Skill_Extra_POISON_DEF = 1;
+                player_skills.Skill_Need_Exp *= 2;
+
+                //玩家素質
+                PlayerInfo.Character_Exp -= need_Exp;
+                PlayerInfo.Character_DEF += 1;
+                PlayerInfo.Character_M_Def += 1;
+                PlayerInfo.Character_HIT_DEF += 1;
+                PlayerInfo.Character_CUT_DEF += 1;
+                PlayerInfo.Character_POKE_DEF += 1;
+                PlayerInfo.Character_COLD_DEF += 1;
+                PlayerInfo.Character_FIRE_DEF += 1;
+                PlayerInfo.Character_WOOD_DEF += 1;
+                PlayerInfo.Character_LIGHT_DEF += 1;
+                PlayerInfo.Character_BRIGHT_DEF += 1;
+                PlayerInfo.Character_DARK_DEF += 1;
+                PlayerInfo.Character_POISON_DEF += 1;
+
+                message.reply("你學會了「防禦精通」.").then(msg => {
+                    msg.delete(10000)
+                });
                 break;
-            case 'skill_5003':
-                player_skills.skill_5003 = all_Skills
+            case '防禦姿態':
+            case '技能5003':
+                player_skills = player_skills.技能5002;
+                var need_Exp = player_Need_Exp(player_skills)
+                if (isAlreadyLearn(player_skills)) {
+                    return message.reply("你已經會「防禦姿態」了，若你要升級技能，請輸入!升級技能.").then(msg => {
+                        msg.delete(10000)
+                    });
+                }
+                if (need_Exp > PlayerInfo.Character_Exp) {
+                    return message.reply(`你的經驗不足，至少需要${need_Exp}經驗.`).then(msg => {
+                        msg.delete(10000)
+                    });
+                }
+                //玩家技能
+                player_skills.Skill_isLearn = "已習得";
+                player_skills.Skill_Level = 1;
+                player_skills.Skill_Extra_DEF = 1;
+                player_skills.Skill_Need_Exp *= 2;
+
+                //玩家素質
+                PlayerInfo.Character_Exp -= need_Exp;
+                PlayerInfo.Character_DEF += 1;
+
+
+                message.reply("你學會了「防禦姿態」.").then(msg => {
+                    msg.delete(10000)
+                });
                 break;
-            case 'skill_5004':
-                player_skills.skill_5004 = all_Skills
+            case '盾牌衝擊':
+            case '技能5004':
+                player_skills = player_skills.技能5004;
+                var need_Exp = player_Need_Exp(player_skills)
+                if (isAlreadyLearn(player_skills)) {
+                    return message.reply("你已經會「盾牌衝擊」了，若你要升級技能，請輸入!升級技能.").then(msg => {
+                        msg.delete(10000)
+                    });
+                }
+                if (need_Exp > PlayerInfo.Character_Exp) {
+                    return message.reply(`你的經驗不足，至少需要${need_Exp}經驗.`).then(msg => {
+                        msg.delete(10000)
+                    });
+                }
+                //玩家技能
+                player_skills.Skill_isLearn = "已習得";
+                player_skills.Skill_Level = 1;
+                player_skills.Skill_Add_HIT_DMG = 120;
+                player_skills.Skill_Extra_HIT_DMG = 1;
+                player_skills.Skill_Need_Exp *= 2;
+
+                //玩家素質
+                PlayerInfo.Character_Exp -= need_Exp;
+                PlayerInfo.Character_HIT_DMG += 1;
+
+
+
+                message.reply("你學會了「盾牌衝擊」.").then(msg => {
+                    msg.delete(10000)
+                });
                 break;
-            case 'skill_5005':
-                player_skills.skill_5005 = all_Skills
+            case '挑釁':
+            case '技能5005':
+                player_skills = player_skills.技能5005;
+                var need_Exp = player_Need_Exp(player_skills)
+                if (isAlreadyLearn(player_skills)) {
+                    return message.reply("你已經會「挑釁」了，若你要升級技能，請輸入!升級技能.").then(msg => {
+                        msg.delete(10000)
+                    });
+                }
+                if (need_Exp > PlayerInfo.Character_Exp) {
+                    return message.reply(`你的經驗不足，至少需要${need_Exp}經驗.`).then(msg => {
+                        msg.delete(10000)
+                    });
+                }
+                //玩家技能
+                player_skills.Skill_isLearn = "已習得";
+                player_skills.Skill_Level = 1;
+                player_skills.Skill_Add_Taunt = 20;
+                player_skills.Skill_Need_Exp *= 2;
+
+                //玩家素質
+                PlayerInfo.Character_Exp -= need_Exp;
+
+
+                message.reply("你學會了「挑釁」.").then(msg => {
+                    msg.delete(10000)
+                });
                 break;
-            case 'skill_5006':
-                player_skills.skill_5006 = all_Skills
-                break;
+            case '鼓舞':
+            case '技能5006':
+                return message.reply("尚未設計").then(msg => {
+                    msg.delete(10000)
+                });
+                
             case '近戰精通':
             case '技能6001':
                 player_skills = player_skills.技能6001;

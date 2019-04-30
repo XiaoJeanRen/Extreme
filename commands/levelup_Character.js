@@ -42,6 +42,9 @@ module.exports = class trade_item {
                     msg.delete(5000)
                 });
                 if (yesOrno == "Yes" || yesOrno == "yes") {
+                    if(userLevelup == "騎士"){
+                        userLevelup.Character_MaxWeight += 1;
+                    }
                     let preLevel = userLevelup.Character_Level;
                     userLevelup.Character_Level += 1;
                     userLevelup.Character_Exp -= nextLevelExp;
