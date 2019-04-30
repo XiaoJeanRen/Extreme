@@ -41,7 +41,7 @@ module.exports = class adventure_Character {
         await message.delete();
         let playerID = message.author.id;
         if(!userData[playerID]) return message.reply("角色不存在，請輸入「!角色創建」.").then(msg => {msg.delete(1000)});
-        Player_info = userData[playerID];
+        let Player_info = userData[playerID];
         if (Player_info.Character_HP <= 0) return message.reply("你似乎已經死亡了...請輸入!revive").then(msg => {
             msg.delete(10000)
         });

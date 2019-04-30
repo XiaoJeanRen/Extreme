@@ -6,19 +6,18 @@ const equip = require("../character_equip.json");
 const inv = require("../players_inventory.json");
 const adv_time = require("../players_adventure_time.json");
 const default_inv = require("../default_inventory.json");
-//const default_skills = require("../default_skills.json");
 const all_skill_data = require("../all_skills_data.json");
 const player_hunt = require("../players_hunt_monster.json");
 const player_learn_Skill = require("../players_skills.json");
 //創建角色指令
-module.exports = class create_Character{
-  constructor(){
+module.exports = class create_Character {
+  constructor() {
     this.name = 'create',
-    this.alias = ['角色創建','創建角色'],
-    this.usage = '!create'
+      this.alias = ['角色創建', '創建角色'],
+      this.usage = '!create'
   }
 
-  async run(bot, message, args){
+  async run(bot, message, args) {
     await message.delete();
     let playerID = message.author.id;
     console.log(`使用者(ID: ${playerID})使用「角色創建」`)
@@ -28,11 +27,15 @@ module.exports = class create_Character{
     message.channel.awaitMessages(filter, {
       max: 1,
       time: 20000
-    }).then(collection =>{
+    }).then(collection => {
       let characterName = collection.first().content;
-      if (!collection.first().content) return message.reply("取消").then(msg => {msg.delete(5000)});
-      if(characterName == "cancel") return message.reply("取消").then(msg => {msg.delete(5000)});
-      if(!userData[message.author.id]){
+      if (!collection.first().content) return message.reply("取消").then(msg => {
+        msg.delete(5000)
+      });
+      if (characterName == "cancel") return message.reply("取消").then(msg => {
+        msg.delete(5000)
+      });
+      if (!userData[message.author.id]) {
         userData[message.author.id] = {
           UserName: message.author.username,
           UserID: message.author.id,
@@ -48,8 +51,8 @@ module.exports = class create_Character{
           Character_Rank: "E",
           Character_Class: "初心者",
           Character_Adventure: "尚未冒險",
-          Character_Hunt: "尚未戰鬥",
-          Character_isFight: false,          
+          Character_Hunt: "尚未狩獵",
+          Character_isFight: false,
           Character_Color: "##00cc00",
           Character_HP: 100,
           Character_MP: 100,
@@ -144,33 +147,31 @@ module.exports = class create_Character{
         }
 
         player_learn_Skill[message.author.id] = all_skill_data;
-  
 
-        fs.writeFile("./players_hunt_monster.json", JSON.stringify(player_hunt), (err) => { 
-        });
-        fs.writeFile("./players_skills.json", JSON.stringify(player_learn_Skill), (err) => { 
-        });
-        fs.writeFile("./players_adventure_time.json", JSON.stringify(adv_time), (err) => { 
-        });
-        fs.writeFile("./players_data.json", JSON.stringify(userData), (err) =>{
-        });
-        fs.writeFile("./character_equip.json", JSON.stringify(equip), (err) =>{
-        });
-        fs.writeFile("./players_inventory.json", JSON.stringify(inv), (err) =>{
-        });
+
+        fs.writeFile("./players_hunt_monster.json", JSON.stringify(player_hunt), (err) => {});
+        fs.writeFile("./players_skills.json", JSON.stringify(player_learn_Skill), (err) => {});
+        fs.writeFile("./players_adventure_time.json", JSON.stringify(adv_time), (err) => {});
+        fs.writeFile("./players_data.json", JSON.stringify(userData), (err) => {});
+        fs.writeFile("./character_equip.json", JSON.stringify(equip), (err) => {});
+        fs.writeFile("./players_inventory.json", JSON.stringify(inv), (err) => {});
         console.log(`使用者(ID: ${playerID})使用「角色創建」完成.`)
-        message.reply(`角色「${characterName}」創建完成`).then(msg => {msg.delete(10000)});
-      }else{
-        return message.reply("你的角色已存在").then(msg => {msg.delete(5000)});
+        message.reply(`角色「${characterName}」創建完成`).then(msg => {
+          msg.delete(10000)
+        });
+      } else {
+        return message.reply("你的角色已存在").then(msg => {
+          msg.delete(5000)
+        });
       }
 
-    }).catch(err =>{
+    }).catch(err => {
       //console.log(err)
       return message.reply("取消").then(msg => {
         msg.delete(1000)
       });
     });
-    
+
 
   }
 

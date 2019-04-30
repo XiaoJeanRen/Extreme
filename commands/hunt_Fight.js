@@ -12,7 +12,7 @@ const equip = require("../all_item_id_data.json");
 module.exports = class hunt_fight {
     constructor() {
         this.name = 'huntfight',
-            this.alias = ['hf', 'huntFight', '狩獵操作', 'HF'],
+            this.alias = ['hf', 'huntFight', '狩獵戰鬥', 'HF'],
             this.usage = '!huntfight'
     }
 
@@ -56,7 +56,7 @@ module.exports = class hunt_fight {
         }
 
         let Random_Damage = function () {
-            return Math.floor(Math.random() * 10) + (-10);
+            return Math.floor(Math.random() * 10) + 1;
         }
 
         let Random_Fight_Number = function () {
@@ -285,8 +285,8 @@ module.exports = class hunt_fight {
                     return Player_Total_DMG + Random_Damage()
                 }
             } else if (Skill_Type == "打") {
-                let player_Skill_Total_Damage = Skill_Attack_Damage * (Player_Skill_info.Skill_Add_POISON_DMG / 100) + Skill_Extra_Damage;
-                if (player_Skill_Total_Damage > Monster_info.Mosnter_POISON_DEF) {
+                let player_Skill_Total_Damage = Skill_Attack_Damage * (Player_Skill_info.Skill_Add_HIT_DMG / 100) + Skill_Extra_Damage;
+                if (player_Skill_Total_Damage > Monster_info.Mosnter_HIT_DEF) {
                     let Player_Total_DMG = (player_Skill_Total_Damage - Monster_Total_DEF) * 1.5;
                     console.log("觸發打屬弱點攻擊，總傷害: " + Player_Total_DMG);
                     return Player_Total_DMG + Random_Damage()
@@ -296,8 +296,8 @@ module.exports = class hunt_fight {
                     return Player_Total_DMG + Random_Damage()
                 }
             } else if (Skill_Type == "斬") {
-                let player_Skill_Total_Damage = Skill_Attack_Damage * (Player_Skill_info.Skill_Add_POISON_DMG / 100) + Skill_Extra_Damage;
-                if (player_Skill_Total_Damage > Monster_info.Mosnter_POISON_DEF) {
+                let player_Skill_Total_Damage = Skill_Attack_Damage * (Player_Skill_info.Skill_Add_CUT_DMG / 100) + Skill_Extra_Damage;
+                if (player_Skill_Total_Damage > Monster_info.Mosnter_CUT_DEF) {
                     let Player_Total_DMG = (player_Skill_Total_Damage - Monster_Total_DEF) * 1.5;
                     console.log("觸發斬屬弱點攻擊，總傷害: " + Player_Total_DMG);
                     return Player_Total_DMG + Random_Damage()
@@ -307,8 +307,8 @@ module.exports = class hunt_fight {
                     return Player_Total_DMG + Random_Damage()
                 }
             } else if (Skill_Type == "刺") {
-                let player_Skill_Total_Damage = Skill_Attack_Damage * (Player_Skill_info.Skill_Add_POISON_DMG / 100) + Skill_Extra_Damage;
-                if (player_Skill_Total_Damage > Monster_info.Mosnter_POISON_DEF) {
+                let player_Skill_Total_Damage = Skill_Attack_Damage * (Player_Skill_info.Skill_Add_POKE_DMG / 100) + Skill_Extra_Damage;
+                if (player_Skill_Total_Damage > Monster_info.Mosnter_POKE_DEF) {
                     let Player_Total_DMG = (player_Skill_Total_Damage - Monster_Total_DEF) * 1.5;
                     console.log("觸發刺屬弱點攻擊，總傷害: " + Player_Total_DMG);
                     return Player_Total_DMG + Random_Damage()
@@ -471,15 +471,18 @@ module.exports = class hunt_fight {
             Player_info.Character_HP += Player_Skill_info.Skill_Increase_Hp;
             Player_info.Character_MP += Player_Skill_info.Skill_Increase_Mp;
             Player_info.Character_AP += Player_Skill_info.Skill_Increase_Ap;
+            Player_info.Character_POKE_DEF += Player_Skill_info.Skill_Add_POKE_DEF;
+            Player_info.Character_CUT_DEF += Player_Skill_info.Skill_Add_CUT_DEF;
+            Player_info.Character_HIT_DEF += Player_Skill_info.Skill_Add_HIT_DEF;
         }
 
-        let isPlayer_Dead = function(){
-            if (Player_info.Character_HP <= 0){
+        let isPlayer_Dead = function () {
+            if (Player_info.Character_HP <= 0) {
                 return true;
             }
         }
 
-        if(isPlayer_Dead()){
+        if (isPlayer_Dead()) {
             player_Hunt_reset(playerID);
             return message.reply(`角色死亡`).then(msg => {
                 msg.delete(10000)
@@ -495,13 +498,17 @@ module.exports = class hunt_fight {
                     });
                 }
                 if (isMiss()) {
-
-                    let Damage = CommonAttack();
-                    let MonsterDamage = Monster_Damage()
+                    if(Player_info.Character_Class == "戰士"){
+                        let warriorExtraDamage = Player_info.Level * 2;
+                    }else{
+                        warriorExtraDamage = 0;
+                    }
+                    let Damage = Math.floor(CommonAttack()) + warriorExtraDamage;
+                    let MonsterDamage = Math.floor(Monster_Damage());
                     hunt_Monster[playerID].FightMonster_FightHP -= Damage;
                     Player_info.Character_HP -= MonsterDamage;
                     Player_info.Character_AP -= 5;
-                    message.reply("普通攻擊命中，" + Monster_last_HP() +"，魔物們的攻擊對你造成" + MonsterDamage + "傷害");
+                    message.reply("普通攻擊命中，" + Monster_last_HP() + "，魔物們的攻擊對你造成" + MonsterDamage + "傷害");
                     console.log("普通攻擊命中")
 
                 } else {
@@ -513,19 +520,20 @@ module.exports = class hunt_fight {
 
                 break;
             case '技能1001':
-                if (Player_Skill_info.技能1001.Skill_isLearn == "尚未習得") {
+                Player_Skill_info = Player_Skill_info.技能1001;
+                if (Player_Skill_info.Skill_isLearn == "尚未習得") {
                     return message.reply("技能尚未學習，無法使用").then(msg => {
                         msg.delete(5000)
                     });
                 }
-                Player_Skill_info = Player_Skill_info.技能1001;
-                if (is_Player_NoHPMPAP()) {
+
+                if (is_Player_NoHPMPAP(Player_Skill_info)) {
                     return message.reply("發動失敗");
                 }
 
                 if (isSkillMiss(Player_Skill_info.Skill_Add_Accurate)) {
-                    let Damage = SkillAttack(Player_Skill_info);
-                    let MonsterDamage = Monster_Damage();
+                    let Damage = Math.floor(SkillAttack(Player_Skill_info));
+                    let MonsterDamage = Math.floor(Monster_Damage());
 
                     hunt_Monster[playerID].FightMonster_FightHP -= Damage;
 
@@ -540,9 +548,128 @@ module.exports = class hunt_fight {
                     message.reply("技能1001攻擊未命中，魔物們的攻擊對你造成" + MonsterDamage + "傷害");
                     console.log("技能攻擊未命中")
                 }
+                break;
+            case '近戰精通':
+            case '技能6001':
+                return message.reply("使用失敗，此為被動技能").then(msg => {
+                    msg.delete(20000)
+                });
+            case '耐力訓練':
+            case '技能6002':
+                return message.reply("使用失敗，此為被動技能").then(msg => {
+                    msg.delete(20000)
+                });
+            case '勇氣':
+            case '技能6003':
+                Player_Skill_info = Player_Skill_info.技能6003;
+                if (Player_Skill_info.Skill_isLearn == "尚未習得") {
+                    return message.reply("技能尚未學習，無法使用").then(msg => {
+                        msg.delete(5000)
+                    });
+                }
 
+                if (is_Player_NoHPMPAP(Player_Skill_info)) {
+                    return message.reply("發動失敗");
+                }
+                let MonsterDamage = Math.floor(Monster_Damage());
+                Player_info.Character_HP -= MonsterDamage;
+                Player_Skill_Decrease_And_Increase(Player_Skill_info);
+                message.reply("「勇氣」發動成功，" + Monster_last_HP() +
+                    "\n魔物們的攻擊對你造成" + MonsterDamage + "傷害");
+                console.log("技能攻擊命中")
+                break;
+            case '劈砍':
+            case '技能6004':
+                Player_Skill_info = Player_Skill_info.技能6004;
+                if (Player_Skill_info.Skill_isLearn == "尚未習得") {
+                    return message.reply("技能尚未學習，無法使用").then(msg => {
+                        msg.delete(5000)
+                    });
+                }
 
+                if (is_Player_NoHPMPAP(Player_Skill_info)) {
+                    return message.reply("發動失敗");
+                }
 
+                if (isSkillMiss(Player_Skill_info.Skill_Add_Accurate)) {
+                    let Damage = Math.floor(SkillAttack(Player_Skill_info));
+                    let MonsterDamage = Math.floor(Monster_Damage());
+
+                    hunt_Monster[playerID].FightMonster_FightHP -= Damage;
+
+                    Player_Skill_Decrease_And_Increase(Player_Skill_info);
+                    message.reply("「劈砍」攻擊命中，" + Monster_last_HP() +
+                        "\n魔物們的攻擊對你造成" + MonsterDamage + "傷害");
+                    console.log("技能攻擊命中")
+
+                } else {
+                    let MonsterDamage = Math.floor(Monster_Damage());
+                    Player_info.Character_HP -= MonsterDamage;
+                    message.reply("「劈砍」攻擊未命中，魔物們的攻擊對你造成" + MonsterDamage + "傷害");
+                    console.log("技能攻擊未命中")
+                }
+                break;
+            case '突刺':
+            case '技能6005':
+                Player_Skill_info = Player_Skill_info.技能6005;
+                if (Player_Skill_info.Skill_isLearn == "尚未習得") {
+                    return message.reply("技能尚未學習，無法使用").then(msg => {
+                        msg.delete(5000)
+                    });
+                }
+
+                if (is_Player_NoHPMPAP(Player_Skill_info)) {
+                    return message.reply("發動失敗");
+                }
+
+                if (isSkillMiss(Player_Skill_info.Skill_Add_Accurate)) {
+                    let Damage = Math.floor(SkillAttack(Player_Skill_info));
+                    let MonsterDamage = Math.floor(Monster_Damage());
+
+                    hunt_Monster[playerID].FightMonster_FightHP -= Damage;
+
+                    Player_Skill_Decrease_And_Increase(Player_Skill_info);
+                    message.reply("「突刺」攻擊命中，" + Monster_last_HP() +
+                        "\n魔物們的攻擊對你造成" + MonsterDamage + "傷害");
+                    console.log("技能攻擊命中")
+
+                } else {
+                    let MonsterDamage = Math.floor(Monster_Damage());
+                    Player_info.Character_HP -= MonsterDamage;
+                    message.reply("「突刺」攻擊未命中，魔物們的攻擊對你造成" + MonsterDamage + "傷害");
+                    console.log("技能攻擊未命中")
+                }
+                break;
+            case '敲打':
+            case '技能6006':
+                Player_Skill_info = Player_Skill_info.技能6006;
+                if (Player_Skill_info.Skill_isLearn == "尚未習得") {
+                    return message.reply("技能尚未學習，無法使用").then(msg => {
+                        msg.delete(5000)
+                    });
+                }
+
+                if (is_Player_NoHPMPAP(Player_Skill_info)) {
+                    return message.reply("發動失敗");
+                }
+
+                if (isSkillMiss(Player_Skill_info.Skill_Add_Accurate)) {
+                    let Damage = Math.floor(SkillAttack(Player_Skill_info));
+                    let MonsterDamage = Math.floor(Monster_Damage());
+
+                    hunt_Monster[playerID].FightMonster_FightHP -= Damage;
+
+                    Player_Skill_Decrease_And_Increase(Player_Skill_info);
+                    message.reply("「敲打」攻擊命中，" + Monster_last_HP() +
+                        "\n魔物們的攻擊對你造成" + MonsterDamage + "傷害");
+                    console.log("技能攻擊命中")
+
+                } else {
+                    let MonsterDamage = Math.floor(Monster_Damage());
+                    Player_info.Character_HP -= MonsterDamage;
+                    message.reply("「敲打」攻擊未命中，魔物們的攻擊對你造成" + MonsterDamage + "傷害");
+                    console.log("技能攻擊未命中")
+                }
                 break;
             case '逃跑':
 

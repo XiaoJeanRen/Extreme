@@ -54,6 +54,7 @@ module.exports = class create_Character {
     async run(bot, message, args) {
         await message.delete();
         let playerID = message.author.id;
+        
         console.log(`使用者(ID: ${playerID})使用「冒險時間」`)
         if(!userData[playerID]) return message.reply("角色不存在，請輸入「!角色創建」.").then(msg => {msg.delete(1000)});
         if (player_Hunt[playerID].isFightMonster === false) return message.reply("你還未參與任何狩獵活動").then(msg => {
@@ -61,14 +62,14 @@ module.exports = class create_Character {
         });
 
         let isPlayer_Dead = function(){
-            if (userData[playerID].Player_info.Character_HP <= 0){
+            if (userData[playerID].Character_HP <= 0){
                 return true;
             }
         }
 
         if(isPlayer_Dead()){
             player_Hunt_reset(playerID);
-            return message.reply(`角色死亡`).then(msg => {
+            return message.reply(`你似乎已經死亡了...請輸入!revive`).then(msg => {
                 msg.delete(10000)
             });
         }

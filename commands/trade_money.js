@@ -20,7 +20,9 @@ module.exports = class trade_item {
         });
         let tradePlayerID = message.mentions.members.first().id; //獲得金錢玩家id
         let tradePlayer = userData[playerID];       //扣除金錢玩家
-        
+        if (tradePlayer.Character_Adventure == "正在冒險" || tradePlayer.Character_Adventure == "正在狩獵") return message.reply("你正在冒險或狩獵，無法進行交易.").then(msg => {
+            msg.delete(10000)
+        });
         if (tradePlayer.Character_HP <= 0) return message.reply("你似乎已經死亡了...請輸入!revive").then(msg => {
             msg.delete(10000)
         });

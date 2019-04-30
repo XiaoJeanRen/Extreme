@@ -24,6 +24,8 @@ module.exports = class reset {
                 itemID: "000"
             }
         }
+        fs.writeFile("./players_skills.json", JSON.stringify({}), (err) => {
+        });
         fs.writeFile("./players_inventory.json", JSON.stringify({}), (err) => {
         });
         fs.writeFile("./players_hunt_monster.json", JSON.stringify({}), (err) => {

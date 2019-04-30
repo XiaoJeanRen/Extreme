@@ -8,6 +8,7 @@ const player_Hunt = require("../players_hunt_monster.json");
 const loots_money = require("../hunt_loots/hunt_loot_Money.js");
 const loots_exp = require("../hunt_loots/hunt_loot_Exp.js");
 const loots_item = require("../hunt_loots/hunt_loot_Item.js");
+const player_Original_Hunt_data = require("../players_original_fight_data.json");
 
 let invfull = function (myinv_info, playerID) {
     if (myinv_info.inv_1.itemID != "000" &&
@@ -63,13 +64,49 @@ let player_Hunt_reset = function (playerID) {
     player_Hunt[playerID].FightMonster_TotalHP = 0;
     player_Hunt[playerID].FightMonster_FightHP = 0;
     userData[playerID].Character_Hunt = "無";
+    userData[playerID].Character_Str = player_Original_Hunt_data[playerID].Character_Str;
+    userData[playerID].Character_Int = player_Original_Hunt_data[playerID].Character_Int;
+    userData[playerID].Character_Dex = player_Original_Hunt_data[playerID].Character_Dex;
+    userData[playerID].Character_Acc = player_Original_Hunt_data[playerID].Character_Acc;
+    userData[playerID].Character_DMG = player_Original_Hunt_data[playerID].Character_DMG;
+    userData[playerID].Character_DEF = player_Original_Hunt_data[playerID].Character_DEF;
+    userData[playerID].Character_M_DMG = player_Original_Hunt_data[playerID].Character_M_DMG;
+    userData[playerID].Character_M_Def = player_Original_Hunt_data[playerID].Character_M_Def;
+    userData[playerID].Character_Strike = player_Original_Hunt_data[playerID].Character_Strike;
+    userData[playerID].Character_Accurate = player_Original_Hunt_data[playerID].Character_Accurate;
+    userData[playerID].Character_Taunt = player_Original_Hunt_data[playerID].Character_Taunt;
+    userData[playerID].Character_HIT_DMG = player_Original_Hunt_data[playerID].Character_HIT_DMG;
+    userData[playerID].Character_HIT_DEF = player_Original_Hunt_data[playerID].Character_HIT_DEF;
+    userData[playerID].Character_CUT_DMG = player_Original_Hunt_data[playerID].Character_CUT_DMG;
+    userData[playerID].Character_CUT_DEF = player_Original_Hunt_data[playerID].Character_CUT_DEF;
+    userData[playerID].Character_POKE_DMG = player_Original_Hunt_data[playerID].Character_POKE_DMG;
+    userData[playerID].Character_POKE_DEF = player_Original_Hunt_data[playerID].Character_POKE_DEF;
+    userData[playerID].Character_COLD_DMG = player_Original_Hunt_data[playerID].Character_COLD_DMG;
+    userData[playerID].Character_COLD_DEF = player_Original_Hunt_data[playerID].Character_COLD_DEF;
+    userData[playerID].Character_FIRE_DMG = player_Original_Hunt_data[playerID].Character_FIRE_DMG;
+    userData[playerID].Character_FIRE_DEF = player_Original_Hunt_data[playerID].Character_FIRE_DEF;
+    userData[playerID].Character_WOOD_DMG = player_Original_Hunt_data[playerID].Character_WOOD_DMG;
+    userData[playerID].Character_WOOD_DEF = player_Original_Hunt_data[playerID].Character_WOOD_DEF;
+    userData[playerID].Character_LIGHT_DMG = player_Original_Hunt_data[playerID].Character_LIGHT_DMG;
+    userData[playerID].Character_LIGHT_DEF = player_Original_Hunt_data[playerID].Character_LIGHT_DEF;
+    userData[playerID].Character_BRIGHT_DMG = player_Original_Hunt_data[playerID].Character_BRIGHT_DMG;
+    userData[playerID].Character_BRIGHT_DEF = player_Original_Hunt_data[playerID].Character_BRIGHT_DEF;
+    userData[playerID].Character_DARK_DMG = player_Original_Hunt_data[playerID].Character_DARK_DMG;
+    userData[playerID].Character_POISON_DMG = player_Original_Hunt_data[playerID].Character_POISON_DMG;
+    userData[playerID].Character_POISON_DEF = player_Original_Hunt_data[playerID].Character_POISON_DEF;
+    userData[playerID].Character_Status1 = player_Original_Hunt_data[playerID].Character_Status1;
+    userData[playerID].Character_Status2 = player_Original_Hunt_data[playerID].Character_Status2;
+    userData[playerID].Character_Status3 = player_Original_Hunt_data[playerID].Character_Status3;
+    userData[playerID].Character_Status4 = player_Original_Hunt_data[playerID].Character_Status4;
+    userData[playerID].Character_Status5 = player_Original_Hunt_data[playerID].Character_Status5;
+    userData[playerID].Character_Status6 = player_Original_Hunt_data[playerID].Character_Status6;
 }
 
 
 module.exports = class fight_reward {
     constructor() {
         this.name = 'hreward',
-            this.alias = ['戰鬥獎勵', 'hre'],
+            this.alias = ['狩獵獎勵', 'hre'],
             this.usage = '!hreward'
     }
 
@@ -119,7 +156,7 @@ module.exports = class fight_reward {
 
         if(isPlayer_Dead()){
             player_Hunt_reset(playerID);
-            return message.reply(`角色死亡`).then(msg => {
+            return message.reply(`你似乎已經死亡了...請輸入!revive`).then(msg => {
                 msg.delete(10000)
             });
         }
@@ -155,9 +192,10 @@ module.exports = class fight_reward {
                 });
                 player_Hunt_reset(playerID);
             } else {
-                message.reply("狩獵失敗").then(msg => {
+                message.reply("狩獵失敗，扣除100HP.").then(msg => {
                     msg.delete(10000)
                 });
+                userData[playerID].Character_HP -= 100;
                 player_Hunt_reset(playerID);
             }
             fs.writeFile("./players_adventure_time.json", JSON.stringify(player_Hunt), (err) => {});

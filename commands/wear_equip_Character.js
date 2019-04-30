@@ -89,8 +89,11 @@ module.exports = class wear_equip {
         await message.delete();
         let playerID = message.author.id;
         if(!userData[playerID]) return message.reply("角色不存在，請輸入「!角色創建」.").then(msg => {msg.delete(1000)});
-        Player_info = userData[playerID];
+        let Player_info = userData[playerID];
         if (Player_info.Character_HP <= 0) return message.reply("你似乎已經死亡了...請輸入!revive").then(msg => {
+            msg.delete(10000)
+        });
+        if (Player_info.Character_Adventure == "正在冒險" || Player_info.Character_Adventure == "正在狩獵") return message.reply("你正在冒險或狩獵，無法穿戴裝備.").then(msg => {
             msg.delete(10000)
         });
         let myinv_info = inv[playerID];

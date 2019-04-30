@@ -18,10 +18,10 @@ module.exports = class trade_item {
             msg.delete(1000)
         });
         let userLevelup = userData[playerID];
-        let nextLevelExp = userLevelup.level * 300 * 2.5;
-        let difference = nextLevelExp - userLevelup.exp;
+        let nextLevelExp = userLevelup.Character_Level * 300 * 2.5;
+        let difference = nextLevelExp - userLevelup.Character_Exp;
 
-        if (userLevelup.exp < nextLevelExp) {
+        if (userLevelup.Character_Exp < nextLevelExp) {
             return message.reply(`經驗不足，你還差${difference}經驗可以升級`).then(msg => {
                 msg.delete(1000)
             });
@@ -42,19 +42,20 @@ module.exports = class trade_item {
                     msg.delete(5000)
                 });
                 if (yesOrno == "Yes" || yesOrno == "yes") {
-                    let preLevel = userLevelup.level;
-                    userLevelup.level += 1;
-                    userLevelup.exp -= nextLevelExp;
-                    difference = nextLevelExp - userLevelup.exp;
+                    let preLevel = userLevelup.Character_Level;
+                    userLevelup.Character_Level += 1;
+                    userLevelup.Character_Exp -= nextLevelExp;
+                    difference = nextLevelExp - userLevelup.Character_Exp;
                     let levelUpEmbed = new Discord.RichEmbed()
                     .setTitle(`🌍世界之聲🌍`)
                     .setColor("##00cc00")
                     .addField("你升級了Level 🆙", `Level. ${preLevel} ➡ Level. ${preLevel+1}`)
-                    .addField("等級", "**目前等級：**" + userLevelup.level + "** 目前經驗：**" + userLevelup.exp)
+                    .addField("等級", "**目前等級：**" + userLevelup.Character_Level + "** 目前經驗：**" + userLevelup.Character_Exp)
                     .setFooter(`離下一個等級還有 ${difference} 經驗值`, message.author.displayAvatarURL);
                     message.reply(levelUpEmbed).then(msg => {
                         msg.delete(5000)
                     });
+                    
                 }
             }).catch(err => {
                 //console.log(err)

@@ -7,7 +7,7 @@ const userData = require("../players_data.json");
 module.exports = class transfer1 {
     constructor() {
         this.name = 'transfer_1',
-            this.alias = ['轉職1轉'],
+            this.alias = ['轉職1轉','轉職'],
             this.usage = '!transfer_1'
     }
 
@@ -20,7 +20,7 @@ module.exports = class transfer1 {
             msg.delete(10000)
         });
         let transferClass = args[1];
-        if (!args[1]) return message.reply("指令錯誤，指令格式為 !transfer_1 <職業>，使用!classInfo確認職業").then(msg => {
+        if (!args[1]) return message.reply("指令錯誤，指令格式為 !transfer_1 <職業>，輸入!cli確認職業詳細資料").then(msg => {
             msg.delete(10000)
         });
         if (transferPlayer.level < 10) {
@@ -30,6 +30,11 @@ module.exports = class transfer1 {
             });
             
         } else {
+            if (transferClass != "戰士" || transferClass != "法師" || transferClass != "牧師" ||
+            transferClass != "小偷" || transferClass != "弓手" || transferClass != "騎士") return message.reply(`等級不足，一轉至少需要「等級10」.`).then(msg => {
+                msg.delete(1000)
+            });
+            
             message.reply(`開始進行「轉職」，你選擇的職業是「${transferClass}」，你確定要轉職嗎?(yes / no)`).then(msg => {
                 msg.delete(20000)
             });

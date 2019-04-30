@@ -15,7 +15,7 @@ module.exports = class mystatus_character{
     let playerID = message.author.id;
     let info = userData[playerID];
     if(!userData[playerID]) return message.reply("角色不存在，請輸入「!角色創建」.").then(msg => {msg.delete(1000)});
-    console.log(`使用者(ID: ${playerID})使用「角色背包」`)
+    console.log(`使用者(ID: ${playerID})使用「角色狀態」`)
     let nextLevelExp = info.Character_Level * 300 * 2.5;
     let difference = nextLevelExp - info.Character_Exp;
     let playerStatusEmbed = new Discord.RichEmbed()
@@ -38,12 +38,12 @@ module.exports = class mystatus_character{
     "**魔法防禦力： **" + info.Character_M_Def + "\n" +
     "**爆擊率： **" + info.Character_Strike + "\n" +
     "**命中率： **" + info.Character_Accurate + "\n" +
-    "**(打/刺/斬/毒)傷害： **(" + 
+    "**(打/斬/刺/毒)傷害： **(" + 
     info.Character_HIT_DMG + "/" + 
     info.Character_CUT_DMG + "/" +
     info.Character_POKE_DMG + "/" + 
     info.Character_POISON_DMG + ")" + "\n" +
-    "**(打/刺/斬/毒)防禦： **(" + 
+    "**(打/斬/刺/毒)防禦： **(" + 
     info.Character_HIT_DEF + "/" + 
     info.Character_CUT_DEF + "/" +
     info.Character_POKE_DEF + "/" + 
