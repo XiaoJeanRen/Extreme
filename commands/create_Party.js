@@ -39,7 +39,12 @@ module.exports = class create_party {
             Party_Member2: "無",
             Party_Member3: "無",
             Party_Member4: "無",
-            Party_Member5: "無"
+            Party_Member5: "無",
+            Party_Member_Number: 1,
+            Party_Hunt_Target: "無",
+            Party_isHunt: "無",
+            Party_Share_Type: "隊長分配",
+            Party_Treasure: "無"
         }
         Player_Info.Character_Party = "組隊隊長";
         Player_Info.Character_PartyLeader = playerID;

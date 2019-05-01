@@ -4,10 +4,12 @@ const fs = require("fs");
 const inv = require("../players_inventory.json");
 const userData = require("../players_data.json");
 const all_item = require("../all_item_id_data.json");
+const all_hunt = require("../all_hunts_id_data.json");
 const adv_time = require("../players_adventure_time.json");
 const loots_money = require("../loots/loot_Money.js");
 const loots_exp = require("../loots/loot_Exp.js");
 const loots_item = require("../loots/loot_Item.js");
+const loots_hunt_Target = require("../loots/loot_hunt_Target.js");
 
 let invfull = function (myinv_info,playerID) {
     if (myinv_info.inv_1.itemID != "000" &&
@@ -21,7 +23,16 @@ let invfull = function (myinv_info,playerID) {
         myinv_info.inv_9.itemID != "000" &&
         myinv_info.inv_10.itemID != "000") {
         console.log(`使用者(ID: ${playerID})背包已滿.`)
-        return "full"
+        return true
+    }
+}
+
+let invhfull = function (myinv_info,playerID) {
+    if (myinv_info.invh_1.itemID != "000" &&
+        myinv_info.invh_2.itemID != "000" &&
+        myinv_info.invh_3.itemID != "000") {
+        console.log(`使用者(ID: ${playerID})狩獵目標已滿.`)
+        return true
     }
 }
 //玩家取得冒險獎勵指令
@@ -102,16 +113,26 @@ module.exports = class adventure_reward {
              * loots_item  => require("../loots/loot_Item.js");
              */
             let getitem = loots_item.lootItem(playerID);
+
+            /**
+             * 取得狩獵目標
+             */
+            let getHunt = loots_hunt_Target.loot_Target(playerID);
             /**
              * 玩家冒險資料重置
              */
             adv_time_reset(playerID)
-            if(invfull(inv[playerID],playerID) == "full"){
+            if(invfull(inv[playerID],playerID)){
                 message.reply("你的背包已滿，請清理後再進行冒險，以免無法獲得道具.").then(msg => {
                     msg.delete(10000)
                 });
             }
-            message.reply(`金幣獎勵「${getMoney}元」已獲得.\n經驗獎勵「${getExp}」已獲得.\n道具獎勵「${getitem}」已獲得.`).then(msg => {
+            if(invhfull(inv[playerID],playerID)){
+                message.reply("你的狩獵目標已滿，請清理後再進行冒險，以免無法獲得狩獵目標.").then(msg => {
+                    msg.delete(10000)
+                });
+            }
+            message.reply(`金幣獎勵「${getMoney}元」已獲得.\n經驗獎勵「${getExp}」已獲得.\n道具獎勵「${getitem}」已獲得\n額外獎勵「${getHunt}」已獲得.`).then(msg => {
                 msg.delete(10000)
             });
         } else {
@@ -127,6 +148,8 @@ module.exports = class adventure_reward {
         fs.writeFile("./players_data.json", JSON.stringify(userData), (err) => {});
 
         fs.writeFile("./all_item_id_data.json", JSON.stringify(all_item), (err) => {});
+
+        fs.writeFile("./all_hunts_id_data.json", JSON.stringify(all_hunt), (err) => {});
 
     }
 }

@@ -52,7 +52,7 @@ module.exports = class create_Character {
           Character_Class: "初心者",
           Character_Adventure: "尚未冒險",
           Character_Hunt: "尚未狩獵",
-          Character_isFight: false,
+          Character_isAlive: "還活著",
           Character_Party: "無",
           Character_PartyLeader: "無",
           Character_Color: "##00cc00",

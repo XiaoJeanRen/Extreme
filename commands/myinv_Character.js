@@ -4,6 +4,7 @@ const fs = require("fs");
 const userData = require("../players_data.json");
 const equip = require("../all_item_id_data.json");
 const inv = require("../players_inventory.json");
+
 //查看背包指令
 module.exports = class myinv{
   constructor(){
@@ -36,6 +37,11 @@ module.exports = class myinv{
     "**空間8： **`物品id: " + myinv_info.inv_8.itemID + "` 名稱: `" +equip[myinv_info.inv_8.itemID].Equip_Name + "`\n" +
     "**空間9： **`物品id: " + myinv_info.inv_9.itemID + "` 名稱: `" +equip[myinv_info.inv_9.itemID].Equip_Name + "`\n" +
     "**空間10： **`物品id: " + myinv_info.inv_10.itemID + "` 名稱: `" +equip[myinv_info.inv_10.itemID].Equip_Name + "`"
+    )
+    .addField("**狩獵目標**",
+    "**狩獵目標1： **`狩獵id: " + myinv_info.invh_1.itemID +"`\n" +
+    "**狩獵目標2： **`狩獵id: " + myinv_info.invh_2.itemID +"`\n" +
+    "**狩獵目標3： **`狩獵id: " + myinv_info.invh_3.itemID +"`\n" 
     )
     .setFooter(`負重 ${info.Character_Weight}  /  ${info.Character_MaxWeight}`,message.author.displayAvatarURL);
 

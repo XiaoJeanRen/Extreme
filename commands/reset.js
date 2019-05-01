@@ -24,6 +24,16 @@ module.exports = class reset {
                 itemID: "000"
             }
         }
+        for(let i = 1; i <=3 ; i++){
+            default_inv["invh_" + i] = {
+                itemID: "000"
+            }
+        }
+        for(let i = 1; i <=3 ; i++){
+            default_inv["invm_" + i] = {
+                itemID: "000"
+            }
+        }
         fs.writeFile("./players_party_data.json", JSON.stringify({}), (err) => {
         });
         fs.writeFile("./players_skills.json", JSON.stringify({}), (err) => {

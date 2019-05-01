@@ -13,9 +13,7 @@ module.exports = class delete_party {
 
     async run(bot, message, args) {
         await message.delete();
-        if (message.author.id != config.gm) return message.reply("權限不足").then(msg => {
-            msg.delete(1000)
-        });
+        
         let playerID = message.author.id;
         let Player_Info = userData[playerID];
         let Party_LeaderID = Player_Info.Character_PartyLeader;
@@ -23,7 +21,9 @@ module.exports = class delete_party {
         if(Player_Info.Character_Party != "組隊隊長"){
             return message.reply("你不是隊長，無法解散組隊.").then(msg => {msg.delete(1000)});
         }
-        
+        if (Player_info.Character_Hunt == "正在共同狩獵") return message.reply("無法在狩獵中解散隊伍.").then(msg => {
+            msg.delete(10000)
+        });
         if(!userData[playerID]) return message.reply("角色不存在，請輸入「!角色創建」.").then(msg => {msg.delete(1000)});
         
         if(Deleteeparty[Party_LeaderID].Party_Member1 != "無"){
@@ -46,15 +46,9 @@ module.exports = class delete_party {
             userData[Deleteeparty[Party_LeaderID].Party_Member5].Character_Party = "無"
             userData[Deleteeparty[Party_LeaderID].Party_Member5].Character_PartyLeader = "無"
         }
-        Deleteeparty[playerID] = {
-            Party_Name: "無",
-            Party_Leader: playerID,
-            Party_Member1: "無",
-            Party_Member2: "無",
-            Party_Member3: "無",
-            Party_Member4: "無",
-            Party_Member5: "無"
-        }
+    
+        delete Deleteeparty[playerID]; //刪除隊五資料
+
         Player_Info.Character_Party = "無";
         Player_Info.Character_PartyLeader = "無";
         console.log(`使用者(ID: ${playerID})使用「解散隊伍」`)

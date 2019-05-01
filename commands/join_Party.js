@@ -16,23 +16,26 @@ module.exports = class join_party {
         let playerID = message.author.id;
         let Player_Info = userData[playerID];
         if(Player_Info.Character_Party == "正在組隊中"){
-            return message.reply("你已在某個組隊裡了.").then(msg => {msg.delete(1000)});
+            return message.reply("你已在某個組隊裡了.").then(msg => {msg.delete(5000)});
         }else if(Player_Info.Character_Party == "組隊隊長"){
-            return message.reply("你是隊長，無法再加入隊伍.").then(msg => {msg.delete(1000)});
+            return message.reply("你是隊長，無法再加入隊伍.").then(msg => {msg.delete(5000)});
         }
         if (!message.mentions.members.first()) return message.reply("指令錯誤，指令格式為!jcp @使用者.").then(msg => {
-            msg.delete(1000)
+            msg.delete(5000)
         });
         let Party_LeaderID = message.mentions.members.first().id; //獲得組隊隊長玩家id
         if (playerID == Party_LeaderID) return message.reply("你不能加入自己的組隊.").then(msg => {
-            msg.delete(1000)
+            msg.delete(5000)
         });
         if(!userData[playerID]) return message.reply("角色不存在，請輸入「!角色創建」.").then(msg => {msg.delete(1000)});
         if (!userData[Party_LeaderID]) return message.reply("對象不存在.").then(msg => {
-            msg.delete(1000)
+            msg.delete(5000)
         });
         if(userData[Party_LeaderID].Character_Party != "組隊隊長") return message.reply("此人不是組隊隊長.").then(msg => {
-            msg.delete(1000)
+            msg.delete(5000)
+        });
+        if (Joineparty[Party_LeaderID].Party_isHunt == "正在狩獵") return message.reply("此隊伍正在狩獵，無法加入.").then(msg => {
+            msg.delete(5000)
         });
         
         if(Joineparty[Party_LeaderID].Party_Member1 == "無"){
@@ -50,7 +53,7 @@ module.exports = class join_party {
                 msg.delete(1000)
             }); 
         }
-        
+        Joineparty[Party_LeaderID].Party_Member_Number +=1;
         Player_Info.Character_Party = "正在組隊中";
         Player_Info.Character_PartyLeader = Party_LeaderID;
         message.reply("你已成功加入隊伍.").then(msg => {

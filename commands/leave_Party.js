@@ -24,7 +24,9 @@ module.exports = class leave_party {
         if(Player_Info.Character_Party == "無"){
             return message.reply("你不在任何隊伍裡.").then(msg => {msg.delete(1000)});
         }
-        
+        if (Player_info.Character_Hunt == "正在共同狩獵") return message.reply("無法在狩獵中離開隊伍.").then(msg => {
+            msg.delete(10000)
+        });
 
         if(Leaveparty[Party_LeaderID].Party_Member1 == playerID){
             Leaveparty[Party_LeaderID].Party_Member1 = "無";
@@ -37,10 +39,12 @@ module.exports = class leave_party {
         }else if(Leaveparty[Party_LeaderID].Party_Member5 == playerID){
             Leaveparty[Party_LeaderID].Party_Member5 = "無";
         }else{
-            return message.reply("此錯誤.").then(msg => {
+            return message.reply("錯誤.").then(msg => {
                 msg.delete(1000)
             }); 
         }
+        
+        Leaveparty[Party_LeaderID].Party_Member_Number -=1;
         Player_Info.Character_Party = "無";
         Player_Info.Character_PartyLeader = "無";
         console.log(`使用者(ID: ${playerID})使用「離開隊伍」`)

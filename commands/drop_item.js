@@ -3,37 +3,48 @@ const config = require("../config.json");
 const fs = require("fs");
 const inv = require("../players_inventory.json");
 const userData = require("../players_data.json");
+const allitem = require("../all_item_id_data.json");
 // 丟棄裝備指令
 let checkItem = function (myinv_info, itemID) {
     if (itemID == myinv_info.inv_1.itemID) {
         myinv_info.inv_1.itemID = "000";
+        delete allitem[itemID];
 
     } else if (itemID == myinv_info.inv_2.itemID) {
         myinv_info.inv_2.itemID = "000";
+        delete allitem[itemID];
 
     } else if (itemID == myinv_info.inv_3.itemID) {
         myinv_info.inv_3.itemID = "000";
+        delete allitem[itemID];
 
     } else if (itemID == myinv_info.inv_4.itemID) {
         myinv_info.inv_4.itemID = "000";
+        delete allitem[itemID];
 
     } else if (itemID == myinv_info.inv_5.itemID) {
         myinv_info.inv_5.itemID = "000";
+        delete allitem[itemID];
 
     } else if (itemID == myinv_info.inv_6.itemID) {
         myinv_info.inv_6.itemID = "000";
+        delete allitem[itemID];
 
     } else if (itemID == myinv_info.inv_7.itemID) {
         myinv_info.inv_7.itemID = "000";
+        delete allitem[itemID];
 
     } else if (itemID == myinv_info.inv_8.itemID) {
         myinv_info.inv_8.itemID = "000";
+        delete allitem[itemID];
 
     } else if (itemID == myinv_info.inv_9.itemID) {
         myinv_info.inv_9.itemID = "000";
+        delete allitem[itemID];
 
     } else if (itemID == myinv_info.inv_10.itemID) {
         myinv_info.inv_10.itemID = "000";
+        delete allitem[itemID];
     }
 }
 
@@ -75,6 +86,7 @@ module.exports = class drop {
             });
             fs.writeFile("./players_inventory.json", JSON.stringify(inv), (err) =>{
             });
+            fs.writeFile("./all_item_id_data.json", JSON.stringify(allitem), (err) => {});
         }
     }
 }

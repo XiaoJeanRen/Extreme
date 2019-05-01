@@ -107,7 +107,6 @@ module.exports = {
                     all_item[all_item["總資料"].number].Item_ID = all_item["總資料"].number;
                     all_item[all_item["總資料"].number].Equip_Quality = quality;
                     all_item["總資料"].number += 1;
-                    all_item["總資料"].number += 1;
                     return "銅盾";
                 default:
                     break;
@@ -121,13 +120,11 @@ module.exports = {
                     all_item[all_item["總資料"].number].Item_ID = all_item["總資料"].number;
                     all_item[all_item["總資料"].number].Equip_Quality = quality;
                     all_item["總資料"].number += 1;
-                    all_item["總資料"].number += 1;
                     return "鐵劍";
                 case 2:
                     all_item[all_item["總資料"].number] = defaultItem["鐵盾"];
                     all_item[all_item["總資料"].number].Item_ID = all_item["總資料"].number;
                     all_item[all_item["總資料"].number].Equip_Quality = quality;
-                    all_item["總資料"].number += 1;
                     all_item["總資料"].number += 1;
                     return "鐵盾";
                 default:
