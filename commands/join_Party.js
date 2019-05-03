@@ -15,6 +15,7 @@ module.exports = class join_party {
         await message.delete();
         let playerID = message.author.id;
         let Player_Info = userData[playerID];
+        if(!userData[playerID]) return message.reply("角色不存在，請輸入「!角色創建」.").then(msg => {msg.delete(1000)});
         if(Player_Info.Character_Party == "正在組隊中"){
             return message.reply("你已在某個組隊裡了.").then(msg => {msg.delete(5000)});
         }else if(Player_Info.Character_Party == "組隊隊長"){
@@ -27,7 +28,7 @@ module.exports = class join_party {
         if (playerID == Party_LeaderID) return message.reply("你不能加入自己的組隊.").then(msg => {
             msg.delete(5000)
         });
-        if(!userData[playerID]) return message.reply("角色不存在，請輸入「!角色創建」.").then(msg => {msg.delete(1000)});
+        
         if (!userData[Party_LeaderID]) return message.reply("對象不存在.").then(msg => {
             msg.delete(5000)
         });

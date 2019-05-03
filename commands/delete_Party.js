@@ -21,7 +21,7 @@ module.exports = class delete_party {
         if(Player_Info.Character_Party != "組隊隊長"){
             return message.reply("你不是隊長，無法解散組隊.").then(msg => {msg.delete(1000)});
         }
-        if (Player_info.Character_Hunt == "正在共同狩獵") return message.reply("無法在狩獵中解散隊伍.").then(msg => {
+        if (Player_Info.Character_Hunt == "正在共同狩獵") return message.reply("無法在狩獵中解散隊伍.").then(msg => {
             msg.delete(10000)
         });
         if(!userData[playerID]) return message.reply("角色不存在，請輸入「!角色創建」.").then(msg => {msg.delete(1000)});

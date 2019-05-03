@@ -77,7 +77,6 @@ module.exports = class create_Character {
           Character_DMG: 1,
           Character_DEF: 1,
           Character_M_DMG: 0,
-          Character_M_Def: 1,
           Character_Strike: 1,
           Character_Accurate: 1,
           Character_Taunt: 0,

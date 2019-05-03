@@ -36,7 +36,7 @@ module.exports = {
     },
 
     RandomLevel: function(playerID){
-        let PlayerLevel = userData[playerID].Character_Level;
+        let PlayerLevel = userData[playerID].Character_Level + 5;
         console.log("玩家等級：" + PlayerLevel)
         let RandomLevel = Math.floor(Math.random() * PlayerLevel) + 1;
         return RandomLevel
@@ -187,33 +187,33 @@ module.exports = {
 
     get_loot_Target: function (playerID) {
         let Target_Level = this.LevelCheck();
-        let Target_Actually_Level = this.RandomLevel(playerID);
+        let Monster_Actually_Level = this.RandomLevel(playerID);
 
-        let Target_HP = this.HPCheck(Target_Level);
-        let Power_HP = this.Power_Check_HP(Target_HP);
+        let Monster_HP = this.HPCheck(Target_Level);
+        let Power_HP = this.Power_Check_HP(Monster_HP);
 
-        let Target_Atk = this.AtkCheck(Target_Level);
-        let Power_Atk = this.Power_Check_Atk(Target_Atk);
+        let Monster_Atk = this.AtkCheck(Target_Level);
+        let Power_Atk = this.Power_Check_Atk(Monster_Atk);
 
-        let Target_Def = this.DefCheck(Target_Level);
-        let Power_Def = this.Power_Check_Def(Target_Def);
+        let Monster_Def = this.DefCheck(Target_Level);
+        let Power_Def = this.Power_Check_Def(Monster_Def);
 
-        let Target_Strength = this.Target_StrengthCheck();
-        let Target_Week = this.Target_WeekCheck();
+        let Monster_Strength = this.Target_StrengthCheck();
+        let Monster_Week = this.Target_WeekCheck();
         console.log("取得授狩獵目標")
         all_hunt["h" + all_hunt["總資料"].number] = {
+            Monster_Name: "無",
+            Monster_Actually_Level: Monster_Actually_Level,
             Target_ID: "h" + all_hunt["總資料"].number,
             Target_Level: Target_Level,
-            Target_Actually_Level: Target_Actually_Level,
-            Target_HP: Target_HP,
             Power_HP: Power_HP,
-            Target_Atk: Target_Atk,
             Power_Atk: Power_Atk,
-            Target_Def: Target_Def,
             Power_Def: Power_Def,
-            Target_Strength: Target_Strength,
-            Target_Week: Target_Week,
-            
+            Monster_HP: Monster_HP,
+            Monster_Atk: Monster_Atk,
+            Monster_Def: Monster_Def,
+            Monster_Strength: Monster_Strength,
+            Monster_Week: Monster_Week,
         }
         all_hunt["總資料"].number += 1;
         return "狩獵目標";

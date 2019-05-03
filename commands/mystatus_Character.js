@@ -34,8 +34,7 @@ module.exports = class mystatus_character{
     "**命中(ACC)：**" + info.Character_Acc + "\n" +
     "**物理攻擊力： **" + info.Character_DMG + "\n" +
     "**魔法攻擊力： **" + info.Character_M_DMG + "\n" +
-    "**物理防禦力： **" + info.Character_DEF + "\n" +
-    "**魔法防禦力： **" + info.Character_M_Def + "\n" +
+    "**防禦力： **" + info.Character_DEF + "\n" +
     "**爆擊率： **" + info.Character_Strike + "\n" +
     "**命中率： **" + info.Character_Accurate + "\n" +
     "**(打/斬/刺/毒)傷害： **(" + 

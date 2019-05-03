@@ -1,6 +1,6 @@
 module.exports = {
-    isDead: function (Player_info){
-        if (Player_info.Character_HP <= 0){
+    isMonsterDead: function (Party_Info){
+        if (Party_Info.Monster_HP <= 0){
             return true
         }else{
             return false

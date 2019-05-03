@@ -44,7 +44,7 @@ module.exports = class levelup_skill {
             } else if (Player_Class == "戰士" && (Skill_Class == "小偷" || Skill_Class == "牧師")) {
                 console.log("玩家戰士，技能小偷或牧師")
                 return Skill_Exp * 3;
-            } else {
+            } else if (Player_Class == "戰士" && Skill_Class == "法師") {
                 console.log("玩家戰士，技能法師")
                 return Skill_Exp * 5;
             }
@@ -58,7 +58,7 @@ module.exports = class levelup_skill {
             } else if (Player_Class == "騎士" && (Skill_Class == "弓手" || Skill_Class == "法師")) {
                 console.log("玩家騎士，技能弓手或法師")
                 return Skill_Exp * 3;
-            } else {
+            } else if (Player_Class == "騎士" && Skill_Class == "小偷") {
                 console.log("玩家騎士，技能小偷")
                 return Skill_Exp * 5;
             }
@@ -72,7 +72,7 @@ module.exports = class levelup_skill {
             } else if (Player_Class == "牧師" && (Skill_Class == "戰士" || Skill_Class == "小偷")) {
                 console.log("玩家牧師，技能小偷或戰士")
                 return Skill_Exp * 3;
-            } else {
+            } else if (Player_Class == "牧師" && Skill_Class == "弓手") {
                 console.log("玩家牧師，技能弓手")
                 return Skill_Exp * 5;
             }
@@ -86,7 +86,7 @@ module.exports = class levelup_skill {
             } else if (Player_Class == "法師" && (Skill_Class == "弓手" || Skill_Class == "騎士")) {
                 console.log("玩家法師，技能弓手或騎士")
                 return Skill_Exp * 3;
-            } else {
+            } else if (Player_Class == "法師" && Skill_Class == "戰士") {
                 console.log("玩家法師，技能戰士")
                 return Skill_Exp * 5;
             }
@@ -100,7 +100,7 @@ module.exports = class levelup_skill {
             } else if (Player_Class == "小偷" && (Skill_Class == "戰士" || Skill_Class == "牧師")) {
                 console.log("玩家小偷，技能戰士或牧師")
                 return Skill_Exp * 3;
-            } else {
+            } else if (Player_Class == "小偷" && Skill_Class == "騎士") {
                 console.log("玩家小偷，技能騎士")
                 return Skill_Exp * 5;
             }
@@ -114,7 +114,7 @@ module.exports = class levelup_skill {
             } else if (Player_Class == "弓手" && (Skill_Class == "騎士" || Skill_Class == "法師")) {
                 console.log("玩家弓手，技能騎士或法師")
                 return Skill_Exp * 3;
-            } else {
+            } else if (Player_Class == "弓手" && Skill_Class == "牧師") {
                 console.log("玩家弓手，技能牧師")
                 return Skill_Exp * 5;
             }
@@ -129,110 +129,6 @@ module.exports = class levelup_skill {
         }
 
         switch (levelupSkillID) {
-            case 'skill_1001':
-                player_skills.skill_1001 = all_Skills
-                break;
-            case 'skill_1002':
-                player_skills.skill_1002 = all_Skills
-                break;
-            case 'skill_1003':
-                player_skills.skill_1003 = all_Skills
-                break;
-            case 'skill_1004':
-                player_skills.skill_1004 = all_Skills
-                break;
-            case 'skill_1005':
-                player_skills.skill_1005 = all_Skills
-                break;
-            case 'skill_1006':
-                player_skills.skill_1006 = all_Skills
-                break;
-            case 'skill_2001':
-                player_skills.skill_2001 = all_Skills
-                break;
-            case 'skill_2002':
-                player_skills.skill_2002 = all_Skills
-                break;
-            case 'skill_2003':
-                player_skills.skill_2003 = all_Skills
-                break;
-            case 'skill_2004':
-                player_skills.skill_2004 = all_Skills
-                break;
-            case 'skill_2005':
-                player_skills.skill_2005 = all_Skills
-                break;
-            case 'skill_2006':
-                player_skills.skill_2006 = all_Skills
-                break;
-            case 'skill_3001':
-                player_skills.skill_3001 = all_Skills
-                break;
-            case 'skill_3002':
-                player_skills.skill_3002 = all_Skills
-                break;
-            case 'skill_3003':
-                player_skills.skill_3003 = all_Skills
-                break;
-            case 'skill_3004':
-                player_skills.skill_3004 = all_Skills
-                break;
-            case 'skill_3005':
-                player_skills.skill_3005 = all_Skills
-                break;
-            case 'skill_3006':
-                player_skills.skill_3006 = all_Skills
-                break;
-            case 'skill_4001':
-                player_skills.skill_4001 = all_Skills
-                break;
-            case 'skill_4002':
-                player_skills.skill_4002 = all_Skills
-                break;
-            case 'skill_4003':
-                player_skills.skill_4003 = all_Skills
-                break;
-            case 'skill_4004':
-                player_skills.skill_4004 = all_Skills
-                break;
-            case 'skill_4005':
-                player_skills.skill_4005 = all_Skills
-                break;
-            case 'skill_4006':
-                player_skills.skill_4006 = all_Skills
-                break;
-            case '盾牌精通':
-            case '技能5001':
-                player_skills = player_skills.技能5001;
-                var need_Exp = player_Need_Exp(player_skills)
-                if (player_skills.Skill_isLearn == "尚未習得") {
-                    return message.reply(`你尚未習得此技能.`).then(msg => {
-                        msg.delete(10000)
-                    });
-                }
-                if (need_Exp > PlayerInfo.Character_Exp) {
-                    return message.reply(`你的經驗不足，至少需要${need_Exp}經驗.`).then(msg => {
-                        msg.delete(10000)
-                    });
-                }
-                if (isSkillLevelMax(player_skills)) {
-                    return message.reply(`此技能已達最高等級.`).then(msg => {
-                        msg.delete(10000)
-                    });
-                }
-                //玩家技能
-                player_skills.Skill_Level += 1;
-                player_skills.Skill_Add_DEF += 2;
-                player_skills.Skill_Need_Exp *= 2;
-
-                //玩家素質
-                PlayerInfo.Character_Exp -= need_Exp;
-                PlayerInfo.Character_DEF += 2;
-
-                message.reply("你升級了「盾牌精通」.").then(msg => {
-                    msg.delete(10000)
-                });
-                break;
             case '防禦精通':
             case '技能5002':
                 player_skills = player_skills.技能5002;
@@ -255,7 +151,6 @@ module.exports = class levelup_skill {
                 //玩家技能
                 player_skills.Skill_Level += 1;
                 player_skills.Skill_Extra_DEF += 1;
-                player_skills.Skill_Extra_M_DEF += 1;
                 player_skills.Skill_Extra_FIRE_DEF += 1;
                 player_skills.Skill_Extra_COLD_DEF += 1;
                 player_skills.Skill_Extra_WOOD_DEF += 1;
@@ -271,7 +166,6 @@ module.exports = class levelup_skill {
                 //玩家素質
                 PlayerInfo.Character_Exp -= need_Exp;
                 PlayerInfo.Character_DEF += 1;
-                PlayerInfo.Character_M_Def += 1;
                 PlayerInfo.Character_HIT_DEF += 1;
                 PlayerInfo.Character_CUT_DEF += 1;
                 PlayerInfo.Character_POKE_DEF += 1;
@@ -285,38 +179,6 @@ module.exports = class levelup_skill {
 
 
                 message.reply("你升級了「防禦精通」.").then(msg => {
-                    msg.delete(10000)
-                });
-                break;
-            case '防禦姿態':
-            case '技能5003':
-                player_skills = player_skills.技能5003;
-                var need_Exp = player_Need_Exp(player_skills)
-                if (player_skills.Skill_isLearn == "尚未習得") {
-                    return message.reply(`你尚未習得此技能.`).then(msg => {
-                        msg.delete(10000)
-                    });
-                }
-                if (need_Exp > PlayerInfo.Character_Exp) {
-                    return message.reply(`你的經驗不足，至少需要${need_Exp}經驗.`).then(msg => {
-                        msg.delete(10000)
-                    });
-                }
-                if (isSkillLevelMax(player_skills)) {
-                    return message.reply(`此技能已達最高等級.`).then(msg => {
-                        msg.delete(10000)
-                    });
-                }
-                //玩家技能
-                player_skills.Skill_Level += 1;
-                player_skills.Skill_Extra_DEF += 1;
-                player_skills.Skill_Need_Exp *= 2;
-
-                //玩家素質
-                PlayerInfo.Character_Exp -= need_Exp;
-                PlayerInfo.Character_DEF += 1;
-
-                message.reply("你升級了「盾牌精通」.").then(msg => {
                     msg.delete(10000)
                 });
                 break;
@@ -384,11 +246,6 @@ module.exports = class levelup_skill {
                     msg.delete(10000)
                 });
                 break;
-            case '鼓舞':
-            case '技能5006':
-                return message.reply("尚未設計").then(msg => {
-                    msg.delete(10000)
-                });
             case '近戰精通':
             case '技能6001':
                 player_skills = player_skills.技能6001;
@@ -410,12 +267,14 @@ module.exports = class levelup_skill {
                 }
                 //玩家技能
                 player_skills.Skill_Level += 1;
-                player_skills.Skill_Add_DMG += 1;
+                player_skills.Skill_Extra_DMG = 1;
+                player_skills.Skill_Extra_Str = 1;
                 player_skills.Skill_Need_Exp *= 2;
 
                 //玩家素質
                 PlayerInfo.Character_Exp -= need_Exp;
                 PlayerInfo.Character_DMG += 1; //增加人物物理攻擊力
+                PlayerInfo.Character_Str += 1; //增加人物力量
 
                 message.reply("你升級了「近戰精通」.").then(msg => {
                     msg.delete(10000)
@@ -442,48 +301,16 @@ module.exports = class levelup_skill {
                 }
                 //玩家技能
                 player_skills.Skill_Level += 1;
-                player_skills.Skill_Extra_HP += 5;
+                player_skills.Skill_Extra_HP = 5;
+                player_skills.Skill_Extra_AP = 5;
                 player_skills.Skill_Need_Exp *= 2;
 
                 //玩家素質
                 PlayerInfo.Character_Exp -= need_Exp;
-                PlayerInfo.Character_MaxHP += 5; //增加人物最大血量
+                PlayerInfo.Character_MaxHP += 5;
+                PlayerInfo.Character_MaxAP += 5;
 
                 message.reply("你升級了「耐力訓練」.").then(msg => {
-                    msg.delete(10000)
-                });
-                break;
-            case '勇氣':
-            case '技能6003':
-                player_skills = player_skills.技能6003;
-                if (player_skills.Skill_isLearn == "尚未習得") {
-                    return message.reply(`你尚未習得此技能.`).then(msg => {
-                        msg.delete(10000)
-                    });
-                }
-                need_Exp = player_Need_Exp(player_skills)
-                if (need_Exp > PlayerInfo.Character_Exp) {
-                    return message.reply(`你的經驗不足，至少需要${need_Exp}經驗.`).then(msg => {
-                        msg.delete(10000)
-                    });
-                }
-                if (isSkillLevelMax(player_skills)) {
-                    return message.reply(`此技能已達最高等級.`).then(msg => {
-                        msg.delete(10000)
-                    });
-                }
-                //玩家技能
-                player_skills.Skill_Level += 1;
-                player_skills.Skill_Add_POKE_DEF += 1;
-                player_skills.Skill_Add_CUT_DEF += 1;
-                player_skills.Skill_Add_HIT_DEF += 1;
-                player_skills.Skill_Need_Exp *= 2;
-
-                //玩家素質
-                PlayerInfo.Character_Exp -= need_Exp;
-
-
-                message.reply("你升級了「勇氣」.").then(msg => {
                     msg.delete(10000)
                 });
                 break;
@@ -519,76 +346,6 @@ module.exports = class levelup_skill {
 
 
                 message.reply("你升級了「劈砍」.").then(msg => {
-                    msg.delete(10000)
-                });
-                break;
-            case '突刺':
-            case '技能6005':
-                player_skills = player_skills.技能6005;
-                if (player_skills.Skill_isLearn == "尚未習得") {
-                    return message.reply(`你尚未習得此技能.`).then(msg => {
-                        msg.delete(10000)
-                    });
-                }
-                need_Exp = player_Need_Exp(player_skills)
-                if (need_Exp > PlayerInfo.Character_Exp) {
-                    return message.reply(`你的經驗不足，至少需要${need_Exp}經驗.`).then(msg => {
-                        msg.delete(10000)
-                    });
-                }
-                if (isSkillLevelMax(player_skills)) {
-                    return message.reply(`此技能已達最高等級.`).then(msg => {
-                        msg.delete(10000)
-                    });
-                }
-                //玩家技能
-                player_skills.Skill_isLearn = "已習得";
-                player_skills.Skill_Level += 1;
-                player_skills.Skill_Add_POKE_DMG += 2;
-                player_skills.Skill_Extra_POKE_DMG += 1;
-                player_skills.Skill_Need_Exp *= 2;
-
-                //玩家素質
-                PlayerInfo.Character_Exp -= need_Exp;
-                PlayerInfo.Character_POKE_DMG += 1;
-
-
-                message.reply("你升級了「突刺」.").then(msg => {
-                    msg.delete(10000)
-                });
-                break;
-            case '敲打':
-            case '技能6006':
-                player_skills = player_skills.技能6006;
-                if (player_skills.Skill_isLearn == "尚未習得") {
-                    return message.reply(`你尚未習得此技能.`).then(msg => {
-                        msg.delete(10000)
-                    });
-                }
-                need_Exp = player_Need_Exp(player_skills)
-                if (need_Exp > PlayerInfo.Character_Exp) {
-                    return message.reply(`你的經驗不足，至少需要${need_Exp}經驗.`).then(msg => {
-                        msg.delete(10000)
-                    });
-                }
-                if (isSkillLevelMax(player_skills)) {
-                    return message.reply(`此技能已達最高等級.`).then(msg => {
-                        msg.delete(10000)
-                    });
-                }
-                //玩家技能
-                player_skills.Skill_isLearn = "已習得";
-                player_skills.Skill_Level += 1;
-                player_skills.Skill_Add_HIT_DMG += 2;
-                player_skills.Skill_Extra_HIT_DMG += 1;
-                player_skills.Skill_Need_Exp *= 2;
-
-                //玩家素質
-                PlayerInfo.Character_Exp -= need_Exp;
-                PlayerInfo.Character_HIT_DMG += 1;
-
-
-                message.reply("你升級了「敲打」.").then(msg => {
                     msg.delete(10000)
                 });
                 break;
