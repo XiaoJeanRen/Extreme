@@ -2,10 +2,12 @@ const Discord = require("discord.js");
 const config = require("../config.json");
 const fs = require("fs");
 const userData = require("../players_data.json");
-const equip = require("../character_equip.json");
+const equip = require("../players_equip.json");
 const inv = require("../players_inventory.json");
+const player_material = require("../players_material.json");
 const adv_time = require("../players_adventure_time.json");
 const default_inv = require("../default_inventory.json");
+const default_material = require("../default_material_data.json");
 const all_skill_data = require("../all_skills_data.json");
 const player_learn_Skill = require("../players_skills.json");
 //創建角色指令
@@ -132,15 +134,19 @@ module.exports = class create_Character {
           need_time: 0
         }
 
+        player_material[message.author.id] = default_material;
+
+        
+
         inv[message.author.id] = default_inv;
 
         player_learn_Skill[message.author.id] = all_skill_data;
 
-
+        fs.writeFile("./players_material.json", JSON.stringify(player_material), (err) => {});
         fs.writeFile("./players_skills.json", JSON.stringify(player_learn_Skill), (err) => {});
         fs.writeFile("./players_adventure_time.json", JSON.stringify(adv_time), (err) => {});
         fs.writeFile("./players_data.json", JSON.stringify(userData), (err) => {});
-        fs.writeFile("./character_equip.json", JSON.stringify(equip), (err) => {});
+        fs.writeFile("./players_equip.json", JSON.stringify(equip), (err) => {});
         fs.writeFile("./players_inventory.json", JSON.stringify(inv), (err) => {});
         console.log(`使用者(ID: ${playerID})使用「角色創建」完成.`)
         message.reply(`角色「${characterName}」創建完成`).then(msg => {

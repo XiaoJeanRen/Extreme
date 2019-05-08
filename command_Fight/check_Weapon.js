@@ -1,5 +1,5 @@
 const equip = require("../all_item_id_data.json");
-const character_equip_info = require("../character_equip.json");
+const character_equip_info = require("../players_equip.json");
 module.exports = {
     WeaponCheck: function (playerID) {
         let Player_Equip_info = character_equip_info[playerID];

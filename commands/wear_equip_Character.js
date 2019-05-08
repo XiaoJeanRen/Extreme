@@ -2,7 +2,7 @@ const Discord = require("discord.js");
 const config = require("../config.json");
 const fs = require("fs");
 const inv = require("../players_inventory.json");
-const player_equip = require("../character_equip.json");
+const player_equip = require("../players_equip.json");
 const userData = require("../players_data.json");
 const equip = require("../all_item_id_data.json");
 // 穿戴裝備指令
@@ -518,7 +518,7 @@ module.exports = class wear_equip {
         });
         fs.writeFile("./players_inventory.json", JSON.stringify(inv), (err) =>{
         });
-        fs.writeFile("./character_equip.json", JSON.stringify(player_equip), (err) =>{
+        fs.writeFile("./players_equip.json", JSON.stringify(player_equip), (err) =>{
         });
         console.log(`使用者(ID: ${playerID})使用「穿戴」成功.`)
     }
