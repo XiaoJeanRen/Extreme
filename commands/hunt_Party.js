@@ -18,7 +18,6 @@ let Players_Original = function(playerID){
         Character_DMG: player_Info.Character_DMG,
         Character_DEF: player_Info.Character_DEF,
         Character_M_DMG: player_Info.Character_M_DMG,
-        Character_M_Def: player_Info.Character_M_Def,
         Character_Strike: player_Info.Character_Strike,
         Character_Accurate: player_Info.Character_Accurate,
         Character_Taunt: player_Info.Character_Taunt,
@@ -86,6 +85,11 @@ module.exports = class create_party {
         }
         if (Player_Info.Character_Hunt == "正在共同狩獵") {
             return message.reply("你已經在共同狩獵中了.").then(msg => {
+                msg.delete(1000)
+            });
+        }
+        if (Player_Party[playerID].Party_isHunt == "正在狩獵") {
+            return message.reply("你的隊伍已在狩獵中了.").then(msg => {
                 msg.delete(1000)
             });
         }

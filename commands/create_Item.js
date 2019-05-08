@@ -51,7 +51,6 @@ module.exports = class create_item {
             Equip_Add_DMG: 1,
             Equip_Add_DEF: 1,
             Equip_Add_M_DMG: 0,
-            Equip_Add_M_Def: 1,
             Equip_Add_Strike: 1,
             Equip_Add_Accurate: 1,
             Equip_Add_Taunt: 0,

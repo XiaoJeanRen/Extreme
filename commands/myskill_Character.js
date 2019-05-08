@@ -32,12 +32,18 @@ module.exports = class myskill {
                 let magicEmbed = new Discord.RichEmbed()
                     .setTitle("**" + info.CharacterName + "**")
                     .addField("**__法師系技能__**",
-                        "**魔力凝聚　Level_" + player_skills.skill_1001.skillLevel + "　**``習得狀況：" + player_skills.skill_1001.isskillGet + "``\n" +
-                        "**法杖精通　Level_" + player_skills.skill_1002.skillLevel + "　**``習得狀況：" + player_skills.skill_1002.isskillGet + "``\n" +
-                        "**詠唱精通　Level_" + player_skills.skill_1003.skillLevel + "　**``習得狀況：" + player_skills.skill_1003.isskillGet + "``\n" +
-                        "**魔力衝擊　Level_" + player_skills.skill_1004.skillLevel + "　**``習得狀況：" + player_skills.skill_1004.isskillGet + "``\n" +
-                        "**魔法箭　　Level_" + player_skills.skill_1005.skillLevel + "　**``習得狀況：" + player_skills.skill_1005.isskillGet + "``\n" +
-                        "**魔法屏障　Level_" + player_skills.skill_1006.skillLevel + "　**``習得狀況：" + player_skills.skill_1006.isskillGet + "``\n"
+                        "**魔力凝聚　Level_" + player_skills.技能1001.Skill_Level + "　**``習得狀況：" + player_skills.技能1001.Skill_isLearn + "``" +
+                        "\n技能敘述：__``" + player_skills.技能1001.Skill_Info + "``__\n" +
+                        "**法師學徒　Level_" + player_skills.技能1002.Skill_Level + "　**``習得狀況：" + player_skills.技能1002.Skill_isLearn + "``" +
+                        "\n技能敘述：__``" + player_skills.技能1002.Skill_Info + "``__\n" +
+                        /*"**防禦姿態　Level_" + player_skills.技能5003.Skill_Level + "　**``習得狀況：" + player_skills.技能5003.Skill_isLearn + "``" +
+                        "\n技能敘述：__``" + player_skills.技能5003.Skill_Info + "``__\n" +*/
+                        "**火球術　　Level_" + player_skills.技能1004.Skill_Level + "　**``習得狀況：" + player_skills.技能1004.Skill_isLearn + "``" +
+                        "\n技能敘述：__``" + player_skills.技能1004.Skill_Info + "``__\n"
+                        /*"**挑釁　　　Level_" + player_skills.技能5005.Skill_Level + "　**``習得狀況：" + player_skills.技能5005.Skill_isLearn + "``" +
+                        "\n技能敘述：__``" + player_skills.技能5005.Skill_Info + "``__\n" 
+                        "**鼓舞　　　Level_" + player_skills.技能5006.Skill_Level + "　**``習得狀況：" + player_skills.技能5006.Skill_isLearn + "``" +
+                        "\n技能敘述：__``" + player_skills.技能5006.Skill_Info + "``__\n" */
                     )
                 message.reply(magicEmbed).then(msg => {
                     msg.delete(20000)
@@ -47,19 +53,28 @@ module.exports = class myskill {
                 let priestEmbed = new Discord.RichEmbed()
                     .setTitle("**" + info.CharacterName + "**")
                     .addField("**__牧師系技能__**",
-                        "**治癒精通　Level_" + player_skills.skill_2001.skillLevel + "　**``習得狀況：" + player_skills.skill_2001.isskillGet + "``\n" +
-                        "**治癒術　　Level_" + player_skills.skill_2002.skillLevel + "　**``習得狀況：" + player_skills.skill_2002.isskillGet + "``\n" +
-                        "**驅散　　　Level_" + player_skills.skill_2003.skillLevel + "　**``習得狀況：" + player_skills.skill_2003.isskillGet + "``\n" +
-                        "**真實　　　Level_" + player_skills.skill_2004.skillLevel + "　**``習得狀況：" + player_skills.skill_2004.isskillGet + "``\n" +
-                        "**代價　　　Level_" + player_skills.skill_2005.skillLevel + "　**``習得狀況：" + player_skills.skill_2005.isskillGet + "``\n" +
-                        "**奮起　　　Level_" + player_skills.skill_2006.skillLevel + "　**``習得狀況：" + player_skills.skill_2006.isskillGet + "``\n"
+                        "**成長　　　Level_" + player_skills.技能2001.Skill_Level + "　**``習得狀況：" + player_skills.技能2001.Skill_isLearn + "``" +
+                        "\n技能敘述：__``" + player_skills.技能2001.Skill_Info + "``__\n" +
+                        "**治療術　　Level_" + player_skills.技能2002.Skill_Level + "　**``習得狀況：" + player_skills.技能2002.Skill_isLearn + "``" +
+                        "\n技能敘述：__``" + player_skills.技能2002.Skill_Info + "``__\n" +
+                        "**正面　　　Level_" + player_skills.技能2003.Skill_Level + "　**``習得狀況：" + player_skills.技能2003.Skill_isLearn + "``" +
+                        "\n技能敘述：__``" + player_skills.技能2003.Skill_Info + "``__\n" +
+                        "**反面　　　Level_" + player_skills.技能2004.Skill_Level + "　**``習得狀況：" + player_skills.技能2004.Skill_isLearn + "``" +
+                        "\n技能敘述：__``" + player_skills.技能2004.Skill_Info + "``__\n"
+                        /*"**挑釁　　　Level_" + player_skills.技能5005.Skill_Level + "　**``習得狀況：" + player_skills.技能5005.Skill_isLearn + "``" +
+                        "\n技能敘述：__``" + player_skills.技能5005.Skill_Info + "``__\n" 
+                        "**鼓舞　　　Level_" + player_skills.技能5006.Skill_Level + "　**``習得狀況：" + player_skills.技能5006.Skill_isLearn + "``" +
+                        "\n技能敘述：__``" + player_skills.技能5006.Skill_Info + "``__\n" */
                     )
                 message.reply(priestEmbed).then(msg => {
                     msg.delete(20000)
                 });
                 break;
             case '弓手系':
-                let archerEmbed = new Discord.RichEmbed()
+                message.reply("尚未開放").then(msg => {
+                    msg.delete(20000)
+                });
+                /*let archerEmbed = new Discord.RichEmbed()
                     .setTitle("**" + info.CharacterName + "**")
                     .addField("**__弓手系技能__**",
                         "**弓弩精通　Level_" + player_skills.skill_3001.skillLevel + "　**``習得狀況：" + player_skills.skill_3001.isskillGet + "``\n" +
@@ -72,9 +87,12 @@ module.exports = class myskill {
                 message.reply(archerEmbed).then(msg => {
                     msg.delete(20000)
                 });
-                break;
+                break;*/
             case '盜賊系':
-                let thiefEmbed = new Discord.RichEmbed()
+                message.reply("尚未開放").then(msg => {
+                    msg.delete(20000)
+                });
+                /*let thiefEmbed = new Discord.RichEmbed()
                     .setTitle("**" + info.CharacterName + "**")
                     .addField("**__盜賊系技能__**",
                         "**匕首精通　Level_" + player_skills.skill_4001.skillLevel + "　**``習得狀況：" + player_skills.skill_4001.isskillGet + "``\n" +
@@ -87,7 +105,7 @@ module.exports = class myskill {
                 message.reply(thiefEmbed).then(msg => {
                     msg.delete(20000)
                 });
-                break;
+                break;*/
             case '騎士系':
                 let knightEmbed = new Discord.RichEmbed()
                     .setTitle("**" + info.CharacterName + "**")
@@ -96,14 +114,14 @@ module.exports = class myskill {
                         "\n技能敘述：__``" + player_skills.技能5001.Skill_Info + "``__\n" +
                         "**防禦精通　Level_" + player_skills.技能5002.Skill_Level + "　**``習得狀況：" + player_skills.技能5002.Skill_isLearn + "``" +
                         "\n技能敘述：__``" + player_skills.技能5002.Skill_Info + "``__\n" +
-                        "**防禦姿態　Level_" + player_skills.技能5003.Skill_Level + "　**``習得狀況：" + player_skills.技能5003.Skill_isLearn + "``" +
-                        "\n技能敘述：__``" + player_skills.技能5003.Skill_Info + "``__\n" +
+                        /*"**防禦姿態　Level_" + player_skills.技能5003.Skill_Level + "　**``習得狀況：" + player_skills.技能5003.Skill_isLearn + "``" +
+                        "\n技能敘述：__``" + player_skills.技能5003.Skill_Info + "``__\n" +*/
                         "**盾牌衝擊　Level_" + player_skills.技能5004.Skill_Level + "　**``習得狀況：" + player_skills.技能5004.Skill_isLearn + "``" +
                         "\n技能敘述：__``" + player_skills.技能5004.Skill_Info + "``__\n" +
                         "**挑釁　　　Level_" + player_skills.技能5005.Skill_Level + "　**``習得狀況：" + player_skills.技能5005.Skill_isLearn + "``" +
-                        "\n技能敘述：__``" + player_skills.技能5005.Skill_Info + "``__\n" +
-                        "**鼓舞　　　Level_" + player_skills.技能5006.Skill_Level + "　**``習得狀況：" + player_skills.技能5006.Skill_isLearn + "``" +
-                        "\n技能敘述：__``" + player_skills.技能5006.Skill_Info + "``__\n" 
+                        "\n技能敘述：__``" + player_skills.技能5005.Skill_Info + "``__\n"
+                        /* "**鼓舞　　　Level_" + player_skills.技能5006.Skill_Level + "　**``習得狀況：" + player_skills.技能5006.Skill_isLearn + "``" +
+                         "\n技能敘述：__``" + player_skills.技能5006.Skill_Info + "``__\n" */
                     )
                 message.reply(knightEmbed).then(msg => {
                     msg.delete(20000)
@@ -120,11 +138,11 @@ module.exports = class myskill {
                         "**勇氣　　　Level_" + player_skills.技能6003.Skill_Level + "　**``習得狀況：" + player_skills.技能6003.Skill_isLearn + "``" +
                         "\n技能敘述：__``" + player_skills.技能6003.Skill_Info + "``__\n" +
                         "**劈砍　　　Level_" + player_skills.技能6004.Skill_Level + "　**``習得狀況：" + player_skills.技能6004.Skill_isLearn + "``" +
-                        "\n技能敘述：__``" + player_skills.技能6004.Skill_Info + "``__\n" +
-                        "**突刺　　　Level_" + player_skills.技能6005.Skill_Level + "　**``習得狀況：" + player_skills.技能6005.Skill_isLearn + "``" +
+                        "\n技能敘述：__``" + player_skills.技能6004.Skill_Info + "``__\n"
+                        /*"**突刺　　　Level_" + player_skills.技能6005.Skill_Level + "　**``習得狀況：" + player_skills.技能6005.Skill_isLearn + "``" +
                         "\n技能敘述：__``" + player_skills.技能6005.Skill_Info + "``__\n" +
                         "**敲打　　　Level_" + player_skills.技能6006.Skill_Level + "　**``習得狀況：" + player_skills.技能6006.Skill_isLearn + "``" +
-                        "\n技能敘述：__``" + player_skills.技能6006.Skill_Info + "``__\n" 
+                        "\n技能敘述：__``" + player_skills.技能6006.Skill_Info + "``__\n" */
                     )
                 message.reply(warriorEmbed).then(msg => {
                     msg.delete(20000)

@@ -44,7 +44,7 @@ module.exports = class learn_skill {
             } else if (Player_Class == "戰士" && (Skill_Class == "小偷" || Skill_Class == "牧師")) {
                 console.log("玩家戰士，技能小偷或牧師")
                 return Skill_Exp * 3;
-            } else if(Player_Class == "戰士" && Skill_Class == "法師"){
+            } else if (Player_Class == "戰士" && Skill_Class == "法師") {
                 console.log("玩家戰士，技能法師")
                 return Skill_Exp * 5;
             }
@@ -58,7 +58,7 @@ module.exports = class learn_skill {
             } else if (Player_Class == "騎士" && (Skill_Class == "弓手" || Skill_Class == "法師")) {
                 console.log("玩家騎士，技能弓手或法師")
                 return Skill_Exp * 3;
-            } else if(Player_Class == "騎士" && Skill_Class == "小偷"){
+            } else if (Player_Class == "騎士" && Skill_Class == "小偷") {
                 console.log("玩家騎士，技能小偷")
                 return Skill_Exp * 5;
             }
@@ -72,7 +72,7 @@ module.exports = class learn_skill {
             } else if (Player_Class == "牧師" && (Skill_Class == "戰士" || Skill_Class == "小偷")) {
                 console.log("玩家牧師，技能小偷或戰士")
                 return Skill_Exp * 3;
-            } else if(Player_Class == "牧師" && Skill_Class == "弓手"){
+            } else if (Player_Class == "牧師" && Skill_Class == "弓手") {
                 console.log("玩家牧師，技能弓手")
                 return Skill_Exp * 5;
             }
@@ -86,7 +86,7 @@ module.exports = class learn_skill {
             } else if (Player_Class == "法師" && (Skill_Class == "弓手" || Skill_Class == "騎士")) {
                 console.log("玩家法師，技能弓手或騎士")
                 return Skill_Exp * 3;
-            } else if(Player_Class == "法師" && Skill_Class == "戰士"){
+            } else if (Player_Class == "法師" && Skill_Class == "戰士") {
                 console.log("玩家法師，技能戰士")
                 return Skill_Exp * 5;
             }
@@ -100,7 +100,7 @@ module.exports = class learn_skill {
             } else if (Player_Class == "小偷" && (Skill_Class == "戰士" || Skill_Class == "牧師")) {
                 console.log("玩家小偷，技能戰士或牧師")
                 return Skill_Exp * 3;
-            } else if(Player_Class == "小偷" && Skill_Class == "騎士"){
+            } else if (Player_Class == "小偷" && Skill_Class == "騎士") {
                 console.log("玩家小偷，技能騎士")
                 return Skill_Exp * 5;
             }
@@ -114,7 +114,7 @@ module.exports = class learn_skill {
             } else if (Player_Class == "弓手" && (Skill_Class == "騎士" || Skill_Class == "法師")) {
                 console.log("玩家弓手，技能騎士或法師")
                 return Skill_Exp * 3;
-            } else if(Player_Class == "弓手" && Skill_Class == "牧師"){
+            } else if (Player_Class == "弓手" && Skill_Class == "牧師") {
                 console.log("玩家弓手，技能牧師")
                 return Skill_Exp * 5;
             }
@@ -130,6 +130,214 @@ module.exports = class learn_skill {
 
 
         switch (learnSkillID) {
+            case '魔力凝聚':
+            case '技能1001':
+                player_skills = player_skills.技能1001;
+                need_Exp = player_Need_Exp(player_skills)
+                if (isAlreadyLearn(player_skills)) {
+                    return message.reply("你已經會「魔力凝聚」了，若你要升級技能，請輸入!升級技能.").then(msg => {
+                        msg.delete(10000)
+                    });
+                }
+                if (need_Exp > PlayerInfo.Character_Exp) {
+                    return message.reply(`你的經驗不足，至少需要${need_Exp}經驗.`).then(msg => {
+                        msg.delete(10000)
+                    });
+                }
+                //玩家技能
+                player_skills.Skill_isLearn = "已習得";
+                player_skills.Skill_Level = 1;
+                player_skills.Skill_Extra_MP = 5;
+                player_skills.Skill_Need_Exp *= 2;
+
+                //玩家素質
+                PlayerInfo.Character_Exp -= need_Exp;
+                PlayerInfo.Character_MaxMP += 5;
+
+
+                message.reply("你學會了「魔力凝聚」.").then(msg => {
+                    msg.delete(10000)
+                });
+                break;
+            case '法師學徒':
+            case '技能1002':
+                player_skills = player_skills.技能1002;
+                need_Exp = player_Need_Exp(player_skills)
+                if (isAlreadyLearn(player_skills)) {
+                    return message.reply("你已經會「法師學徒」了，若你要升級技能，請輸入!升級技能.").then(msg => {
+                        msg.delete(10000)
+                    });
+                }
+                if (need_Exp > PlayerInfo.Character_Exp) {
+                    return message.reply(`你的經驗不足，至少需要${need_Exp}經驗.`).then(msg => {
+                        msg.delete(10000)
+                    });
+                }
+                //玩家技能
+                player_skills.Skill_isLearn = "已習得";
+                player_skills.Skill_Level = 1;
+                player_skills.Skill_Extra_M_DMG = 1;
+                player_skills.Skill_Extra_Int = 1;
+                player_skills.Skill_Need_Exp *= 2;
+
+                //玩家素質
+                PlayerInfo.Character_Exp -= need_Exp;
+                PlayerInfo.Character_Int += 1;
+                PlayerInfo.Character_M_DMG += 1;
+
+
+                message.reply("你學會了「法師學徒」.").then(msg => {
+                    msg.delete(10000)
+                });
+                break;
+            case '火球術':
+            case '技能1004':
+                player_skills = player_skills.技能1004;
+                need_Exp = player_Need_Exp(player_skills)
+                if (isAlreadyLearn(player_skills)) {
+                    return message.reply("你已經會「火球術」了，若你要升級技能，請輸入!升級技能.").then(msg => {
+                        msg.delete(10000)
+                    });
+                }
+                if (need_Exp > PlayerInfo.Character_Exp) {
+                    return message.reply(`你的經驗不足，至少需要${need_Exp}經驗.`).then(msg => {
+                        msg.delete(10000)
+                    });
+                }
+                //玩家技能
+                player_skills.Skill_isLearn = "已習得";
+                player_skills.Skill_Level = 1;
+                player_skills.Skill_Add_FIRE_DMG = 150;
+                player_skills.Skill_Extra_FIRE_DMG = 1;
+                player_skills.Skill_Need_Exp *= 2;
+
+                //玩家素質
+                PlayerInfo.Character_Exp -= need_Exp;
+                PlayerInfo.Character_FIRE_DMG += 1;
+
+
+
+                message.reply("你學會了「火球術」.").then(msg => {
+                    msg.delete(10000)
+                });
+                break;
+            case '成長':
+            case '技能2001':
+                player_skills = player_skills.技能2001;
+                need_Exp = player_Need_Exp(player_skills)
+                if (isAlreadyLearn(player_skills)) {
+                    return message.reply("你已經會「成長」了，若你要升級技能，請輸入!升級技能.").then(msg => {
+                        msg.delete(10000)
+                    });
+                }
+                if (need_Exp > PlayerInfo.Character_Exp) {
+                    return message.reply(`你的經驗不足，至少需要${need_Exp}經驗.`).then(msg => {
+                        msg.delete(10000)
+                    });
+                }
+                //玩家技能
+                player_skills.Skill_isLearn = "已習得";
+                player_skills.Skill_Level = 1;
+                player_skills.Skill_Extra_Exp = 50;
+                player_skills.Skill_Need_Exp *= 2;
+
+                //玩家素質
+                PlayerInfo.Character_Exp -= need_Exp;
+                PlayerInfo.Character_Extra_Exp += 50;
+
+
+                message.reply("你學會了「成長」.").then(msg => {
+                    msg.delete(10000)
+                });
+                break;
+            case '治癒術':
+            case '技能2002':
+                player_skills = player_skills.技能2002;
+                need_Exp = player_Need_Exp(player_skills)
+                if (isAlreadyLearn(player_skills)) {
+                    return message.reply("你已經會「治癒術」了，若你要升級技能，請輸入!升級技能.").then(msg => {
+                        msg.delete(10000)
+                    });
+                }
+                if (need_Exp > PlayerInfo.Character_Exp) {
+                    return message.reply(`你的經驗不足，至少需要${need_Exp}經驗.`).then(msg => {
+                        msg.delete(10000)
+                    });
+                }
+                //玩家技能
+                player_skills.Skill_isLearn = "已習得";
+                player_skills.Skill_Level = 1;
+                player_skills.Skill_Increase_Hp = 20;
+                player_skills.Skill_Need_Exp *= 2;
+
+                //玩家素質
+                PlayerInfo.Character_Exp -= need_Exp;
+
+
+                message.reply("你學會了「治癒術」.").then(msg => {
+                    msg.delete(10000)
+                });
+                break;
+            case '正面':
+            case '技能2003':
+                player_skills = player_skills.技能2003;
+                need_Exp = player_Need_Exp(player_skills)
+                if (isAlreadyLearn(player_skills)) {
+                    return message.reply("你已經會「正面」了，若你要升級技能，請輸入!升級技能.").then(msg => {
+                        msg.delete(10000)
+                    });
+                }
+                if (need_Exp > PlayerInfo.Character_Exp) {
+                    return message.reply(`你的經驗不足，至少需要${need_Exp}經驗.`).then(msg => {
+                        msg.delete(10000)
+                    });
+                }
+                //玩家技能
+                player_skills.Skill_isLearn = "已習得";
+                player_skills.Skill_Level = 1;
+                player_skills.Skill_Add_BRIGHT_DMG = 120;
+                player_skills.Skill_Extra_BRIGHT_DMG = 1;
+                player_skills.Skill_Need_Exp *= 2;
+
+                //玩家素質
+                PlayerInfo.Character_Exp -= need_Exp;
+                player_skills.Character_BRIGHT_DMG = 1;
+
+
+                message.reply("你學會了「正面」.").then(msg => {
+                    msg.delete(10000)
+                });
+                break;
+            case '反面':
+            case '技能2004':
+                player_skills = player_skills.技能2004;
+                need_Exp = player_Need_Exp(player_skills)
+                if (isAlreadyLearn(player_skills)) {
+                    return message.reply("你已經會「反面」了，若你要升級技能，請輸入!升級技能.").then(msg => {
+                        msg.delete(10000)
+                    });
+                }
+                if (need_Exp > PlayerInfo.Character_Exp) {
+                    return message.reply(`你的經驗不足，至少需要${need_Exp}經驗.`).then(msg => {
+                        msg.delete(10000)
+                    });
+                }
+                //玩家技能
+                player_skills.Skill_isLearn = "已習得";
+                player_skills.Skill_Level = 1;
+                player_skills.Skill_Add_DARK_DMG = 120;
+                player_skills.Skill_Extra_DARK_DMG = 1;
+                player_skills.Skill_Need_Exp *= 2;
+
+                //玩家素質
+                PlayerInfo.Character_Exp -= need_Exp;
+                player_skills.Character_DARK_DMG = 1;
+
+
+                message.reply("你學會了「反面」.").then(msg => {
+                    msg.delete(10000)
+                });
+                break;
             case '防禦精通':
             case '技能5002':
                 player_skills = player_skills.技能5002;
@@ -227,7 +435,7 @@ module.exports = class learn_skill {
                 //玩家技能
                 player_skills.Skill_isLearn = "已習得";
                 player_skills.Skill_Level = 1;
-                player_skills.Skill_Add_Taunt = 20;
+                player_skills.Skill_Add_Taunt = 50;
                 player_skills.Skill_Need_Exp *= 2;
 
                 //玩家素質

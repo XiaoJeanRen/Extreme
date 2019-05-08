@@ -72,7 +72,6 @@ module.exports = class check_item{
     )
     .addField("**裝備防禦屬性**",
     "**增加物理防禦力(Equip_Add_DEF)： **"            + info.Equip_Add_DEF + "\n" +
-    "**增加魔法防禦力(Equip_Add_M_Def)： **"            + info.Equip_Add_M_Def + "\n" +
     "**增加火焰抗性(Equip_Add_FIRE_DEF)： **"     + info.Equip_Add_FIRE_DEF + "\n" +
     "**增加冰冷抗性(Equip_Add_COLD_DEF)： **"     + info.Equip_Add_COLD_DEF + "\n" +
     "**增加木抗性(Equip_Add_WOOD_DEF)： **"    + info.Equip_Add_WOOD_DEF + "\n" +

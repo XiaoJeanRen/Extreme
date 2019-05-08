@@ -50,7 +50,6 @@ module.exports = class create_skill {
       Skill_Add_DMG: 0,
       Skill_Add_DEF: 0,
       Skill_Add_M_DMG: 0,
-      Skill_Add_M_DEF: 0,
       Skill_Add_FIRE_DMG: 0,
       Skill_Add_FIRE_DEF: 0,
       Skill_Add_COLD_DMG: 0,

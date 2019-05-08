@@ -6,7 +6,6 @@ const equip = require("../character_equip.json");
 const inv = require("../players_inventory.json");
 const adv_time = require("../players_adventure_time.json");
 const default_inv = require("../default_inventory.json");
-const dun_fight_Monster = require("../players_hunt_monster.json");
 module.exports = class reset {
     constructor() {
         this.name = 'reset',
@@ -39,8 +38,6 @@ module.exports = class reset {
         fs.writeFile("./players_skills.json", JSON.stringify({}), (err) => {
         });
         fs.writeFile("./players_inventory.json", JSON.stringify({}), (err) => {
-        });
-        fs.writeFile("./players_hunt_monster.json", JSON.stringify({}), (err) => {
         });
         fs.writeFile("./players_data.json", JSON.stringify({}), (err) => {
         });

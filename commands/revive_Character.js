@@ -3,7 +3,6 @@ const config = require("../config.json");
 const fs = require("fs");
 const userData = require("../players_data.json");
 const adv_time = require("../players_adventure_time.json");
-const player_hunt = require("../players_hunt_monster.json");
 const player_Original_Hunt_data = require("../players_original_fight_data.json");
 //創建復活指令
 module.exports = class revive_Character {
@@ -30,7 +29,6 @@ module.exports = class revive_Character {
 
         let playerReset = function () {
             player_Info.Character_Adventure = "尚未冒險";
-            player_Info.Character_Hunt = "尚未狩獵";
             player_Info.Character_Str = player_Original_Hunt_data[playerID].Character_Str;
             player_Info.Character_Int = player_Original_Hunt_data[playerID].Character_Int;
             player_Info.Character_Dex = player_Original_Hunt_data[playerID].Character_Dex;
@@ -150,18 +148,6 @@ module.exports = class revive_Character {
                 need_time: 0
             }
 
-            player_hunt[message.author.id] = {
-                Monster_Name: "無",
-                Monster_ID: "無",
-                Monster_Number: 0,
-                Monster_Time: 0,
-                Monster_Need_Time: 0,
-                Fight_place: "無",
-                isFightMonster: false,
-                FightMonster: "尚未狩獵",
-                FightMonster_TotalHP: 0,
-                FightMonster_FightHP: 0
-            }
             fs.writeFile("./players_data.json", JSON.stringify(userData), (err) => {});
 
             fs.writeFile("./players_adventure_time.json", JSON.stringify(adv_time), (err) => {});

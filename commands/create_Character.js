@@ -7,7 +7,6 @@ const inv = require("../players_inventory.json");
 const adv_time = require("../players_adventure_time.json");
 const default_inv = require("../default_inventory.json");
 const all_skill_data = require("../all_skills_data.json");
-const player_hunt = require("../players_hunt_monster.json");
 const player_learn_Skill = require("../players_skills.json");
 //創建角色指令
 module.exports = class create_Character {
@@ -135,24 +134,9 @@ module.exports = class create_Character {
 
         inv[message.author.id] = default_inv;
 
-
-        player_hunt[message.author.id] = {
-          Monster_Name: "無",
-          Monster_ID: "無",
-          Monster_Number: 0,
-          Monster_Time: 0,
-          Monster_Need_Time: 0,
-          Fight_place: "無",
-          isFightMonster: false,
-          FightMonster: "尚未狩獵",
-          FightMonster_TotalHP: 0,
-          FightMonster_FightHP: 0
-        }
-
         player_learn_Skill[message.author.id] = all_skill_data;
 
 
-        fs.writeFile("./players_hunt_monster.json", JSON.stringify(player_hunt), (err) => {});
         fs.writeFile("./players_skills.json", JSON.stringify(player_learn_Skill), (err) => {});
         fs.writeFile("./players_adventure_time.json", JSON.stringify(adv_time), (err) => {});
         fs.writeFile("./players_data.json", JSON.stringify(userData), (err) => {});
@@ -169,7 +153,7 @@ module.exports = class create_Character {
       }
 
     }).catch(err => {
-      //console.log(err)
+      console.log(err)
       return message.reply("取消").then(msg => {
         msg.delete(1000)
       });

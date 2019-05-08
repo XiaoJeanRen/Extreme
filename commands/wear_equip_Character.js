@@ -32,7 +32,6 @@ let wear = function (itemID,playerID){
     userData[playerID].Character_Taunt += equip[itemID].Equip_Add_Taunt;
 
     userData[playerID].Character_M_DMG += equip[itemID].Equip_Add_M_DMG;
-    userData[playerID].Character_M_Def += equip[itemID].Equip_Add_M_Def;
     
     userData[playerID].Character_Weight += equip[itemID].Equip_Need_Weight;
 
