@@ -27,7 +27,7 @@ module.exports = class gameReset{
     "**武器(右手)： **`物品id: " + info.Weapon2 + "` 名稱: `" + equip[info.Weapon2].Equip_Name  + "`\n" +
     "**箭袋： **`物品id: "       + info.Arrowbag + "` 名稱: `" + equip[info.Arrowbag].Equip_Name  + "`\n" +
     "**頭盔： **`物品id: "      + info.Head    + "` 名稱: `" + equip[info.Head].Equip_Name      + "`\n" +
-    "**盔甲： **`物品id: "      + info.Body    + "` 名稱: `" + equip[info.Body].Equip_Name      + "`\n" +
+    "**護甲： **`物品id: "      + info.Body    + "` 名稱: `" + equip[info.Body].Equip_Name      + "`\n" +
     "**手套： **`物品id: "      + info.Gloves  + "` 名稱: `" + equip[info.Gloves].Equip_Name    + "`\n" +
     "**護腿： **`物品id: "      + info.Leg     + "` 名稱: `" + equip[info.Leg].Equip_Name       + "`\n" +
     "**鞋子： **`物品id: "      + info.Boots   + "` 名稱: `" + equip[info.Boots].Equip_Name     + "`\n" +

@@ -32,6 +32,7 @@ module.exports = class monsters {
                     .addField("魔物名稱「怪異的牛」", "敘述：「因為奇怪力量變異的牛。」")
                     .addField("魔物名稱「怪異的豬」", "敘述：「因為奇怪力量變異的豬。」")
                     .addField("魔物名稱「怪異的雞」", "敘述：「因為奇怪力量變異的雞。」")
+                    .addField("魔物名稱「野狼」", "敘述：「牠們並不會在滿月化身為狼人......嗎?」")
                 message.reply(monstersEmbed1).then(msg => {
                     msg.delete(30000)
                 });;

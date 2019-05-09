@@ -148,7 +148,7 @@ module.exports = class DeleteCharacter {
                 fs.writeFile("./players_data.json", JSON.stringify(userData), (err) => {});
                 fs.writeFile("./players_adventure_time.json", JSON.stringify(adv_time), (err) => {});
                 fs.writeFile("./players_skills.json", JSON.stringify(player_learn_Skill), (err) => {});
-                fs.writeFile("./players_skills.json", JSON.stringify(players_Original_Hunt_data), (err) => {});
+                fs.writeFile("./players_original_fight_data.json", JSON.stringify(players_Original_Hunt_data), (err) => {});
             }
         }).catch(err => {
             //console.log(err)

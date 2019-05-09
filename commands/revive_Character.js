@@ -152,7 +152,6 @@ module.exports = class revive_Character {
 
             fs.writeFile("./players_adventure_time.json", JSON.stringify(adv_time), (err) => {});
 
-            fs.writeFile("./players_hunt_monster.json", JSON.stringify(player_hunt), (err) => {});
         }).catch(err => {
             //console.log(err)
             return message.reply("取消").then(msg => {
