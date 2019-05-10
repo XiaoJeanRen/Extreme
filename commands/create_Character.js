@@ -6,8 +6,10 @@ const equip = require("../players_equip.json");
 const inv = require("../players_inventory.json");
 const player_material = require("../players_material.json");
 const adv_time = require("../players_adventure_time.json");
+const life_time = require("../players_life_time.json");
 const default_inv = require("../default_inventory.json");
 const default_material = require("../default_material_data.json");
+const player_life_skill = require("../players_Life_skill_data.json");
 const all_skill_data = require("../all_skills_data.json");
 const player_learn_Skill = require("../players_skills.json");
 //創建角色指令
@@ -54,6 +56,7 @@ module.exports = class create_Character {
           Character_Adventure: "尚未冒險",
           Character_Hunt: "尚未狩獵",
           Character_isAlive: "還活著",
+          Character_isLifeSkill: "無",
           Character_Party: "無",
           Character_PartyLeader: "無",
           Character_Color: "##00cc00",
@@ -126,11 +129,48 @@ module.exports = class create_Character {
           Arrows: 0
         };
 
+        player_life_skill[message.author.id] = {
+          伐木_Level: 0,
+          伐木_Point: 0,
+          挖礦_Level: 0,
+          挖礦_Point: 0,
+          開鎖_Level: 0,
+          開鎖_Point: 0,
+          加工_Level: 0,
+          加工_Point: 0,
+          採集_Level: 0,
+          採集_Point: 0,
+          強化_Level: 0,
+          強化_Point: 0,
+          附魔_Level: 0,
+          附魔_Point: 0,
+          拍賣_Level: 0,
+          拍賣_Point: 0,
+          鑑定_Level: 0,
+          鑑定_Point: 0,
+          料理_Level: 0,
+          料理_Point: 0,
+          煉金_Level: 0,
+          煉金_Point: 0,
+          栽培_Level: 0,
+          栽培_Point: 0,
+          釣魚_Level: 0,
+          釣魚_Point: 0,
+        }
+
         adv_time[message.author.id] = {
           isAdventure: false,
           adventure_id: "000",
           adventure_place: "無",
           adventure_time: 0,
+          need_time: 0
+        }
+
+        life_time[message.author.id] = {
+          isLife: false,
+          life_type: "無",
+          life_place: "無",
+          life_time: 0,
           need_time: 0
         }
 
@@ -142,6 +182,8 @@ module.exports = class create_Character {
 
         player_learn_Skill[message.author.id] = all_skill_data;
 
+        fs.writeFile("./players_life_time.json", JSON.stringify(life_time), (err) => {});
+        fs.writeFile("./players_Life_skill_data.json", JSON.stringify(player_life_skill), (err) => {});
         fs.writeFile("./players_material.json", JSON.stringify(player_material), (err) => {});
         fs.writeFile("./players_skills.json", JSON.stringify(player_learn_Skill), (err) => {});
         fs.writeFile("./players_adventure_time.json", JSON.stringify(adv_time), (err) => {});

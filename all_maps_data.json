@@ -1,0 +1,27 @@
+{
+    "鄰近山脈": {
+        "Maps_Name": "鄰近山脈",
+        "Maps_Info": "無",
+        "Maps_Map": "無",
+        "Maps_Drop_Material1": "泥土",
+        "Maps_Drop_Material2": "沙子",
+        "Maps_Drop_Material3": "銅礦石",
+        "Maps_Drop_Material4": "鐵礦石",
+        "Maps_Drop_Material5": "金礦石",
+        "Maps_Drop_Material6": "無",
+        "Maps_Drop_Material7": "無",
+        "Maps_Drop_Material8": "無",
+        "Maps_Drop_Material9": "無",
+        "Maps_Drop_Material10": "無",
+        "Maps_Drop_Material1_Chance": 95,
+        "Maps_Drop_Material2_Chance": 95,
+        "Maps_Drop_Material3_Chance": 80,
+        "Maps_Drop_Material4_Chance": 60,
+        "Maps_Drop_Material5_Chance": 5,
+        "Maps_Drop_Material6_Chance": 1,
+        "Maps_Drop_Material7_Chance": 1,
+        "Maps_Drop_Material8_Chance": 1,
+        "Maps_Drop_Material9_Chance": 1,
+        "Maps_Drop_Material10_Chance": 1
+    }
+}

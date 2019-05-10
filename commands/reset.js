@@ -1,10 +1,6 @@
 const Discord = require("discord.js");
 const config = require("../config.json");
 const fs = require("fs");
-const userData = require("../players_data.json");
-const equip = require("../players_equip.json");
-const inv = require("../players_inventory.json");
-const adv_time = require("../players_adventure_time.json");
 const default_inv = require("../default_inventory.json");
 module.exports = class reset {
     constructor() {
@@ -33,6 +29,10 @@ module.exports = class reset {
                 itemID: "000"
             }
         }
+        fs.writeFile("./players_material.json", JSON.stringify({}), (err) => {
+        });
+        fs.writeFile("./players_original_fight_data.json", JSON.stringify({}), (err) => {
+        });
         fs.writeFile("./players_party_data.json", JSON.stringify({}), (err) => {
         });
         fs.writeFile("./players_skills.json", JSON.stringify({}), (err) => {

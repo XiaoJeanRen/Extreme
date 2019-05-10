@@ -18,24 +18,47 @@ module.exports = class myinv {
     if (!userData[playerID]) return message.reply("角色不存在，請輸入「!角色創建」.").then(msg => {
       msg.delete(1000)
     });
+    let Material_Page = args[1];
+    if (!args[1]) {}
     console.log(`使用者(ID: ${playerID})使用「角色素材」`)
-    let playerMatEmbed = new Discord.RichEmbed()
-      .setAuthor(info.CharacterName)
-      .setColor(info.Character_Color)
-      .addField("**素材包包**",
-        `黏液x` + myMaterial_info.黏液 + `　骨頭x` + myMaterial_info.骨頭 +
-        `　箭頭x` + myMaterial_info.箭頭 + `　羽毛x` + myMaterial_info.羽毛 +
-        `　破損的劍x` + myMaterial_info.破損的劍 + `　魔法粉末x` + myMaterial_info.魔法粉末 + "\n" +
-        `蜘蛛腿x` + myMaterial_info.蜘蛛腿 + `　蜘蛛絲x` + myMaterial_info.蜘蛛絲 +
-        `　蜘蛛眼x` + myMaterial_info.蜘蛛眼 + `　哥布林的耳朵x` + myMaterial_info.哥布林的耳朵 + "\n" +
-        `破碎的布料x` + myMaterial_info.破碎的布料 + `　破碎的皮革x` + myMaterial_info.破碎的皮革 +
-        `　無法食用的牛肉x` + myMaterial_info.無法食用的牛肉 + `　無法食用的豬肉x` + myMaterial_info.無法食用的豬肉 + "\n" +
-        `無法食用的雞肉x` + myMaterial_info.無法食用的雞肉 + `　邪惡的氣息x` + myMaterial_info.邪惡的氣息 +
-        `　精良的皮革x` + myMaterial_info.精良的皮革 + `　狼肉x` + myMaterial_info.狼肉 + "\n"
-      )
+    switch (Material_Page) {
+      case '礦石':
+      case '礦物':
+      case 'Ore':
+      case 'ore':
+        let playerOreEmbed = new Discord.RichEmbed()
+          .setAuthor(info.CharacterName)
+          .setColor(info.Character_Color)
+          .addField("**素材包包**",
+           `泥土x` + myMaterial_info.泥土 + `　沙子x` + myMaterial_info.沙子 + "\n" +
+           `銅礦石x` + myMaterial_info.銅礦石 + `　鐵礦石x` + myMaterial_info.鐵礦石 + `　金礦石x` + myMaterial_info.金礦石
+          )
 
-    message.reply(playerMatEmbed).then(msg => {
-      msg.delete(10000)
-    });
+        message.reply(playerOreEmbed).then(msg => {
+          msg.delete(10000)
+        });
+        break;
+      default:
+        let playerMatEmbed = new Discord.RichEmbed()
+          .setAuthor(info.CharacterName)
+          .setColor(info.Character_Color)
+          .addField("**素材包包**",
+            `黏液x` + myMaterial_info.黏液 + `　骨頭x` + myMaterial_info.骨頭 +
+            `　箭頭x` + myMaterial_info.箭頭 + `　羽毛x` + myMaterial_info.羽毛 +
+            `　破損的劍x` + myMaterial_info.破損的劍 + `　魔法粉末x` + myMaterial_info.魔法粉末 + "\n" +
+            `蜘蛛腿x` + myMaterial_info.蜘蛛腿 + `　蜘蛛絲x` + myMaterial_info.蜘蛛絲 +
+            `　蜘蛛眼x` + myMaterial_info.蜘蛛眼 + `　哥布林的耳朵x` + myMaterial_info.哥布林的耳朵 + "\n" +
+            `破碎的布料x` + myMaterial_info.破碎的布料 + `　破碎的皮革x` + myMaterial_info.破碎的皮革 +
+            `　無法食用的牛肉x` + myMaterial_info.無法食用的牛肉 + `　無法食用的豬肉x` + myMaterial_info.無法食用的豬肉 + "\n" +
+            `無法食用的雞肉x` + myMaterial_info.無法食用的雞肉 + `　邪惡的氣息x` + myMaterial_info.邪惡的氣息 +
+            `　精良的皮革x` + myMaterial_info.精良的皮革 + `　狼肉x` + myMaterial_info.狼肉 + "\n"
+          )
+
+        message.reply(playerMatEmbed).then(msg => {
+          msg.delete(10000)
+        });
+    }
+
+
   }
 }

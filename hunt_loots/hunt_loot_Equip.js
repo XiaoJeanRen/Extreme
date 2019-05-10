@@ -739,11 +739,16 @@ module.exports = {
         if (ItemName == "無") {
             return "無"
         } else {
+            let Random_Iden = Math.floor(Math.random() * 100) + 1;
             console.log("送入玩家ID:" + playerID)
             this.item_to_inv(playerID)
             all_item[all_item["總資料"].number] = defaultItem[ItemName];
             all_item[all_item["總資料"].number].Item_ID = all_item["總資料"].number;
-
+            if(Random_Iden > 50){
+                console.log("未鑑定裝備")
+                all_item[all_item["總資料"].number].Equip_Identification = "未鑑定";
+            }
+            
             all_item["總資料"].number += 1;
 
             fs.writeFile("./all_item_id_data.json", JSON.stringify(all_item), (err) => {});

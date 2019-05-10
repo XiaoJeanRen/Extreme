@@ -21,7 +21,7 @@ let checkHunt = function (myinv_info, itemID) {
 module.exports = class droph {
     constructor() {
         this.name = 'droph',
-            this.alias = ['放棄狩獵目標'],
+            this.alias = ['放棄狩獵目標','dh'],
             this.usage = '!droph'
     }
 

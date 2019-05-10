@@ -228,5 +228,28 @@
         "Monster_Drop_Material4_Chance": 10,
         "Monster_Drop_Material5_Chance": 80,
         "Monster_Drop_Material6_Chance": 1
+    },
+    "野豬": {
+        "Monster_Name": "野豬",
+        "Monster_Info": "無",
+        "Monster_Map": "無",
+        "Monster_Actually_Level": 7,
+        "Monster_HP": 65,
+        "Monster_Atk": 20,
+        "Monster_Def": 20,
+        "Monster_Strength": "打",
+        "Monster_Week": "火",
+        "Monster_Drop_Material1": "骨頭",
+        "Monster_Drop_Material2": "破碎的皮革",
+        "Monster_Drop_Material3": "完整的皮革",
+        "Monster_Drop_Material4": "精良的皮革",
+        "Monster_Drop_Material5": "豬肉",
+        "Monster_Drop_Material6": "無",
+        "Monster_Drop_Material1_Chance": 95,
+        "Monster_Drop_Material2_Chance": 75,
+        "Monster_Drop_Material3_Chance": 40,
+        "Monster_Drop_Material4_Chance": 10,
+        "Monster_Drop_Material5_Chance": 80,
+        "Monster_Drop_Material6_Chance": 1
     }
 }
